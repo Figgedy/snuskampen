@@ -277,7 +277,7 @@
       <h2 class="name">${p.name}</h2>
       <p class="meta">${p.format ? p.format + ' · ' : ''}${p.flavor}</p>
       <p class="meta">${dots(p.dots)}${p.mg}</p>
-      <span class="streak">${streak > 1 ? streak + ' raka vinster' : (streak === 1 ? '1 vinst' : '&nbsp;')}</span>`;
+      ${streak > 0 ? `<span class="streak">${streak > 1 ? streak + ' raka vinster' : '1 vinst'}</span>` : ''}`;
   }
   function newDuel(){ champ = pick([]); chall = pick([champ.id]); streak = 0; draw(); }
   function draw(){ renderCorner($('#cornerL'), champ); renderCorner($('#cornerR'), chall); }
