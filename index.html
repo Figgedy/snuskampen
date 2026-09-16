@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Snuskampen – vilken snus är bäst?</title>
+<meta name="description" content="Två dosor. En vinnare. Rösta i duellen och se Sveriges topplista över snus och nikotinportioner.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ffffff;
+    --ink:#101820;
+    --muted:#6b7280;
+    --red:#e4002b;
+    --blue:#0a4da6;
+    --red-tint:#fff0f2;
+    --blue-tint:#eef4fc;
+    --line:#e6e6e6;
+    --display:'Bebas Neue', 'Arial Narrow', Impact, sans-serif;
+    --body:'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{
+    background:var(--paper);color:var(--ink);font-family:var(--body);
+    display:flex;flex-direction:column;min-height:100dvh;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+
+  /* header */
+  header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 20px;border-bottom:1px solid var(--line);
+  }
+  .logo{font-family:var(--display);font-size:32px;letter-spacing:.5px;text-decoration:none;line-height:1}
+  .logo b{color:var(--red);font-weight:400}
+  nav{display:flex;gap:8px}
+  nav button{
+    font:600 14px var(--body);background:none;border:1px solid var(--line);
+    padding:8px 14px;border-radius:999px;cursor:pointer;color:var(--ink);
+  }
+  nav button[aria-current="page"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+  nav button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+  main{flex:1;display:flex;flex-direction:column}
+
+  /* duel */
+  #duel{flex:1;display:flex;flex-direction:column}
+  .arena{
+    flex:1;position:relative;display:grid;grid-template-columns:1fr 1fr;
+    min-height:0;
+  }
+  .corner{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:18px;padding:40px 24px 48px;border:0;cursor:pointer;background:var(--paper);
+    font:inherit;color:inherit;text-align:center;
+    transition:background .15s ease;
+  }
+  .corner:hover,.corner:focus-visible{outline:none}
+  .corner.left:hover,.corner.left:focus-visible{background:var(--red-tint)}
+  .corner.right:hover,.corner.right:focus-visible{background:var(--blue-tint)}
+  .corner.won{animation:pop .35s ease}
+  @keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.04)}100%{transform:scale(1)}}
+  @media (prefers-reduced-motion:reduce){.corner.won{animation:none}}
+
+  .can{
+    width:min(52vw,260px);aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+  }
+  .can img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 12px 18px rgba(0,0,0,.14))}
+  .can .fallback{
+    width:78%;aspect-ratio:1;border-radius:50%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-family:var(--display);color:#fff;text-align:center;padding:10%;
+    box-shadow:inset 0 -14px 24px rgba(0,0,0,.28), 0 12px 18px rgba(0,0,0,.14);
+  }
+  .fallback .b{font-size:clamp(18px,3vw,28px);opacity:.85;line-height:1}
+  .fallback .n{font-size:clamp(20px,4vw,38px);line-height:1;margin-top:4px}
+
+  .brand{font-size:14px;font-weight:600;color:var(--muted);letter-spacing:.02em}
+  .name{font-family:var(--display);font-size:clamp(34px,5.5vw,60px);line-height:.95;margin:0}
+  .meta{font-size:15px;color:var(--muted);margin:0}
+  .dots{display:inline-flex;gap:4px;vertical-align:middle;margin-right:8px}
+  .dots i{width:9px;height:9px;border-radius:50%;background:var(--line);display:block}
+  .dots i.on{background:var(--ink)}
+  .streak{
+    margin-top:6px;font-size:13px;font-weight:600;color:var(--red);
+    background:var(--red-tint);padding:4px 10px;border-radius:999px;
+  }
+  .left .streak{visibility:visible}
+  .right .streak{visibility:hidden}
+
+  .vs{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-8deg);
+    width:84px;height:84px;border-radius:50%;background:var(--ink);color:#fff;
+    font-family:var(--display);font-size:44px;display:flex;align-items:center;justify-content:center;
+    pointer-events:none;z-index:2;line-height:1;padding-top:4px;
+    box-shadow:0 0 0 6px var(--paper);
+  }
+  .seam{
+    position:absolute;left:50%;top:0;bottom:0;width:0;border-left:2px dashed var(--line);
+    pointer-events:none;
+  }
+
+  .hint{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:12px 20px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);
+  }
+  .hint kbd{
+    font:600 12px var(--body);border:1px solid var(--line);border-bottom-width:2px;
+    border-radius:4px;padding:1px 6px;background:#fafafa;color:var(--ink);
+  }
+  .hint button{font:600 14px var(--body);background:none;border:0;color:var(--muted);cursor:pointer;text-decoration:underline}
+
+  /* topplista */
+  #top{display:none;padding:28px 20px 60px;max-width:760px;margin:0 auto;width:100%}
+  #top h1{font-family:var(--display);font-size:clamp(44px,8vw,80px);margin:0 0 6px;line-height:.95}
+  #top p.sub{color:var(--muted);margin:0 0 24px;font-size:15px}
+  .filters{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+  .filters button{font:600 13px var(--body);border:1px solid var(--line);background:none;padding:6px 12px;border-radius:999px;cursor:pointer;color:var(--ink)}
+  .filters button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+  ol.list{list-style:none;margin:0;padding:0}
+  ol.list li{
+    display:grid;grid-template-columns:52px 64px 1fr auto;align-items:center;gap:14px;
+    padding:12px 0;border-bottom:1px solid var(--line);
+  }
+  ol.list .rank{font-family:var(--display);font-size:38px;line-height:1;color:var(--ink)}
+  ol.list li:nth-child(1) .rank{color:var(--red)}
+  ol.list .thumb{width:64px;height:64px;display:flex;align-items:center;justify-content:center}
+  ol.list .thumb img{max-width:100%;max-height:100%;object-fit:contain}
+  ol.list .thumb .fallback{width:56px;height:56px;border-radius:50%;font-size:16px;padding:0;box-shadow:inset 0 -6px 10px rgba(0,0,0,.28)}
+  ol.list .thumb .fallback .n{display:none}
+  ol.list .t{font-family:var(--display);font-size:26px;line-height:1}
+  ol.list .s{font-size:13px;color:var(--muted);margin-top:2px}
+  ol.list .score{text-align:right}
+  ol.list .score b{font-family:var(--display);font-size:26px;font-weight:400;display:block;line-height:1}
+  ol.list .score span{font-size:12px;color:var(--muted)}
+  .empty{padding:40px 0;color:var(--muted)}
+
+  /* age gate */
+  #gate{
+    position:fixed;inset:0;background:var(--paper);z-index:50;display:flex;align-items:center;justify-content:center;padding:24px;
+  }
+  #gate[hidden]{display:none}
+  #gate .box{max-width:420px;text-align:center}
+  #gate h2{font-family:var(--display);font-size:64px;margin:0 0 8px;line-height:1}
+  #gate p{color:var(--muted);margin:0 0 22px;font-size:15px}
+  #gate .row{display:flex;gap:10px;justify-content:center}
+  #gate button{font:600 15px var(--body);padding:12px 22px;border-radius:999px;border:1px solid var(--ink);cursor:pointer;background:none;color:var(--ink)}
+  #gate button.yes{background:var(--ink);color:#fff}
+
+  .toast{
+    position:fixed;left:50%;bottom:20px;transform:translateX(-50%);
+    background:var(--ink);color:#fff;padding:10px 16px;border-radius:999px;font-size:14px;
+    opacity:0;transition:opacity .2s;pointer-events:none;z-index:40;
+  }
+  .toast.show{opacity:1}
+
+  @media (max-width:640px){
+    .arena{grid-template-columns:1fr;grid-template-rows:1fr 1fr}
+    .seam{left:0;right:0;top:50%;bottom:auto;width:auto;border-left:0;border-top:2px dashed var(--line)}
+    .corner{padding:20px 16px;gap:10px}
+    .can{width:min(38vh,200px)}
+    .name{font-size:clamp(30px,8vw,44px)}
+    .vs{width:66px;height:66px;font-size:34px}
+    header{padding:12px 16px}
+    .logo{font-size:26px}
+    .hint .keys{display:none}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#" data-view="duel">SNUS<b>KAMPEN</b></a>
+  <nav>
+    <button data-view="duel" aria-current="page">Duell</button>
+    <button data-view="top">Topplistan</button>
+  </nav>
+</header>
+
+<main>
+  <section id="duel" aria-label="Duell">
+    <div class="arena">
+      <button class="corner left" id="cornerL" aria-label="Rösta på vänster"></button>
+      <div class="seam"></div>
+      <div class="vs">VS</div>
+      <button class="corner right" id="cornerR" aria-label="Rösta på höger"></button>
+    </div>
+    <div class="hint">
+      <span>Tryck på den du gillar bäst. Vinnaren stannar kvar och möter nästa.</span>
+      <span class="keys"><kbd>←</kbd> <kbd>→</kbd> rösta &nbsp; <kbd>S</kbd> skippa</span>
+      <button id="skip">Skippa</button>
+    </div>
+  </section>
+
+  <section id="top" aria-label="Topplistan">
+    <h1>Topplistan</h1>
+    <p class="sub" id="topSub">Rankad av alla dueller som röstats på snuskampen.se.</p>
+    <div class="filters">
+      <button data-f="all" aria-pressed="true">Alla</button>
+      <button data-f="vit" aria-pressed="false">Nikotinportioner</button>
+      <button data-f="tobak" aria-pressed="false">Tobakssnus</button>
+    </div>
+    <ol class="list" id="topList"></ol>
+  </section>
+</main>
+
+<div id="gate" hidden>
+  <div class="box">
+    <h2>18+</h2>
+    <p>Snuskampen handlar om nikotinprodukter och är bara för dig som fyllt 18 år.</p>
+    <div class="row">
+      <button class="yes" id="gateYes">Jag är 18 eller äldre</button>
+      <button id="gateNo">Nej</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="config.js"></script>
+<script src="products.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+(function(){
+  const P = window.PRODUCTS.filter(p => p.active !== false);
+  const byId = Object.fromEntries(P.map(p => [p.id, p]));
+  const cfg = window.SNUSKAMPEN_CONFIG || {};
+  const sb = (cfg.SUPABASE_URL && cfg.SUPABASE_ANON_KEY && window.supabase)
+    ? window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY) : null;
+
+  // ----- helpers
+  const $ = s => document.querySelector(s);
+  const store = {
+    get(k, d){ try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } },
+    set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+  };
+  const session = store.get('sk_session') || (() => { const s = Math.random().toString(36).slice(2) + Date.now().toString(36); store.set('sk_session', s); return s; })();
+  let toastT; function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 1800); }
+
+  const brandHue = {};
+  function colorFor(brand){
+    if (!brandHue[brand]) { let h = 0; for (const c of brand) h = (h * 31 + c.charCodeAt(0)) % 360; brandHue[brand] = h; }
+    return `hsl(${brandHue[brand]} 55% 42%)`;
+  }
+  function dots(n){ let s = '<span class="dots">'; for (let i = 1; i <= 6; i++) s += `<i class="${i <= n ? 'on' : ''}"></i>`; return s + '</span>'; }
+  function imgHtml(p, cls){
+    return `<div class="${cls}"><img src="img/${p.id}.png" alt="" loading="lazy"
+      onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'fallback',style:'background:${colorFor(p.brand)}',innerHTML:'<span class=b>${p.brand.replace(/'/g,'&#39;')}</span><span class=n>${p.name.replace(/'/g,'&#39;')}</span>'}))"></div>`;
+  }
+
+  // ----- duel state
+  let champ, chall, streak = 0, seen = [];
+  const recent = [];
+  function pick(exclude){
+    const pool = P.filter(p => !exclude.includes(p.id) && !recent.includes(p.id));
+    const from = pool.length ? pool : P.filter(p => !exclude.includes(p.id));
+    const p = from[Math.floor(Math.random() * from.length)];
+    recent.push(p.id); if (recent.length > 12) recent.shift();
+    return p;
+  }
+  function renderCorner(el, p){
+    el.dataset.id = p.id;
+    el.innerHTML = `
+      ${imgHtml(p, 'can')}
+      <span class="brand">${p.brand}</span>
+      <h2 class="name">${p.name}</h2>
+      <p class="meta">${p.format ? p.format + ' · ' : ''}${p.flavor}</p>
+      <p class="meta">${dots(p.dots)}${p.mg}</p>
+      <span class="streak">${streak > 1 ? streak + ' raka vinster' : (streak === 1 ? '1 vinst' : '&nbsp;')}</span>`;
+  }
+  function newDuel(){ champ = pick([]); chall = pick([champ.id]); streak = 0; draw(); }
+  function draw(){ renderCorner($('#cornerL'), champ); renderCorner($('#cornerR'), chall); }
+
+  async function vote(side){
+    const winner = side === 'L' ? champ : chall;
+    const loser  = side === 'L' ? chall : champ;
+    const el = side === 'L' ? $('#cornerL') : $('#cornerR');
+    el.classList.remove('won'); void el.offsetWidth; el.classList.add('won');
+    streak = (winner === champ) ? streak + 1 : 1;
+    champ = winner;
+    chall = pick([champ.id, loser.id]);
+    draw();
+    recordVote(winner.id, loser.id);
+  }
+  function skip(){ chall = pick([champ.id, chall.id]); draw(); }
+
+  // local ratings (fallback + optimistic)
+  const local = store.get('sk_local_ratings', {});
+  function eloLocal(w, l){
+    const rw = local[w]?.r ?? 1500, rl = local[l]?.r ?? 1500, k = 32;
+    const ew = 1 / (1 + Math.pow(10, (rl - rw) / 400));
+    local[w] = { r: rw + k * (1 - ew), w: (local[w]?.w || 0) + 1, l: local[w]?.l || 0 };
+    local[l] = { r: rl - k * (1 - ew), w: local[l]?.w || 0, l: (local[l]?.l || 0) + 1 };
+    store.set('sk_local_ratings', local);
+  }
+  async function recordVote(w, l){
+    eloLocal(w, l);
+    if (!sb) return;
+    const { error } = await sb.rpc('cast_vote', { p_winner: w, p_loser: l, p_session: session });
+    if (error) { console.warn(error); toast('Rösten sparades inte just nu'); }
+  }
+
+  // ----- topplista
+  let filter = 'all';
+  async function loadTop(){
+    const list = $('#topList');
+    let rows;
+    if (sb) {
+      const { data, error } = await sb.from('ratings').select('product_id,rating,wins,losses,duels').order('rating', { ascending: false });
+      if (error) { console.warn(error); rows = null; } else rows = data;
+      $('#topSub').textContent = rows ? `Rankad av ${rows.reduce((a, r) => a + r.duels, 0) / 2 | 0} dueller på snuskampen.se.` : 'Kunde inte hämta topplistan. Visar dina egna dueller.';
+    } else {
+      $('#topSub').textContent = 'Ingen databas kopplad – visar bara dina egna dueller på den här enheten.';
+    }
+    if (!rows) rows = Object.entries(local).map(([id, v]) => ({ product_id: id, rating: v.r, wins: v.w, losses: v.l, duels: v.w + v.l })).sort((a, b) => b.rating - a.rating);
+    rows = rows.filter(r => byId[r.product_id] && (filter === 'all' || byId[r.product_id].type === filter));
+    if (!rows.length) { list.innerHTML = '<li class="empty">Inga dueller ännu. Gå till duellen och rösta.</li>'; return; }
+    list.innerHTML = rows.slice(0, 50).map((r, i) => {
+      const p = byId[r.product_id];
+      const pct = r.duels ? Math.round(100 * r.wins / r.duels) : 0;
+      return `<li>
+        <span class="rank">${i + 1}</span>
+        ${imgHtml(p, 'thumb')}
+        <div><div class="t">${p.brand} ${p.name}</div><div class="s">${p.format ? p.format + ' · ' : ''}${p.flavor} · ${p.mg}</div></div>
+        <div class="score"><b>${pct}%</b><span>vinster · ${r.duels} dueller</span></div>
+      </li>`;
+    }).join('');
+  }
+
+  // ----- views
+  function show(view){
+    $('#duel').style.display = view === 'duel' ? 'flex' : 'none';
+    $('#top').style.display = view === 'top' ? 'block' : 'none';
+    document.querySelectorAll('nav button').forEach(b => b.toggleAttribute('aria-current', b.dataset.view === view) || (b.dataset.view === view ? b.setAttribute('aria-current', 'page') : b.removeAttribute('aria-current')));
+    if (view === 'top') loadTop();
+    if (location.hash !== '#' + view) history.replaceState(null, '', '#' + view);
+  }
+  document.querySelectorAll('[data-view]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); show(el.dataset.view); }));
+  document.querySelectorAll('.filters button').forEach(b => b.addEventListener('click', () => {
+    filter = b.dataset.f; document.querySelectorAll('.filters button').forEach(x => x.setAttribute('aria-pressed', x === b)); loadTop();
+  }));
+
+  $('#cornerL').addEventListener('click', () => vote('L'));
+  $('#cornerR').addEventListener('click', () => vote('R'));
+  $('#skip').addEventListener('click', skip);
+  document.addEventListener('keydown', e => {
+    if ($('#duel').style.display === 'none' || !$('#gate').hidden) return;
+    if (e.key === 'ArrowLeft') vote('L');
+    else if (e.key === 'ArrowRight') vote('R');
+    else if (e.key.toLowerCase() === 's') skip();
+  });
+
+  // ----- age gate
+  const gate = $('#gate');
+  if (!store.get('sk_18', false)) gate.hidden = false;
+  $('#gateYes').addEventListener('click', () => { store.set('sk_18', true); gate.hidden = true; });
+  $('#gateNo').addEventListener('click', () => { location.href = 'https://www.1177.se'; });
+
+  newDuel();
+  show(location.hash === '#top' ? 'top' : 'duel');
+})();
+</script>
+</body>
+</html>
