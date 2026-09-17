@@ -278,6 +278,8 @@
     ['KR','🇰🇷 대한민국'],['JP','🇯🇵 日本'],['AU','🇦🇺 Australia'],['NZ','🇳🇿 New Zealand'],
     ['ZA','🇿🇦 South Africa'],['AE','🇦🇪 United Arab Emirates'],['XX','🌍 —']];
   const LANG2C={sv:'SE',no:'NO',da:'DK',fi:'FI',is:'IS',de:'DE',en:'GB',pl:'PL',sk:'SK',sl:'SI',hr:'HR',et:'EE',lv:'LV',it:'IT',es:'ES',fr:'FR',ko:'KR'};
+  const C2LANG={SE:'sv',NO:'no',DK:'da',FI:'fi',IS:'is',DE:'de',AT:'de',CH:'de',NL:'en',BE:'fr',GB:'en',IE:'en',US:'en',CA:'en',
+    PL:'pl',CZ:'sk',SK:'sk',SI:'sl',HR:'hr',EE:'et',LV:'lv',LT:'lv',IT:'it',ES:'es',PT:'es',FR:'fr',KR:'ko',JP:'en',AU:'en',NZ:'en',ZA:'en',AE:'en',XX:'en'};
   const guessCountry=()=>{ const l=(navigator.language||'').toUpperCase(); const m=l.match(/-([A-Z]{2})/);
     if(m&&COUNTRIES.some(c=>c[0]===m[1])) return m[1];
     const base=(navigator.language||'sv').toLowerCase().slice(0,2); return LANG2C[base]||'XX'; };
@@ -558,13 +560,12 @@
     if(route==='vs'){const m=location.pathname.match(/^\/vs\/([^/]+)\/([^/]+)/); if(m)renderVs(decodeURIComponent(m[1]),decodeURIComponent(m[2]));}
   }
   $('#lang').innerHTML=I18N.LANGS.map(l=>`<option value="${l.code}" ${l.code===LANG?'selected':''}>${esc(l.label)}</option>`).join('');
-  $('#lang').addEventListener('change',e=>{LANG=e.target.value;store.set('sk_lang',LANG);
-    if(!store.get('sk_country_set',false) && LANG2C[LANG]){ country=LANG2C[LANG]; $('#country').value=country; store.set('sk_country',country); }
-    applyLang();});
+  $('#lang').addEventListener('change',e=>{LANG=e.target.value;store.set('sk_lang',LANG);store.set('sk_lang_set',true);applyLang();});
 
   // ---- land
   $('#country').innerHTML=COUNTRIES.map(([c,l])=>`<option value="${c}" ${c===country?'selected':''}>${l}</option>`).join('');
-  $('#country').addEventListener('change',e=>{country=e.target.value;store.set('sk_country',country);store.set('sk_country_set',true);});
+  $('#country').addEventListener('change',e=>{ country=e.target.value; store.set('sk_country',country); store.set('sk_country_set',true);
+    if(!store.get('sk_lang_set',false)){ const nl=C2LANG[country]; if(nl && I18N.T[nl] && nl!==LANG){ LANG=nl; $('#lang').value=LANG; store.set('sk_lang',LANG); applyLang(); } } });
 
   // ---- age gate + start
   const gate=$('#gate'); if(!store.get('sk_18',false)) gate.hidden=false;
