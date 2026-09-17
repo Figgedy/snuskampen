@@ -49,9 +49,8 @@
   @media (prefers-reduced-motion:reduce){.corner.won{animation:none}}
   .can{width:min(52vw,240px);aspect-ratio:1;display:flex;align-items:center;justify-content:center}
   .can img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 12px 18px rgba(0,0,0,.14))}
-  .fallback{width:78%;aspect-ratio:1;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--display);color:#fff;text-align:center;padding:10%;box-shadow:inset 0 -14px 24px rgba(0,0,0,.28),0 12px 18px rgba(0,0,0,.14)}
-  .fallback .b{font-size:clamp(16px,2.6vw,24px);opacity:.85;line-height:1}
-  .fallback .n{font-size:clamp(18px,3.4vw,32px);line-height:1;margin-top:4px}
+  .fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+  .fallback svg{width:100%;height:100%;filter:drop-shadow(0 12px 18px rgba(0,0,0,.14))}
   .brand{font-size:14px;font-weight:600;color:var(--muted)}
   .name{font-family:var(--display);font-size:clamp(30px,5vw,54px);line-height:.95;margin:0}
   .meta{font-size:15px;color:var(--muted);margin:0}
@@ -84,8 +83,7 @@
   ol.list li:nth-child(1) .rank{color:var(--red)}
   .thumb{width:56px;height:56px;display:flex;align-items:center;justify-content:center}
   .thumb img{max-width:100%;max-height:100%;object-fit:contain}
-  .thumb .fallback{width:50px;height:50px;padding:0;box-shadow:inset 0 -6px 10px rgba(0,0,0,.28)}
-  .thumb .fallback .b{font-size:13px}.thumb .fallback .n{display:none}
+  .thumb .fallback svg{filter:none}
   ol.list .t{font-family:var(--display);font-size:24px;line-height:1}
   ol.list .t a{text-decoration:none}
   ol.list .s{font-size:12px;color:var(--muted);margin-top:2px}
@@ -99,7 +97,7 @@
   .winners{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
   .wcard{border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
   .wcard.total{grid-column:1/-1;border-color:var(--ink);border-width:2px;grid-template-columns:96px 1fr}
-  .wcard.total .thumb{width:96px;height:96px}.wcard.total .thumb .fallback{width:88px;height:88px}
+  .wcard.total .thumb{width:96px;height:96px}
   .wcard .cat{font-size:12px;font-weight:600;color:var(--muted)}
   .wcard .t{font-family:var(--display);font-size:24px;line-height:1;margin:2px 0}
   .wcard.total .t{font-size:40px}
@@ -269,9 +267,33 @@
   ALL.forEach(p=>{ p._fam=fam(p); p._str=STR(p.dots); });
 
   // ---- render helpers
-  const hue={}; const colorFor = b => { if(!(b in hue)){let h=0;for(const c of b)h=(h*31+c.charCodeAt(0))%360;hue[b]=h;} return `hsl(${hue[b]} 55% 42%)`; };
+  const hue={}; const hueOf = b => { if(!(b in hue)){let h=0;for(const c of b)h=(h*31+c.charCodeAt(0))%360;hue[b]=h;} return hue[b]; };
+  const colorFor = b => `hsl(${hueOf(b)} 55% 42%)`;
   const dots = n => '<span class="dots">'+Array.from({length:6},(_,i)=>`<i class="${i<n?'on':''}"></i>`).join('')+'</span>';
-  const imgHtml = (p,cls) => `<div class="${cls}"><img src="/img/${p.id}.png" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'fallback',style:'background:${colorFor(p.brand)}',innerHTML:'<span class=b>${esc(p.brand)}</span><span class=n>${esc(p.name)}</span>'}))"></div>`;
+
+  // grafisk dosa som fallback tills riktig produktbild finns i /img/
+  function canSvg(p, small){
+    const h=hueOf(p.brand), lid=`hsl(${h} 55% 42%)`, rim=`hsl(${h} 55% 32%)`, top=`hsl(${h} 50% 52%)`;
+    const light = p.type==='vit';
+    const band = light ? '#f7f7f5' : `hsl(${h} 30% 22%)`;
+    const bandText = light ? '#101820' : '#ffffff';
+    const brand=esc(p.brand.toUpperCase()), name=esc(p.name.toUpperCase());
+    const bs = brand.length>12 ? 15 : brand.length>9 ? 17 : 20;
+    const ns = name.length>18 ? 12 : name.length>13 ? 14 : 17;
+    const pips = Array.from({length:6},(_,i)=>`<circle cx="${68+i*13}" cy="150" r="4" fill="${i<p.dots?bandText:'transparent'}" stroke="${bandText}" stroke-opacity=".45" stroke-width="1"/>`).join('');
+    return `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${brand} ${name}">
+      <ellipse cx="100" cy="132" rx="82" ry="30" fill="${rim}"/>
+      <rect x="18" y="72" width="164" height="60" fill="${rim}"/>
+      <ellipse cx="100" cy="72" rx="82" ry="30" fill="${lid}"/>
+      <ellipse cx="100" cy="70" rx="70" ry="24" fill="${top}" opacity=".55"/>
+      ${small?'':`<rect x="18" y="98" width="164" height="42" fill="${band}"/>
+      <text x="100" y="118" text-anchor="middle" font-family="Bebas Neue,Impact,sans-serif" font-size="${ns}" fill="${bandText}">${name}</text>
+      ${pips}`}
+      <text x="100" y="${small?78:74}" text-anchor="middle" font-family="Bebas Neue,Impact,sans-serif" font-size="${small?26:bs}" fill="#fff" opacity=".95">${brand}</text>
+    </svg>`;
+  }
+  const imgHtml = (p,cls) => `<div class="${cls}"><img src="/img/${p.id}.png" alt="" loading="lazy" data-pid="${esc(p.id)}" data-small="${cls==='thumb'?1:0}" onerror="window.__snusFallback(this)"></div>`;
+  window.__snusFallback = el => { const p=byId[el.dataset.pid]; if(!p){el.remove();return;} const d=document.createElement('div'); d.className='fallback'; d.innerHTML=canSvg(p, el.dataset.small==='1'); el.replaceWith(d); };
   const label = p => `${p.brand} ${p.name}`;
   const sub = p => [p.format, p.flavor, p.mg].filter(Boolean).join(' · ');
   const vsUrl = (a,b) => `/vs/${a}/${b}`;
@@ -409,6 +431,19 @@
 
   // ---- resultatkort
   function myTop(n){ return Object.entries(local).map(([id,v])=>({p:byId[id],r:v.r,w:v.w,l:v.l})).filter(x=>x.p&&x.w+x.l>=2).sort((a,b)=>b.r-a.r).slice(0,n); }
+  function drawCan(x, p, cx, cy, r){
+    const h=hueOf(p.brand);
+    const lid=`hsl(${h} 55% 42%)`, rim=`hsl(${h} 55% 32%)`, top=`hsl(${h} 50% 52%)`;
+    const w=r, hh=r*0.34, bodyH=r*0.62;
+    x.fillStyle=rim; x.beginPath(); x.ellipse(cx,cy+bodyH/2,w,hh,0,0,Math.PI*2); x.fill();
+    x.fillRect(cx-w,cy-bodyH/2,w*2,bodyH);
+    x.fillStyle=lid; x.beginPath(); x.ellipse(cx,cy-bodyH/2,w,hh,0,0,Math.PI*2); x.fill();
+    x.fillStyle=top; x.globalAlpha=.55; x.beginPath(); x.ellipse(cx,cy-bodyH/2-2,w*0.85,hh*0.8,0,0,Math.PI*2); x.fill(); x.globalAlpha=1;
+    x.fillStyle='#fff'; x.textAlign='center';
+    fit(x,p.brand.toUpperCase(),w*1.7,'30px "Bebas Neue"');
+    x.fillText(p.brand.toUpperCase(),cx,cy-bodyH/2+6);
+    x.textAlign='left';
+  }
   function fit(x, text, max, font){ let s=parseInt(font); x.font=font; while(x.measureText(text).width>max && s>20){ s-=2; x.font=font.replace(/^\d+/, s); } return x.font; }
   async function openCard(){
     const top=myTop(5); if(top.length<3){ toast('Rösta några dueller till först'); return; }
@@ -420,8 +455,7 @@
     x.fillStyle='#6b7280';x.font='600 40px Archivo';x.fillText(`Min topp 5 efter ${myVotes} dueller`,80,260);
     top.forEach((t,i)=>{const y=420+i*260;
       x.fillStyle=i===0?'#e4002b':'#101820';x.font='150px "Bebas Neue"';x.fillText(String(i+1),80,y+110);
-      x.fillStyle=colorFor(t.p.brand);x.beginPath();x.arc(340,y+70,90,0,Math.PI*2);x.fill();
-      x.fillStyle='#fff';x.textAlign='center';fit(x,t.p.brand.toUpperCase(),150,'38px "Bebas Neue"');x.fillText(t.p.brand.toUpperCase(),340,y+82);x.textAlign='left';
+      drawCan(x, t.p, 340, y+70, 92);
       x.fillStyle='#101820';fit(x,t.p.name.toUpperCase(),W-540,'72px "Bebas Neue"');x.fillText(t.p.name.toUpperCase(),470,y+70);
       const meta=[t.p.format,t.p.mg.split(' · ')[0]].filter(Boolean).join(' · ');
       x.fillStyle='#6b7280';fit(x,meta,W-540,'600 34px Archivo');x.fillText(meta,470,y+125);
