@@ -5,6 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Snuskampen – vilken snus är bäst?</title>
 <meta name="description" content="Två dosor. En vinnare. Rösta i duellen och se Sveriges topplista över snus och nikotinportioner – per smak, styrka och varumärke.">
+<link rel="alternate" hreflang="sv" href="https://snuskampen.se/">
+<link rel="alternate" hreflang="en" href="https://snuskampen.se/?lang=en">
+<link rel="alternate" hreflang="de" href="https://snuskampen.se/?lang=de">
+<link rel="alternate" hreflang="no" href="https://snuskampen.se/?lang=no">
+<link rel="alternate" hreflang="da" href="https://snuskampen.se/?lang=da">
+<link rel="alternate" hreflang="fi" href="https://snuskampen.se/?lang=fi">
+<link rel="alternate" hreflang="pl" href="https://snuskampen.se/?lang=pl">
+<link rel="alternate" hreflang="it" href="https://snuskampen.se/?lang=it">
+<link rel="alternate" hreflang="es" href="https://snuskampen.se/?lang=es">
+<link rel="alternate" hreflang="fr" href="https://snuskampen.se/?lang=fr">
+<link rel="alternate" hreflang="ko" href="https://snuskampen.se/?lang=ko">
+<link rel="alternate" hreflang="sk" href="https://snuskampen.se/?lang=sk">
+<link rel="alternate" hreflang="sl" href="https://snuskampen.se/?lang=sl">
+<link rel="alternate" hreflang="hr" href="https://snuskampen.se/?lang=hr">
+<link rel="alternate" hreflang="is" href="https://snuskampen.se/?lang=is">
+<link rel="alternate" hreflang="et" href="https://snuskampen.se/?lang=et">
+<link rel="alternate" hreflang="lv" href="https://snuskampen.se/?lang=lv">
+<link rel="alternate" hreflang="x-default" href="https://snuskampen.se/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;600&display=swap" rel="stylesheet">
@@ -74,7 +92,7 @@
   .frow .lbl{font-size:12px;font-weight:600;color:var(--muted);width:56px}
   .chip.sm{font-size:12px;padding:4px 10px}
   select{font:600 13px var(--body);border:1px solid var(--line);background:#fff;padding:6px 10px;border-radius:999px;color:var(--ink)}
-  #country{margin-left:auto}
+  #lang{margin-left:auto}
 
   /* list */
   ol.list{list-style:none;margin:0;padding:0}
@@ -163,6 +181,7 @@
     <a href="/topplistan" data-route="top">Topplistan</a>
     <a href="/manadens-mastare" data-route="month">Månadens mästare</a>
     <a href="/varumarken" data-route="brands">Märken &amp; tillverkare</a>
+    <select id="lang" aria-label="Language"></select>
     <select id="country" aria-label="Land" title="Land"></select>
   </nav>
 </header>
@@ -175,13 +194,13 @@
       <button class="corner right" id="cornerR" aria-label="Rösta på höger"></button>
     </div>
     <div class="hint">
-      <span>Tryck på den du gillar bäst. Vinnaren stannar och möter nästa. <span class="keys"><kbd>←</kbd> <kbd>→</kbd> rösta · <kbd>S</kbd> skippa</span></span>
+      <span id="duelHint"></span>
       <span class="acts"><button id="share-duel">Dela duellen</button><button id="skip">Skippa</button></span>
     </div>
   </section>
 
   <section id="v-top" class="view"><div class="scroll"><div class="wrap">
-    <h1>Topplistan</h1>
+    <h1 id="topH">Topplistan</h1>
     <p class="sub" id="topSub"></p>
     <div class="tabs" id="topTabs">
       <button class="chip" data-tab="all" aria-pressed="true">Alla tider</button>
@@ -195,8 +214,8 @@
   </div></div></section>
 
   <section id="v-month" class="view"><div class="scroll"><div class="wrap">
-    <h1>Månadens mästare</h1>
-    <p class="sub">Räknas bara på månadens dueller. Den 1:a börjar allt om – all-time-listan ligger kvar under Topplistan.</p>
+    <h1 id="monthH">Månadens mästare</h1>
+    <p class="sub" id="monthSub"></p>
     <div class="tabs" id="monthTabs"></div>
     <div id="monthBody"></div>
   </div></div></section>
@@ -217,11 +236,11 @@
   <section id="v-vs" class="view"><div class="scroll"><div class="wrap" id="vsBody"></div></div></section>
 </main>
 
-<div id="gate" hidden><div class="box"><h2>18+</h2><p>Snuskampen handlar om nikotinprodukter och är bara för dig som fyllt 18 år.</p>
+<div id="gate" hidden><div class="box"><h2>18+</h2><p id="gateText"></p>
   <div class="btnrow"><button class="btn" id="gateYes">Jag är 18 eller äldre</button><button class="btn ghost" id="gateNo">Nej</button></div></div></div>
 
 <div class="modal" id="cardModal" hidden><div class="box">
-  <h2 style="font-family:var(--display)">Din topp 5</h2>
+  <h2 id="cardH" style="font-family:var(--display)">Din topp 5</h2>
   <p class="sub" id="cardSub"></p>
   <canvas id="card" width="1080" height="1920"></canvas>
   <div class="btnrow"><button class="btn" id="cardShare">Dela</button><button class="btn ghost" id="cardSave">Spara bild</button><button class="btn ghost" id="cardClose">Fortsätt rösta</button></div>
@@ -230,6 +249,7 @@
 <div class="toast" id="toast"></div>
 
 <script src="config.js"></script>
+<script src="i18n.js"></script>
 <script src="products.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
@@ -239,6 +259,10 @@
   const byId = Object.fromEntries(ALL.map(p => [p.id, p]));
   const cfg = window.SNUSKAMPEN_CONFIG || {};
   const sb = (cfg.SUPABASE_URL && cfg.SUPABASE_ANON_KEY && window.supabase) ? window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY) : null;
+  const I18N = window.I18N || {LANGS:[{code:'sv',label:'Svenska'}],T:{sv:{ui:{},flavor:{}}}};
+  const guessLang = () => { const l=(navigator.language||'sv').toLowerCase().slice(0,2); return I18N.T[l] ? l : 'sv'; };
+  let LANG = (new URLSearchParams(location.search).get('lang')||'').toLowerCase();
+  if(!I18N.T[LANG]) LANG = null;
   const MIN_DUELS = 5;          // för att få vara med i månads-/kategorilistor
   const CARD_EVERY = 10;        // resultatkort efter var 10:e röst
 
@@ -247,21 +271,24 @@
   const session = store.get('sk_session') || (()=>{const s=Math.random().toString(36).slice(2)+Date.now().toString(36);store.set('sk_session',s);return s;})();
   const COUNTRIES=[['SE','🇸🇪 Sverige'],['NO','🇳🇴 Norge'],['DK','🇩🇰 Danmark'],['FI','🇫🇮 Finland'],['DE','🇩🇪 Deutschland'],['GB','🇬🇧 UK'],['US','🇺🇸 USA'],['XX','🌍 Annat']];
   const guessCountry=()=>{ const l=(navigator.language||'').toUpperCase(); const m=l.match(/-([A-Z]{2})/); if(m&&COUNTRIES.some(c=>c[0]===m[1])) return m[1]; if(l.startsWith('SV'))return 'SE'; if(l.startsWith('NB')||l.startsWith('NO'))return 'NO'; if(l.startsWith('DA'))return 'DK'; if(l.startsWith('FI'))return 'FI'; if(l.startsWith('DE'))return 'DE'; return 'SE'; };
+  LANG = LANG || store.get('sk_lang') || guessLang();
+  const t = (k,v) => { let s = (I18N.T[LANG]?.ui?.[k]) ?? (I18N.T.sv.ui[k]) ?? k; if(v) for(const x in v) s=s.split('{'+x+'}').join(v[x]); return s; };
+  const tf = f => (I18N.T[LANG]?.flavor?.[f]) ?? f;
   let country = store.get('sk_country') || guessCountry();
   let toastT; const toast = m => { const t=$('#toast'); t.textContent=m; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),1800); };
   const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
   const pct = (w,d) => d ? Math.round(100*w/d) : 0;
 
   // ---- taxonomi
-  const STR = d => d<=2?'Mild':d===3?'Normal':d===4?'Stark':'Extra stark';
+  const STRKEY = d => d<=2?'mild':d===3?'normal':d===4?'strong':'xstrong';
   const FCOUNT = P.reduce((a,p)=>(a[p.flavor]=(a[p.flavor]||0)+1,a),{});
   const FAMS = Object.keys(FCOUNT).sort((a,b)=>FCOUNT[b]-FCOUNT[a]||a.localeCompare(b,'sv'));
-  const STRS = ['Mild','Normal','Stark','Extra stark'];
+  const STRS = ['mild','normal','strong','xstrong'];
   const BRANDS = [...new Set(P.map(p=>p.brand))].sort((a,b)=>a.localeCompare(b,'sv'));
   const MAKERS = [...new Set(P.map(p=>p.maker))].sort((a,b)=>a.localeCompare(b,'sv'));
   const FORMATS = ['Mini','Slim','Superslim','Large'].filter(f=>P.some(p=>p.format===f));
   const STYLES = ['White','White Dry','Original'].filter(s=>P.some(p=>p.style===s));
-  ALL.forEach(p=>{ p._fam=p.flavor; p._str=STR(p.dots); });
+  ALL.forEach(p=>{ p._fam=p.flavor; p._str=STRKEY(p.dots); });
 
   // ---- render helpers
   const hue={}; const hueOf = b => { if(!(b in hue)){let h=0;for(const c of b)h=(h*31+c.charCodeAt(0))%360;hue[b]=h;} return hue[b]; };
@@ -287,7 +314,7 @@
   const imgHtml = (p,cls) => `<div class="${cls}"><img src="/img/${p.id}.png" alt="" loading="lazy" data-pid="${esc(p.id)}" data-small="${cls==='thumb'?1:0}" onerror="window.__snusFallback(this)"></div>`;
   window.__snusFallback = el => { const p=byId[el.dataset.pid]; if(!p){el.remove();return;} const d=document.createElement('div'); d.className='fallback'; d.innerHTML=canSvg(p, el.dataset.small==='1'); el.replaceWith(d); };
   const label = p => `${p.brand} ${p.name}`;
-  const sub = p => [p.format, p.style, p.flavor, p.mg].filter(Boolean).join(' · ');
+  const sub = p => [p.format, p.style, tf(p.flavor), p.mg].filter(Boolean).join(' · ');
   const vsUrl = (a,b) => `/vs/${a}/${b}`;
 
   // ---- local ratings
@@ -300,13 +327,13 @@
     if (myVotes % CARD_EVERY === 0) setTimeout(()=>openCard(), 350);
     if (!sb) return;
     const {error} = await sb.rpc('cast_vote',{p_winner:w,p_loser:l,p_session:session,p_country:country});
-    if (error){ console.warn(error); toast('Rösten sparades inte just nu'); }
+    if (error){ console.warn(error); toast(t('not_saved')); }
   }
 
   // ---- duel
   let champ, chall, streak=0; const recent=[];
   function pick(ex){ const pool=P.filter(p=>!ex.includes(p.id)&&!recent.includes(p.id)); const from=pool.length?pool:P.filter(p=>!ex.includes(p.id)); const p=from[Math.floor(Math.random()*from.length)]; recent.push(p.id); if(recent.length>12)recent.shift(); return p; }
-  function renderCorner(el,p,isChamp){ el.dataset.id=p.id; el.innerHTML=`${imgHtml(p,'can')}<span class="brand">${esc(p.brand)}</span><h2 class="name" style="margin:0">${esc(p.name)}</h2><p class="meta">${esc([p.format,p.style,p.flavor].filter(Boolean).join(' · '))}</p><p class="meta">${dots(p.dots)}${esc(p.mg)}</p>${isChamp&&streak>0?`<span class="streak">${streak>1?streak+' raka vinster':'1 vinst'}</span>`:''}`; }
+  function renderCorner(el,p,isChamp){ el.dataset.id=p.id; el.innerHTML=`${imgHtml(p,'can')}<span class="brand">${esc(p.brand)}</span><h2 class="name" style="margin:0">${esc(p.name)}</h2><p class="meta">${esc([p.format,p.style,tf(p.flavor)].filter(Boolean).join(' · '))}</p><p class="meta">${dots(p.dots)}${esc(p.mg)}</p>${isChamp&&streak>0?`<span class="streak">${streak>1?streak+' raka vinster':'1 vinst'}</span>`:''}`; }
   function draw(){ renderCorner($('#cornerL'),champ,true); renderCorner($('#cornerR'),chall,false); }
   function startDuel(a,b){ champ=a||pick([]); chall=b||pick([champ.id]); streak=0; draw(); }
   function vote(side){ const winner=side==='L'?champ:chall, loser=side==='L'?chall:champ, el=side==='L'?$('#cornerL'):$('#cornerR');
@@ -314,9 +341,9 @@
     streak = winner===champ ? streak+1 : 1; champ=winner; chall=pick([champ.id,loser.id]); draw(); recordVote(winner.id,loser.id); }
   $('#cornerL').addEventListener('click',()=>vote('L')); $('#cornerR').addEventListener('click',()=>vote('R'));
   $('#skip').addEventListener('click',()=>{chall=pick([champ.id,chall.id]);draw();});
-  $('#share-duel').addEventListener('click',()=>shareLink(location.origin+vsUrl(champ.id,chall.id),`${label(champ)} vs ${label(chall)}`));
+  $('#share-duel').addEventListener('click',()=>shareLink(location.origin+vsUrl(champ.id,chall.id)+(LANG!=='sv'?'?lang='+LANG:''),`${label(champ)} vs ${label(chall)}`));
   document.addEventListener('keydown',e=>{ if(route!=='duel'||!$('#gate').hidden)return; if(e.key==='ArrowLeft')vote('L'); else if(e.key==='ArrowRight')vote('R'); else if(e.key.toLowerCase()==='s')$('#skip').click(); });
-  async function shareLink(url,title){ if(navigator.share){ try{await navigator.share({title,url});return;}catch{} } try{await navigator.clipboard.writeText(url);toast('Länk kopierad');}catch{toast(url);} }
+  async function shareLink(url,title){ if(navigator.share){ try{await navigator.share({title,url});return;}catch{} } try{await navigator.clipboard.writeText(url);toast(t('copied'));}catch{toast(url);} }
 
   // ---- data fetch (cached per view)
   const cache={};
@@ -331,15 +358,15 @@
   function renderFilters(){
     const chips=(key,opts)=>opts.map(([v,l])=>`<button class="chip sm" data-f="${key}" data-v="${esc(v)}" aria-pressed="${F[key]===v}">${esc(l)}</button>`).join('');
     $('#filters').innerHTML=`
-      <div class="frow"><span class="lbl">Kategori</span>${chips('type',[['all','Alla'],['vit','Nikotinportioner'],['tobak','Tobakssnus']])}</div>
-      <div class="frow"><span class="lbl">Styrka</span>${chips('str',[['all','Alla'],...STRS.map(s=>[s,s])])}</div>
-      <div class="frow"><span class="lbl">Smak</span><select id="famSel"><option value="all">Alla smaker</option>${FAMS.map(s=>`<option ${F.fam===s?'selected':''}>${esc(s)} (${FCOUNT[s]})</option>`).join('')}</select></div>
-      <div class="frow"><span class="lbl">Format</span>${chips('fmt',[['all','Alla'],...FORMATS.map(s=>[s,s])])}</div>
-      <div class="frow"><span class="lbl">Typ</span>${chips('style',[['all','Alla'],...STYLES.map(s=>[s,s])])}</div>
-      <div class="frow"><span class="lbl">Märke</span><select id="brandSel"><option value="all">Alla märken</option>${BRANDS.map(b=>`<option ${F.brand===b?'selected':''}>${esc(b)}</option>`).join('')}</select></div>`;
+      <div class="frow"><span class="lbl">${esc(t('f_cat'))}</span>${chips('type',[['all',t('all')],['vit',t('pouches')],['tobak',t('tobacco')]])}</div>
+      <div class="frow"><span class="lbl">${esc(t('f_str'))}</span>${chips('str',[['all',t('all')],...STRS.map(s=>[s,t(s)])])}</div>
+      <div class="frow"><span class="lbl">${esc(t('f_flavor'))}</span><select id="famSel"><option value="all">${esc(t('all_flavors'))}</option>${FAMS.map(s=>`<option value="${esc(s)}" ${F.fam===s?'selected':''}>${esc(tf(s))} (${FCOUNT[s]})</option>`).join('')}</select></div>
+      <div class="frow"><span class="lbl">${esc(t('f_format'))}</span>${chips('fmt',[['all',t('all')],...FORMATS.map(s=>[s,s])])}</div>
+      <div class="frow"><span class="lbl">${esc(t('f_style'))}</span>${chips('style',[['all',t('all')],...STYLES.map(s=>[s,s])])}</div>
+      <div class="frow"><span class="lbl">${esc(t('f_brand'))}</span><select id="brandSel"><option value="all">${esc(t('all_brands'))}</option>${BRANDS.map(b=>`<option ${F.brand===b?'selected':''}>${esc(b)}</option>`).join('')}</select></div>`;
     $('#filters').querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{F[b.dataset.f]=b.dataset.v;renderFilters();renderTop();}));
     $('#brandSel').addEventListener('change',e=>{F.brand=e.target.value;renderTop();});
-    $('#famSel').addEventListener('change',e=>{F.fam=e.target.value==='all'?'all':e.target.value.replace(/ \(\d+\)$/,'');renderTop();});
+    $('#famSel').addEventListener('change',e=>{F.fam=e.target.value;renderTop();});
   }
   const passes = p => p && (F.type==='all'||p.type===F.type) && (F.str==='all'||p._str===F.str) && (F.fam==='all'||p._fam===F.fam) && (F.fmt==='all'||p.format===F.fmt) && (F.style==='all'||p.style===F.style) && (F.brand==='all'||p.brand===F.brand);
 
@@ -355,14 +382,14 @@
     let rows=[]; let subtxt='';
     if(topTab==='mine'){
       rows=Object.entries(local).map(([id,v])=>({product_id:id,rating:v.r,wins:v.w,losses:v.l,duels:v.w+v.l})).sort((a,b)=>b.rating-a.rating);
-      subtxt=`Byggd på dina ${myVotes} dueller på den här enheten.`;
-    } else if(!sb){ subtxt='Ingen databas kopplad.'; }
-    else if(topTab==='all'){ rows=(await getRatings())||[]; subtxt=`${Math.floor(rows.reduce((a,r)=>a+r.duels,0)/2)} dueller totalt.`; }
-    else if(topTab==='recent'){ rows=((await getRecent())||[]).map(r=>({...r,duels:r.wins+r.losses})).filter(r=>r.duels>=MIN_DUELS).sort((a,b)=>pct(b.wins,b.duels)-pct(a.wins,a.duels)||b.duels-a.duels); subtxt=`Vinstandel de senaste 30 dagarna, minst ${MIN_DUELS} dueller.`; }
-    else if(topTab==='hot'){ rows=((await getRatings())||[]).filter(r=>r.duels>=MIN_DUELS*2).map(r=>({...r,_d:Math.abs(50-pct(r.wins,r.duels))})).sort((a,b)=>a._d-b._d||b.duels-a.duels); subtxt='Närmast 50/50 – produkterna folk är mest oense om.'; }
+      subtxt=t('top_sub_mine',{n:myVotes});
+    } else if(!sb){ subtxt=''; }
+    else if(topTab==='all'){ rows=(await getRatings())||[]; subtxt=t('top_sub_all',{n:Math.floor(rows.reduce((a,r)=>a+r.duels,0)/2)}); }
+    else if(topTab==='recent'){ rows=((await getRecent())||[]).map(r=>({...r,duels:r.wins+r.losses})).filter(r=>r.duels>=MIN_DUELS).sort((a,b)=>pct(b.wins,b.duels)-pct(a.wins,a.duels)||b.duels-a.duels); subtxt=t('top_sub_recent',{m:MIN_DUELS}); }
+    else if(topTab==='hot'){ rows=((await getRatings())||[]).filter(r=>r.duels>=MIN_DUELS*2).map(r=>({...r,_d:Math.abs(50-pct(r.wins,r.duels))})).sort((a,b)=>a._d-b._d||b.duels-a.duels); subtxt=t('top_sub_hot'); }
     rows=rows.filter(r=>passes(byId[r.product_id]));
     $('#topSub').textContent=subtxt;
-    list.innerHTML=listHtml(rows,r=>[pct(r.wins,r.duels)+'%',`vinster · ${r.duels} dueller`]);
+    list.innerHTML=listHtml(rows,r=>[pct(r.wins,r.duels)+'%',t('wins_duels',{d:r.duels})]);
     list.querySelectorAll('[data-utmana]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();startDuel(byId[a.dataset.utmana]);go('duel');}));
   }
   $('#mineShare').addEventListener('click',openCard);
@@ -374,23 +401,24 @@
     const months=[...new Set(data.map(r=>r.month))].sort().reverse();
     const nowM=new Date().toISOString().slice(0,7)+'-01'; if(!months.includes(nowM)) months.unshift(nowM);
     if(!monthSel||!months.includes(monthSel)) monthSel=months[0];
-    const fmtM=m=>new Date(m).toLocaleDateString('sv-SE',{month:'long',year:'numeric'});
+    const fmtM=m=>new Date(m).toLocaleDateString(LANG,{month:'long',year:'numeric'});
     $('#monthTabs').innerHTML=months.slice(0,12).map(m=>`<button class="chip" data-m="${m}" aria-pressed="${m===monthSel}">${esc(fmtM(m))}</button>`).join('');
     $('#monthTabs').querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{monthSel=b.dataset.m;renderMonth();}));
     const rows=data.filter(r=>r.month===monthSel&&byId[r.product_id]).map(r=>({...r,duels:r.wins+r.losses,p:byId[r.product_id]}));
     const total=rows.reduce((a,r)=>a+r.duels,0)/2;
     const best=(pred)=>rows.filter(r=>r.duels>=MIN_DUELS&&pred(r.p)).sort((a,b)=>pct(b.wins,b.duels)-pct(a.wins,a.duels)||b.duels-a.duels)[0];
-    const card=(cat,r,cls='')=>r?`<div class="wcard ${cls}">${imgHtml(r.p,'thumb')}<div><div class="cat">${esc(cat)}</div><div class="t">${esc(label(r.p))}</div><div class="s">${pct(r.wins,r.duels)}% vinster · ${r.duels} dueller</div></div></div>`:`<div class="wcard ${cls}"><div></div><div><div class="cat">${esc(cat)}</div><div class="s">Ingen produkt har ${MIN_DUELS} dueller ännu</div></div></div>`;
-    const cats=[['Bästa nikotinportion',p=>p.type==='vit'],['Bästa tobakssnus',p=>p.type==='tobak'],
-      ...FORMATS.map(f=>[`Bästa ${f.toLowerCase()}`,p=>p.format===f]),
-      ...STYLES.map(s=>[`Bästa ${s.toLowerCase()}`,p=>p.style===s]),
-      ...STRS.map(s=>[`Bästa ${s.toLowerCase()}`,p=>p._str===s]),
-      ...FAMS.filter(f=>FCOUNT[f]>=8&&f!=='Övrigt').map(f=>[`Bästa ${f.toLowerCase()}`,p=>p._fam===f])];
+    const card=(cat,r,cls='')=>r?`<div class="wcard ${cls}">${imgHtml(r.p,'thumb')}<div><div class="cat">${esc(cat)}</div><div class="t">${esc(label(r.p))}</div><div class="s">${pct(r.wins,r.duels)}% ${esc(t('wins_duels',{d:r.duels}))}</div></div></div>`:`<div class="wcard ${cls}"><div></div><div><div class="cat">${esc(cat)}</div><div class="s">${esc(t('month_none',{m:MIN_DUELS}))}</div></div></div>`;
+    const B=x=>t('best',{x});
+    const cats=[[B(t('pouches').toLowerCase()),p=>p.type==='vit'],[B(t('tobacco').toLowerCase()),p=>p.type==='tobak'],
+      ...FORMATS.map(f=>[B(f.toLowerCase()),p=>p.format===f]),
+      ...STYLES.map(s=>[B(s.toLowerCase()),p=>p.style===s]),
+      ...STRS.map(s=>[B(t(s).toLowerCase()),p=>p._str===s]),
+      ...FAMS.filter(f=>FCOUNT[f]>=8&&f!=='Övrigt').map(f=>[B(tf(f).toLowerCase()),p=>p._fam===f])];
     const mAgg={}; rows.forEach(r=>{const k=r.p.maker;mAgg[k]=mAgg[k]||{w:0,d:0};mAgg[k].w+=r.wins;mAgg[k].d+=r.duels;});
     const mBest=Object.entries(mAgg).filter(([,v])=>v.d>=MIN_DUELS*3).map(([k,v])=>({k,...v})).sort((a,b)=>pct(b.w,b.d)-pct(a.w,a.d)||b.d-a.d)[0];
-    const makerCard=mBest?`<div class="wcard"><div></div><div><div class="cat">Månadens tillverkare</div><div class="t">${esc(mBest.k)}</div><div class="s">${pct(mBest.w,mBest.d)}% vinster · ${mBest.d} dueller</div></div></div>`:'';
-    $('#monthBody').innerHTML=`<p class="note">${Math.floor(total)} dueller i ${fmtM(monthSel)}.${monthSel===nowM?' Pågår – vinnarna koras den 1:a.':''}</p>
-      <div class="winners">${card('Månadens snus',best(()=>true),'total')}${makerCard}${cats.map(([c,f])=>card(c,best(f))).join('')}</div>`;
+    const makerCard=mBest?`<div class="wcard"><div></div><div><div class="cat">${esc(t('month_maker'))}</div><div class="t">${esc(mBest.k)}</div><div class="s">${pct(mBest.w,mBest.d)}% ${esc(t('wins_duels',{d:mBest.d}))}</div></div></div>`:'';
+    $('#monthBody').innerHTML=`<p class="note">${esc(t('month_count',{n:Math.floor(total),m:fmtM(monthSel)}))}${monthSel===nowM?esc(t('month_ongoing')):''}</p>
+      <div class="winners">${card(t('month_total'),best(()=>true),'total')}${makerCard}${cats.map(([c,f])=>card(c,best(f))).join('')}</div>`;
   }
 
   // ---- varumärken
@@ -402,10 +430,9 @@
   }));
   async function renderBrands(){
     const isBrand = bMode==='brand';
-    $('#bTitle').textContent = isBrand ? 'Varumärkeskampen' : 'Tillverkarkampen';
-    $('#bSub').textContent = isBrand ? 'Andel vunna dueller mot andra varumärken. Dueller inom samma märke räknas inte.'
-                                     : 'Andel vunna dueller mot produkter från andra tillverkare.';
-    $('#bListTitle').textContent = isBrand ? 'Alla varumärken' : 'Alla tillverkare';
+    $('#bTitle').textContent = isBrand ? t('brand_title') : t('maker_title');
+    $('#bSub').textContent = isBrand ? t('brand_sub') : t('maker_sub');
+    $('#bListTitle').textContent = isBrand ? t('all_brands_h') : t('all_makers_h');
     const list = isBrand ? BRANDS : MAKERS;
     const h=(await getH2H())||[];
     const agg={}; const pair={};
@@ -415,22 +442,22 @@
       add(ka,r.a_wins,r.b_wins); add(kb,r.b_wins,r.a_wins);
       const k=[ka,kb].sort().join('|'); pair[k]=pair[k]||{}; pair[k][ka]=(pair[k][ka]||0)+r.a_wins; pair[k][kb]=(pair[k][kb]||0)+r.b_wins; }
     const rows=Object.entries(agg).map(([b,v])=>({b,w:v.w,l:v.l,d:v.w+v.l})).filter(r=>r.d>=MIN_DUELS).sort((a,b)=>pct(b.w,b.d)-pct(a.w,a.d)||b.d-a.d);
-    $('#brandList').innerHTML=rows.length?rows.map((r,i)=>`<div class="brandrow"><span class="rank" style="font-family:var(--display);font-size:30px">${i+1}</span><div><div class="t">${esc(r.b)}</div><div class="bar"><i style="width:${pct(r.w,r.d)}%"></i></div></div><div class="score" style="text-align:right"><b style="font-family:var(--display);font-size:24px;display:block">${pct(r.w,r.d)}%</b><span style="font-size:11px;color:var(--muted)">${r.d} dueller</span></div></div>`).join(''):`<p class="empty">För få dueller mellan olika ${isBrand?'märken':'tillverkare'} ännu.</p>`;
+    $('#brandList').innerHTML=rows.length?rows.map((r,i)=>`<div class="brandrow"><span class="rank" style="font-family:var(--display);font-size:30px">${i+1}</span><div><div class="t">${esc(r.b)}</div><div class="bar"><i style="width:${pct(r.w,r.d)}%"></i></div></div><div class="score" style="text-align:right"><b style="font-family:var(--display);font-size:24px;display:block">${pct(r.w,r.d)}%</b><span style="font-size:11px;color:var(--muted)">${r.d} dueller</span></div></div>`).join(''):`<p class="empty">${esc(t('too_few',{x:isBrand?t('brands_l'):t('makers_l')}))}</p>`;
     const opts=list.map(b=>`<option>${esc(b)}</option>`).join('');
     if(!$('#bA').options.length){ $('#bA').innerHTML=opts; $('#bB').innerHTML=opts;
       $('#bA').value=list.find(b=>/zyn|swedish match/i.test(b))||list[0];
       $('#bB').value=list.find(b=>/velo|bat/i.test(b))||list[1]||list[0];
       $('#bA').onchange=$('#bB').onchange=show; }
     function show(){ const a=$('#bA').value,b=$('#bB').value; const k=[a,b].sort().join('|'); const v=pair[k]||{}; const aw=v[a]||0,bw=v[b]||0,d=aw+bw;
-      $('#bvbResult').innerHTML=d?`<div class="h2h"><div class="side a"><div class="pct">${pct(aw,d)}%</div><div class="brand">${esc(a)}</div></div><div></div><div class="side b"><div class="pct">${pct(bw,d)}%</div><div class="brand">${esc(b)}</div></div></div><div class="bar"><i style="width:${pct(aw,d)}%"></i></div><p class="note" style="text-align:center">${d} dueller mellan ${esc(a)} och ${esc(b)}</p>`:`<p class="empty" style="text-align:center">Inga dueller mellan ${esc(a)} och ${esc(b)} ännu.</p>`; }
+      $('#bvbResult').innerHTML=d?`<div class="h2h"><div class="side a"><div class="pct">${pct(aw,d)}%</div><div class="brand">${esc(a)}</div></div><div></div><div class="side b"><div class="pct">${pct(bw,d)}%</div><div class="brand">${esc(b)}</div></div></div><div class="bar"><i style="width:${pct(aw,d)}%"></i></div><p class="note" style="text-align:center">${esc(t('duels_between',{n:d,a,b}))}</p>`:`<p class="empty" style="text-align:center">${esc(t('none_between',{a,b}))}</p>`; }
     show();
   }
 
   // ---- vs-sida
   async function renderVs(aId,bId){
     const A=byId[aId],B=byId[bId]; const body=$('#vsBody');
-    if(!A||!B){ body.innerHTML='<h1>Hittar inte duellen</h1><p class="sub">En av produkterna finns inte.</p><a class="btn" href="/">Till duellen</a>'; return; }
-    document.title=`${label(A)} vs ${label(B)} – Snuskampen`;
+    if(!A||!B){ body.innerHTML=`<h1>${esc(t('vs_notfound'))}</h1><p class="sub">${esc(t('vs_notfound_sub'))}</p><a class="btn" href="/">${esc(t('to_duel'))}</a>`; return; }
+    document.title=`${label(A)} vs ${label(B)} – Snuskampen`; document.documentElement.lang=LANG;
     let aw=0,bw=0;
     if(sb){ const [x,y]=[aId,bId].sort(); const {data}=await sb.from('h2h').select('*').eq('a',x).eq('b',y).maybeSingle(); if(data){ aw=x===aId?data.a_wins:data.b_wins; bw=x===aId?data.b_wins:data.a_wins; } }
     const d=aw+bw;
@@ -440,9 +467,9 @@
         <div class="vs" style="position:static;transform:rotate(-8deg);width:56px;height:56px;font-size:28px;box-shadow:none;margin-top:60px">VS</div>
         <div class="side b">${imgHtml(B,'can')}<div class="brand">${esc(B.brand)}</div><div class="name" style="font-size:clamp(24px,4vw,40px)">${esc(B.name)}</div><div class="meta">${esc(sub(B))}</div><div class="pct">${d?pct(bw,d)+'%':'–'}</div></div>
       </div>
-      ${d?`<div class="bar"><i style="width:${pct(aw,d)}%"></i></div><p class="note" style="text-align:center">${d} dueller mellan just dessa två</p>`:'<p class="empty" style="text-align:center">Ingen har röstat i den här duellen ännu. Bli först.</p>'}
-      <div class="btnrow"><button class="btn red" id="vsA">${esc(A.name)} vinner</button><button class="btn blue" id="vsB">${esc(B.name)} vinner</button></div>
-      <div class="btnrow"><button class="btn ghost" id="vsShare">Dela</button><a class="btn ghost" href="/">Slumpa ny duell</a></div>`;
+      ${d?`<div class="bar"><i style="width:${pct(aw,d)}%"></i></div><p class="note" style="text-align:center">${esc(t('h2h_count',{n:d}))}</p>`:`<p class="empty" style="text-align:center">${esc(t('vs_none'))}</p>`}
+      <div class="btnrow"><button class="btn red" id="vsA">${esc(t('wins_btn',{x:A.name}))}</button><button class="btn blue" id="vsB">${esc(t('wins_btn',{x:B.name}))}</button></div>
+      <div class="btnrow"><button class="btn ghost" id="vsShare">${esc(t('share'))}</button><a class="btn ghost" href="/">${esc(t('random'))}</a></div>`;
     const voteVs=(w,l)=>{ recordVote(w.id,l.id); toast(`${label(w)} +1`); delete cache.h2h; setTimeout(()=>renderVs(aId,bId),400); };
     $('#vsA').onclick=()=>voteVs(A,B); $('#vsB').onclick=()=>voteVs(B,A);
     $('#vsShare').onclick=()=>shareLink(location.href,`${label(A)} vs ${label(B)}`);
@@ -465,13 +492,13 @@
   }
   function fit(x, text, max, font){ let s=parseInt(font); x.font=font; while(x.measureText(text).width>max && s>20){ s-=2; x.font=font.replace(/^\d+/, s); } return x.font; }
   async function openCard(){
-    const top=myTop(5); if(top.length<3){ toast('Rösta några dueller till först'); return; }
+    const top=myTop(5); if(top.length<3){ toast(t('vote_more')); return; }
     try{ await document.fonts.load('120px "Bebas Neue"'); await document.fonts.load('600 40px Archivo'); await document.fonts.ready; }catch{}
     const c=$('#card'),x=c.getContext('2d'),W=c.width,H=c.height;
     x.fillStyle='#fff';x.fillRect(0,0,W,H);
     x.textAlign='left';x.textBaseline='alphabetic';
     x.fillStyle='#101820';x.font='120px "Bebas Neue"';x.fillText('SNUS',80,190);let w=x.measureText('SNUS').width;x.fillStyle='#e4002b';x.fillText('KAMPEN',80+w,190);
-    x.fillStyle='#6b7280';x.font='600 40px Archivo';x.fillText(`Min topp 5 efter ${myVotes} dueller`,80,260);
+    x.fillStyle='#6b7280';x.font='600 40px Archivo';x.fillText(t('card_head',{n:myVotes}),80,260);
     top.forEach((t,i)=>{const y=420+i*260;
       x.fillStyle=i===0?'#e4002b':'#101820';x.font='150px "Bebas Neue"';x.fillText(String(i+1),80,y+110);
       drawCan(x, t.p, 340, y+70, 92);
@@ -479,8 +506,8 @@
       const meta=[t.p.format,t.p.style,t.p.mg.split(' · ')[0]].filter(Boolean).join(' · ');
       x.fillStyle='#6b7280';fit(x,meta,W-540,'600 34px Archivo');x.fillText(meta,470,y+125);
       x.fillStyle='#e6e6e6';x.fillRect(80,y+200,W-160,3);});
-    x.fillStyle='#101820';x.font='70px "Bebas Neue"';x.textAlign='center';x.fillText('VILKEN SNUS ÄR BÄST? RÖSTA PÅ',W/2,H-200);x.fillStyle='#e4002b';x.font='90px "Bebas Neue"';x.fillText('SNUSKAMPEN.SE',W/2,H-100);x.textAlign='left';
-    $('#cardSub').textContent=`Efter ${myVotes} dueller.`; $('#cardModal').hidden=false;
+    x.fillStyle='#101820';x.font='70px "Bebas Neue"';x.textAlign='center';fit(x,t('card_cta').toUpperCase(),W-120,'70px "Bebas Neue"');x.fillText(t('card_cta').toUpperCase(),W/2,H-200);x.fillStyle='#e4002b';x.font='90px "Bebas Neue"';x.fillText('SNUSKAMPEN.SE',W/2,H-100);x.textAlign='left';
+    $('#cardSub').textContent=t('card_after',{n:myVotes}); $('#cardModal').hidden=false;
   }
   $('#cardClose').onclick=()=>$('#cardModal').hidden=true;
   $('#cardSave').onclick=()=>{const a=document.createElement('a');a.download='snuskampen-topp5.png';a.href=$('#card').toDataURL('image/png');a.click();};
@@ -500,6 +527,29 @@
   document.addEventListener('click',e=>{ const a=e.target.closest('a[href^="/vs/"]'); if(a&&!a.dataset.utmana){e.preventDefault();history.pushState(null,'',a.getAttribute('href'));resolve();} });
   window.addEventListener('popstate',resolve);
 
+  // ---- språk
+  function applyLang(){
+    document.documentElement.lang = LANG;
+    document.title = t('title');
+    const nav=document.querySelectorAll('nav a');
+    nav[0].textContent=t('nav_duel'); nav[1].textContent=t('nav_top'); nav[2].textContent=t('nav_month'); nav[3].textContent=t('nav_brands');
+    $('#duelHint').innerHTML = esc(t('duel_hint'))+' <span class="keys"><kbd>←</kbd> <kbd>→</kbd> '+esc(t('vote'))+' · <kbd>S</kbd> '+esc(t('skip'))+'</span>';
+    $('#share-duel').textContent=t('share_duel'); $('#skip').textContent=t('skip');
+    $('#topH').textContent=t('nav_top');
+    const tabs={all:'tab_all',recent:'tab_recent',hot:'tab_hot',mine:'tab_mine'};
+    $('#topTabs').querySelectorAll('.chip').forEach(b=>b.textContent=t(tabs[b.dataset.tab]));
+    $('#mineShare').textContent=t('make_card');
+    $('#monthH').textContent=t('nav_month'); $('#monthSub').textContent=t('month_sub');
+    $('#bMode').children[0].textContent=t('nav_brands').split('&')[0].trim(); $('#bMode').children[1].textContent=t('all_makers_h').replace(/^Alla |^All |^Alle |^Kaikki |^Wszyscy |^Tutti i |^Todos los |^Tous les |^Všetci |^Vsi |^Svi |^Allir |^Kõik |^Visi /,'');
+    $('#cardH').textContent=t('card_title'); $('#cardShare').textContent=t('share'); $('#cardSave').textContent=t('save_img'); $('#cardClose').textContent=t('keep_voting');
+    $('#gateText').textContent=t('gate_text'); $('#gateYes').textContent=t('gate_yes'); $('#gateNo').textContent=t('gate_no');
+    if(route==='top'){renderFilters();renderTop();} if(route==='month')renderMonth(); if(route==='brands'){$('#bA').innerHTML='';renderBrands();}
+    if(route==='duel')draw();
+    if(route==='vs'){const m=location.pathname.match(/^\/vs\/([^/]+)\/([^/]+)/); if(m)renderVs(decodeURIComponent(m[1]),decodeURIComponent(m[2]));}
+  }
+  $('#lang').innerHTML=I18N.LANGS.map(l=>`<option value="${l.code}" ${l.code===LANG?'selected':''}>${esc(l.label)}</option>`).join('');
+  $('#lang').addEventListener('change',e=>{LANG=e.target.value;store.set('sk_lang',LANG);applyLang();});
+
   // ---- land
   $('#country').innerHTML=COUNTRIES.map(([c,l])=>`<option value="${c}" ${c===country?'selected':''}>${l}</option>`).join('');
   $('#country').addEventListener('change',e=>{country=e.target.value;store.set('sk_country',country);});
@@ -507,7 +557,7 @@
   // ---- age gate + start
   const gate=$('#gate'); if(!store.get('sk_18',false)) gate.hidden=false;
   $('#gateYes').onclick=()=>{store.set('sk_18',true);gate.hidden=true;}; $('#gateNo').onclick=()=>location.href='https://www.1177.se';
-  startDuel(); resolve();
+  startDuel(); applyLang(); resolve();
 })();
 </script>
 </body>
