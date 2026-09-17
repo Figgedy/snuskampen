@@ -4,25 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Snuskampen – vilken snus är bäst?</title>
+<meta property="og:type" content="website">
+<meta property="og:title" id="ogt" content="Snuskampen">
 <meta name="description" content="Två dosor. En vinnare. Rösta i duellen och se Sveriges topplista över snus och nikotinportioner – per smak, styrka och varumärke.">
-<link rel="alternate" hreflang="sv" href="https://snuskampen.se/">
-<link rel="alternate" hreflang="en" href="https://snuskampen.se/?lang=en">
-<link rel="alternate" hreflang="de" href="https://snuskampen.se/?lang=de">
-<link rel="alternate" hreflang="no" href="https://snuskampen.se/?lang=no">
-<link rel="alternate" hreflang="da" href="https://snuskampen.se/?lang=da">
-<link rel="alternate" hreflang="fi" href="https://snuskampen.se/?lang=fi">
-<link rel="alternate" hreflang="pl" href="https://snuskampen.se/?lang=pl">
-<link rel="alternate" hreflang="it" href="https://snuskampen.se/?lang=it">
-<link rel="alternate" hreflang="es" href="https://snuskampen.se/?lang=es">
-<link rel="alternate" hreflang="fr" href="https://snuskampen.se/?lang=fr">
-<link rel="alternate" hreflang="ko" href="https://snuskampen.se/?lang=ko">
-<link rel="alternate" hreflang="sk" href="https://snuskampen.se/?lang=sk">
-<link rel="alternate" hreflang="sl" href="https://snuskampen.se/?lang=sl">
-<link rel="alternate" hreflang="hr" href="https://snuskampen.se/?lang=hr">
-<link rel="alternate" hreflang="is" href="https://snuskampen.se/?lang=is">
-<link rel="alternate" hreflang="et" href="https://snuskampen.se/?lang=et">
-<link rel="alternate" hreflang="lv" href="https://snuskampen.se/?lang=lv">
-<link rel="alternate" hreflang="x-default" href="https://snuskampen.se/">
+<link rel="canonical" id="canon" href="/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;600&display=swap" rel="stylesheet">
@@ -175,7 +160,7 @@
 <body>
 
 <header>
-  <a class="logo" href="/" data-route="duel">SNUS<b>KAMPEN</b></a>
+  <a class="logo" href="/" data-route="duel" id="logo"></a>
   <nav>
     <a href="/" data-route="duel">Duell</a>
     <a href="/topplistan" data-route="top">Topplistan</a>
@@ -259,8 +244,12 @@
   const byId = Object.fromEntries(ALL.map(p => [p.id, p]));
   const cfg = window.SNUSKAMPEN_CONFIG || {};
   const sb = (cfg.SUPABASE_URL && cfg.SUPABASE_ANON_KEY && window.supabase) ? window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY) : null;
+  const HOST=(location.hostname||'').replace(/^www\./,'').toLowerCase();
+  const SITE = /snuskampen\.se$/.test(HOST)
+    ? {a:'SNUS',b:'KAMPEN',name:'Snuskampen',domain:'snuskampen.se',lang:'sv'}
+    : {a:'SNUS',b:'BATTLE',name:'Snusbattle',domain:'snusbattle.com',lang:'en'};
   const I18N = window.I18N || {LANGS:[{code:'sv',label:'Svenska'}],T:{sv:{ui:{},flavor:{}}}};
-  const guessLang = () => { const l=(navigator.language||'sv').toLowerCase().slice(0,2); return I18N.T[l] ? l : 'sv'; };
+  const guessLang = () => { const l=(navigator.language||'').toLowerCase().slice(0,2); return I18N.T[l] ? l : SITE.lang; };
   let LANG = (new URLSearchParams(location.search).get('lang')||'').toLowerCase();
   if(!I18N.T[LANG]) LANG = null;
   const MIN_DUELS = 5;          // för att få vara med i månads-/kategorilistor
@@ -353,7 +342,7 @@
     streak = winner===champ ? streak+1 : 1; champ=winner; chall=pick([champ.id,loser.id]); draw(); recordVote(winner.id,loser.id); }
   $('#cornerL').addEventListener('click',()=>vote('L')); $('#cornerR').addEventListener('click',()=>vote('R'));
   $('#skip').addEventListener('click',()=>{chall=pick([champ.id,chall.id]);draw();});
-  $('#share-duel').addEventListener('click',()=>shareLink(location.origin+vsUrl(champ.id,chall.id)+(LANG!=='sv'?'?lang='+LANG:''),`${label(champ)} vs ${label(chall)}`));
+  $('#share-duel').addEventListener('click',()=>shareLink(location.origin+vsUrl(champ.id,chall.id)+(LANG!==SITE.lang?'?lang='+LANG:''),`${label(champ)} vs ${label(chall)}`));
   document.addEventListener('keydown',e=>{ if(route!=='duel'||!$('#gate').hidden)return; if(e.key==='ArrowLeft')vote('L'); else if(e.key==='ArrowRight')vote('R'); else if(e.key.toLowerCase()==='s')$('#skip').click(); });
   async function shareLink(url,title){ if(navigator.share){ try{await navigator.share({title,url});return;}catch{} } try{await navigator.clipboard.writeText(url);toast(t('copied'));}catch{toast(url);} }
 
@@ -484,7 +473,7 @@
       <div class="btnrow"><button class="btn ghost" id="vsShare">${esc(t('share'))}</button><a class="btn ghost" href="/">${esc(t('random'))}</a></div>`;
     const voteVs=(w,l)=>{ recordVote(w.id,l.id); toast(`${label(w)} +1`); delete cache.h2h; setTimeout(()=>renderVs(aId,bId),400); };
     $('#vsA').onclick=()=>voteVs(A,B); $('#vsB').onclick=()=>voteVs(B,A);
-    $('#vsShare').onclick=()=>shareLink(location.href,`${label(A)} vs ${label(B)}`);
+    $('#vsShare').onclick=()=>shareLink(location.origin+location.pathname+(LANG!==SITE.lang?'?lang='+LANG:''),`${label(A)} vs ${label(B)}`);
   }
 
   // ---- resultatkort
@@ -509,7 +498,7 @@
     const c=$('#card'),x=c.getContext('2d'),W=c.width,H=c.height;
     x.fillStyle='#fff';x.fillRect(0,0,W,H);
     x.textAlign='left';x.textBaseline='alphabetic';
-    x.fillStyle='#101820';x.font='120px "Bebas Neue"';x.fillText('SNUS',80,190);let w=x.measureText('SNUS').width;x.fillStyle='#e4002b';x.fillText('KAMPEN',80+w,190);
+    x.fillStyle='#101820';x.font='120px "Bebas Neue"';x.fillText(SITE.a,80,190);let w=x.measureText(SITE.a).width;x.fillStyle='#e4002b';x.fillText(SITE.b,80+w,190);
     x.fillStyle='#6b7280';x.font='600 40px Archivo';x.fillText(t('card_head',{n:myVotes}),80,260);
     top.forEach((t,i)=>{const y=420+i*260;
       x.fillStyle=i===0?'#e4002b':'#101820';x.font='150px "Bebas Neue"';x.fillText(String(i+1),80,y+110);
@@ -518,7 +507,7 @@
       const meta=[t.p.format,t.p.style,t.p.mg.split(' · ')[0]].filter(Boolean).join(' · ');
       x.fillStyle='#6b7280';fit(x,meta,W-540,'600 34px Archivo');x.fillText(meta,470,y+125);
       x.fillStyle='#e6e6e6';x.fillRect(80,y+200,W-160,3);});
-    x.fillStyle='#101820';x.font='70px "Bebas Neue"';x.textAlign='center';fit(x,t('card_cta').toUpperCase(),W-120,'70px "Bebas Neue"');x.fillText(t('card_cta').toUpperCase(),W/2,H-200);x.fillStyle='#e4002b';x.font='90px "Bebas Neue"';x.fillText('SNUSKAMPEN.SE',W/2,H-100);x.textAlign='left';
+    x.fillStyle='#101820';x.font='70px "Bebas Neue"';x.textAlign='center';const cta=t('card_cta').toUpperCase();fit(x,cta,W-120,'70px "Bebas Neue"');x.fillText(cta,W/2,H-200);x.fillStyle='#e4002b';x.font='90px "Bebas Neue"';x.fillText(SITE.domain.toUpperCase(),W/2,H-100);x.textAlign='left';
     $('#cardSub').textContent=t('card_after',{n:myVotes}); $('#cardModal').hidden=false;
   }
   $('#cardClose').onclick=()=>$('#cardModal').hidden=true;
@@ -532,7 +521,7 @@
   function go(r,push=true){ route=r; document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+r));
     document.querySelectorAll('nav a').forEach(a=>a.dataset.route===r?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
     if(push&&ROUTES[r]&&location.pathname!==ROUTES[r]) history.pushState(null,'',ROUTES[r]);
-    if(r==='top'){renderFilters();renderTop();} if(r==='month')renderMonth(); if(r==='brands')renderBrands(); if(r!=='vs')document.title='Snuskampen – vilken snus är bäst?'; }
+    if(r==='top'){renderFilters();renderTop();} if(r==='month')renderMonth(); if(r==='brands')renderBrands(); if(r!=='vs'){document.title=t('title').replace('Snuskampen',SITE.name); $('#ogt').content=document.title;} }
   function resolve(){ const m=location.pathname.match(/^\/vs\/([^/]+)\/([^/]+)/); if(m){route='vs';document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='v-vs'));document.querySelectorAll('nav a').forEach(a=>a.removeAttribute('aria-current'));renderVs(decodeURIComponent(m[1]),decodeURIComponent(m[2]));return;}
     const r=Object.entries(ROUTES).find(([,p])=>p===location.pathname)?.[0]||(location.hash==='#top'?'top':'duel'); go(r,false); }
   document.querySelectorAll('[data-route]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();go(a.dataset.route);}));
@@ -542,7 +531,9 @@
   // ---- språk
   function applyLang(){
     document.documentElement.lang = LANG;
-    document.title = t('title');
+    $('#logo').innerHTML = esc(SITE.a)+'<b>'+esc(SITE.b)+'</b>';
+    document.title = t('title').replace('Snuskampen',SITE.name);
+    $('#ogt').content = document.title;
     const nav=document.querySelectorAll('nav a');
     nav[0].textContent=t('nav_duel'); nav[1].textContent=t('nav_top'); nav[2].textContent=t('nav_month'); nav[3].textContent=t('nav_brands');
     $('#duelHint').innerHTML = esc(t('duel_hint'))+' <span class="keys"><kbd>←</kbd> <kbd>→</kbd> '+esc(t('vote'))+' · <kbd>S</kbd> '+esc(t('skip'))+'</span>';
@@ -554,11 +545,17 @@
     $('#monthH').textContent=t('nav_month'); $('#monthSub').textContent=t('month_sub');
     $('#bMode').children[0].textContent=t('nav_brands').split('&')[0].trim(); $('#bMode').children[1].textContent=t('all_makers_h').replace(/^Alla |^All |^Alle |^Kaikki |^Wszyscy |^Tutti i |^Todos los |^Tous les |^Všetci |^Vsi |^Svi |^Allir |^Kõik |^Visi /,'');
     $('#cardH').textContent=t('card_title'); $('#cardShare').textContent=t('share'); $('#cardSave').textContent=t('save_img'); $('#cardClose').textContent=t('keep_voting');
-    $('#gateText').textContent=t('gate_text'); $('#gateYes').textContent=t('gate_yes'); $('#gateNo').textContent=t('gate_no');
+    $('#gateText').textContent=t('gate_text').replace('Snuskampen',SITE.name); $('#gateYes').textContent=t('gate_yes'); $('#gateNo').textContent=t('gate_no');
     if(route==='top'){renderFilters();renderTop();} if(route==='month')renderMonth(); if(route==='brands'){$('#bA').innerHTML='';renderBrands();}
     if(route==='duel')draw();
     if(route==='vs'){const m=location.pathname.match(/^\/vs\/([^/]+)\/([^/]+)/); if(m)renderVs(decodeURIComponent(m[1]),decodeURIComponent(m[2]));}
   }
+  // hreflang + canonical per domän
+  (function(){ const head=document.head, base='https://'+SITE.domain;
+    const add=(hl,href)=>{const l=document.createElement('link');l.rel='alternate';l.hreflang=hl;l.href=href;head.appendChild(l);};
+    I18N.LANGS.forEach(l=>add(l.code, l.code===SITE.lang?base+'/':base+'/?lang='+l.code));
+    add('x-default', base+'/');
+    $('#canon').href = base + location.pathname + (LANG!==SITE.lang?'?lang='+LANG:''); })();
   $('#lang').innerHTML=I18N.LANGS.map(l=>`<option value="${l.code}" ${l.code===LANG?'selected':''}>${esc(l.label)}</option>`).join('');
   $('#lang').addEventListener('change',e=>{LANG=e.target.value;store.set('sk_lang',LANG);store.set('sk_lang_set',true);applyLang();});
 
