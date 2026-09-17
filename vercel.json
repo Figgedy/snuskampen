@@ -1,1 +1,9 @@
-{ "cleanUrls": true }
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/vs/:a/:b", "destination": "/index.html" },
+    { "source": "/topplistan", "destination": "/index.html" },
+    { "source": "/manadens-mastare", "destination": "/index.html" },
+    { "source": "/varumarken", "destination": "/index.html" }
+  ]
+}
