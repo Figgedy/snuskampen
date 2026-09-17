@@ -523,10 +523,17 @@
     x.fillText(p.brand.toUpperCase(),cx,cy+2);
     x.textAlign='left'; x.textBaseline='alphabetic';
   }
+  function loadImg(src){ return new Promise(res=>{ const im=new Image(); im.onload=()=>res(im); im.onerror=()=>res(null); im.src=src; }); }
+  function drawPhoto(x, im, cx, cy, r){
+    const s = Math.min((r*2.1)/im.width, (r*2.1)/im.height);
+    const w = im.width*s, hh = im.height*s;
+    x.drawImage(im, cx-w/2, cy-hh/2, w, hh);
+  }
   function fit(x, text, max, font){ let s=parseInt(font); x.font=font; while(x.measureText(text).width>max && s>20){ s-=2; x.font=font.replace(/^\d+/, s); } return x.font; }
   async function openCard(){
     const top=myTop(5); if(top.length<3){ toast(t('vote_more')); return; }
     try{ await document.fonts.load('120px "Bebas Neue"'); await document.fonts.load('600 40px Archivo'); await document.fonts.ready; }catch{}
+    const pics = await Promise.all(top.map(t => IMAGES[t.p.id] ? loadImg('/img/'+IMAGES[t.p.id]) : Promise.resolve(null)));
     const c=$('#card'),x=c.getContext('2d'),W=c.width,H=c.height;
     x.fillStyle='#fff';x.fillRect(0,0,W,H);
     x.textAlign='left';x.textBaseline='alphabetic';
@@ -534,7 +541,7 @@
     x.fillStyle='#6b7280';x.font='600 40px Archivo';x.fillText(t('card_head',{n:myVotes}),80,260);
     top.forEach((t,i)=>{const y=420+i*260;
       x.fillStyle=i===0?'#e4002b':'#101820';x.font='150px "Bebas Neue"';x.fillText(String(i+1),80,y+110);
-      drawCan(x, t.p, 340, y+70, 92);
+      if(pics[i]) drawPhoto(x, pics[i], 340, y+70, 92); else drawCan(x, t.p, 340, y+70, 92);
       x.fillStyle='#101820';fit(x,t.p.name.toUpperCase(),W-540,'72px "Bebas Neue"');x.fillText(t.p.name.toUpperCase(),470,y+70);
       const meta=[t.p.format,t.p.style,t.p.mg.split(' · ')[0]].filter(Boolean).join(' · ');
       x.fillStyle='#6b7280';fit(x,meta,W-540,'600 34px Archivo');x.fillText(meta,470,y+125);
