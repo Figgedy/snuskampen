@@ -129,7 +129,7 @@
   .modal[hidden]{display:none}
   .modal .box{background:var(--paper);border-radius:18px;max-width:420px;width:100%;padding:20px;text-align:center;max-height:92dvh;overflow:auto}
   .modal h2{margin:0 0 4px;font-size:44px}
-  .modal canvas{width:100%;max-width:300px;image-rendering:auto;height:auto;border-radius:10px;border:1px solid var(--line);margin:12px auto;display:block}
+  .modal canvas{width:100%;max-width:270px;height:auto;border-radius:10px;border:1px solid var(--line);margin:12px auto;display:block}
   #gate{position:fixed;inset:0;background:var(--paper);z-index:60;display:flex;align-items:center;justify-content:center;padding:24px}
   #gate[hidden]{display:none}
   #gate .box{max-width:420px;text-align:center}
@@ -283,7 +283,7 @@
     local[w]={r:rw+k*(1-ew),w:(local[w]?.w||0)+1,l:local[w]?.l||0}; local[l]={r:rl-k*(1-ew),w:local[l]?.w||0,l:(local[l]?.l||0)+1}; store.set('sk_local_ratings',local); }
   async function recordVote(w,l){
     eloLocal(w,l); myVotes++; store.set('sk_votes',myVotes);
-    if (myVotes % CARD_EVERY === 0) setTimeout(()=>openCard(), 350);
+    if (myVotes % CARD_EVERY === 0) setTimeout(openCard, 350);
     if (!sb) return;
     const {error} = await sb.rpc('cast_vote',{p_winner:w,p_loser:l,p_session:session,p_country:country});
     if (error){ console.warn(error); toast('Rösten sparades inte just nu'); }
@@ -409,22 +409,18 @@
 
   // ---- resultatkort
   function myTop(n){ return Object.entries(local).map(([id,v])=>({p:byId[id],r:v.r,w:v.w,l:v.l})).filter(x=>x.p&&x.w+x.l>=2).sort((a,b)=>b.r-a.r).slice(0,n); }
-  function fit(x, text, max, font){ let s=parseInt(font); x.font=font; while(x.measureText(text).width>max && s>20){ s-=2; x.font=font.replace(/^\d+/, s); } return x.font; }
-  async function openCard(){
+  function openCard(){
     const top=myTop(5); if(top.length<3){ toast('Rösta några dueller till först'); return; }
-    try{ await document.fonts.load('120px "Bebas Neue"'); await document.fonts.load('600 40px Archivo'); await document.fonts.ready; }catch{}
     const c=$('#card'),x=c.getContext('2d'),W=c.width,H=c.height;
     x.fillStyle='#fff';x.fillRect(0,0,W,H);
-    x.textAlign='left';x.textBaseline='alphabetic';
-    x.fillStyle='#101820';x.font='120px "Bebas Neue"';x.fillText('SNUS',80,190);let w=x.measureText('SNUS').width;x.fillStyle='#e4002b';x.fillText('KAMPEN',80+w,190);
+    x.fillStyle='#101820';x.font='120px "Bebas Neue"';x.textAlign='left';x.fillText('SNUS',80,190);let w=x.measureText('SNUS').width;x.fillStyle='#e4002b';x.fillText('KAMPEN',80+w,190);
     x.fillStyle='#6b7280';x.font='600 40px Archivo';x.fillText(`Min topp 5 efter ${myVotes} dueller`,80,260);
     top.forEach((t,i)=>{const y=420+i*260;
       x.fillStyle=i===0?'#e4002b':'#101820';x.font='150px "Bebas Neue"';x.fillText(String(i+1),80,y+110);
       x.fillStyle=colorFor(t.p.brand);x.beginPath();x.arc(340,y+70,90,0,Math.PI*2);x.fill();
-      x.fillStyle='#fff';x.textAlign='center';fit(x,t.p.brand.toUpperCase(),150,'38px "Bebas Neue"');x.fillText(t.p.brand.toUpperCase(),340,y+82);x.textAlign='left';
-      x.fillStyle='#101820';fit(x,t.p.name.toUpperCase(),W-540,'72px "Bebas Neue"');x.fillText(t.p.name.toUpperCase(),470,y+70);
-      const meta=[t.p.format,t.p.mg.split(' · ')[0]].filter(Boolean).join(' · ');
-      x.fillStyle='#6b7280';fit(x,meta,W-540,'600 34px Archivo');x.fillText(meta,470,y+125);
+      x.fillStyle='#fff';x.font='34px "Bebas Neue"';x.textAlign='center';x.fillText(t.p.brand.toUpperCase().slice(0,12),340,y+82);x.textAlign='left';
+      x.fillStyle='#101820';x.font='72px "Bebas Neue"';x.fillText(t.p.name.toUpperCase().slice(0,22),470,y+70);
+      x.fillStyle='#6b7280';x.font='600 34px Archivo';x.fillText(`${t.p.brand} · ${t.p.mg.split(' · ')[0]}`,470,y+125);
       x.fillStyle='#e6e6e6';x.fillRect(80,y+200,W-160,3);});
     x.fillStyle='#101820';x.font='70px "Bebas Neue"';x.textAlign='center';x.fillText('VILKEN SNUS ÄR BÄST? RÖSTA PÅ',W/2,H-200);x.fillStyle='#e4002b';x.font='90px "Bebas Neue"';x.fillText('SNUSKAMPEN.SE',W/2,H-100);x.textAlign='left';
     $('#cardSub').textContent=`Efter ${myVotes} dueller.`; $('#cardModal').hidden=false;
