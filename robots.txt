@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://snuskampen.se/sitemap.xml
+Sitemap: https://snusbattle.com/sitemap-com.xml

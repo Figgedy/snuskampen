@@ -590,11 +590,14 @@
     if(route==='vs'){const m=location.pathname.match(/^\/vs\/([^/]+)\/([^/]+)/); if(m)renderVs(decodeURIComponent(m[1]),decodeURIComponent(m[2]));}
   }
   // hreflang + canonical per domän
-  (function(){ const head=document.head, base='https://'+SITE.domain;
+  const SE='https://snuskampen.se', COM='https://snusbattle.com';
+  const homeOf = l => l==='sv' ? SE : (l==='en' ? COM : COM+'/?lang='+l);
+  (function(){ const head=document.head, path=location.pathname;
     const add=(hl,href)=>{const l=document.createElement('link');l.rel='alternate';l.hreflang=hl;l.href=href;head.appendChild(l);};
-    I18N.LANGS.forEach(l=>add(l.code, l.code===SITE.lang?base+'/':base+'/?lang='+l.code));
-    add('x-default', base+'/');
-    $('#canon').href = base + location.pathname + (LANG!==SITE.lang?'?lang='+LANG:''); })();
+    const urlFor = l => l==='sv' ? SE+path : (l==='en' ? COM+path : COM+path+'?lang='+l);
+    I18N.LANGS.forEach(l=>add(l.code, urlFor(l.code)));
+    add('x-default', COM+path);
+    $('#canon').href = urlFor(LANG); })();
   $('#lang').innerHTML=I18N.LANGS.map(l=>`<option value="${l.code}" ${l.code===LANG?'selected':''}>${esc(l.label)}</option>`).join('');
   $('#lang').addEventListener('change',e=>{LANG=e.target.value;store.set('sk_lang',LANG);store.set('sk_lang_set',true);applyLang();});
 
