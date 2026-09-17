@@ -264,6 +264,8 @@
   const FAMS = ['Mint','Frukt','Bär','Citrus','Lakrits','Kaffe & sött','Kryddigt','Dryck','Tobak','Övrigt'];
   const STRS = ['Mild','Normal','Stark','Extra stark'];
   const BRANDS = [...new Set(P.map(p=>p.brand))].sort((a,b)=>a.localeCompare(b,'sv'));
+  const FORMATS = ['Mini','Slim','Superslim','Large'].filter(f=>P.some(p=>p.format===f));
+  const STYLES = ['White','White Dry','Original'].filter(s=>P.some(p=>p.style===s));
   ALL.forEach(p=>{ p._fam=fam(p); p._str=STR(p.dots); });
 
   // ---- render helpers
@@ -290,7 +292,7 @@
   const imgHtml = (p,cls) => `<div class="${cls}"><img src="/img/${p.id}.png" alt="" loading="lazy" data-pid="${esc(p.id)}" data-small="${cls==='thumb'?1:0}" onerror="window.__snusFallback(this)"></div>`;
   window.__snusFallback = el => { const p=byId[el.dataset.pid]; if(!p){el.remove();return;} const d=document.createElement('div'); d.className='fallback'; d.innerHTML=canSvg(p, el.dataset.small==='1'); el.replaceWith(d); };
   const label = p => `${p.brand} ${p.name}`;
-  const sub = p => [p.format, p.flavor, p.mg].filter(Boolean).join(' · ');
+  const sub = p => [p.format, p.style, p.flavor, p.mg].filter(Boolean).join(' · ');
   const vsUrl = (a,b) => `/vs/${a}/${b}`;
 
   // ---- local ratings
@@ -309,7 +311,7 @@
   // ---- duel
   let champ, chall, streak=0; const recent=[];
   function pick(ex){ const pool=P.filter(p=>!ex.includes(p.id)&&!recent.includes(p.id)); const from=pool.length?pool:P.filter(p=>!ex.includes(p.id)); const p=from[Math.floor(Math.random()*from.length)]; recent.push(p.id); if(recent.length>12)recent.shift(); return p; }
-  function renderCorner(el,p,isChamp){ el.dataset.id=p.id; el.innerHTML=`${imgHtml(p,'can')}<span class="brand">${esc(p.brand)}</span><h2 class="name" style="margin:0">${esc(p.name)}</h2><p class="meta">${esc([p.format,p.flavor].filter(Boolean).join(' · '))}</p><p class="meta">${dots(p.dots)}${esc(p.mg)}</p>${isChamp&&streak>0?`<span class="streak">${streak>1?streak+' raka vinster':'1 vinst'}</span>`:''}`; }
+  function renderCorner(el,p,isChamp){ el.dataset.id=p.id; el.innerHTML=`${imgHtml(p,'can')}<span class="brand">${esc(p.brand)}</span><h2 class="name" style="margin:0">${esc(p.name)}</h2><p class="meta">${esc([p.format,p.style,p.flavor].filter(Boolean).join(' · '))}</p><p class="meta">${dots(p.dots)}${esc(p.mg)}</p>${isChamp&&streak>0?`<span class="streak">${streak>1?streak+' raka vinster':'1 vinst'}</span>`:''}`; }
   function draw(){ renderCorner($('#cornerL'),champ,true); renderCorner($('#cornerR'),chall,false); }
   function startDuel(a,b){ champ=a||pick([]); chall=b||pick([champ.id]); streak=0; draw(); }
   function vote(side){ const winner=side==='L'?champ:chall, loser=side==='L'?chall:champ, el=side==='L'?$('#cornerL'):$('#cornerR');
@@ -330,18 +332,20 @@
   const getH2H     = () => q('h2h',()=>sb.from('h2h').select('*').limit(50000));
 
   // ---- filters
-  const F={type:'all',str:'all',fam:'all',brand:'all'};
+  const F={type:'all',str:'all',fam:'all',fmt:'all',style:'all',brand:'all'};
   function renderFilters(){
     const chips=(key,opts)=>opts.map(([v,l])=>`<button class="chip sm" data-f="${key}" data-v="${esc(v)}" aria-pressed="${F[key]===v}">${esc(l)}</button>`).join('');
     $('#filters').innerHTML=`
-      <div class="frow"><span class="lbl">Typ</span>${chips('type',[['all','Alla'],['vit','Nikotinportioner'],['tobak','Tobakssnus']])}</div>
+      <div class="frow"><span class="lbl">Kategori</span>${chips('type',[['all','Alla'],['vit','Nikotinportioner'],['tobak','Tobakssnus']])}</div>
       <div class="frow"><span class="lbl">Styrka</span>${chips('str',[['all','Alla'],...STRS.map(s=>[s,s])])}</div>
       <div class="frow"><span class="lbl">Smak</span>${chips('fam',[['all','Alla'],...FAMS.map(s=>[s,s])])}</div>
+      <div class="frow"><span class="lbl">Format</span>${chips('fmt',[['all','Alla'],...FORMATS.map(s=>[s,s])])}</div>
+      <div class="frow"><span class="lbl">Typ</span>${chips('style',[['all','Alla'],...STYLES.map(s=>[s,s])])}</div>
       <div class="frow"><span class="lbl">Märke</span><select id="brandSel"><option value="all">Alla märken</option>${BRANDS.map(b=>`<option ${F.brand===b?'selected':''}>${esc(b)}</option>`).join('')}</select></div>`;
     $('#filters').querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{F[b.dataset.f]=b.dataset.v;renderFilters();renderTop();}));
     $('#brandSel').addEventListener('change',e=>{F.brand=e.target.value;renderTop();});
   }
-  const passes = p => p && (F.type==='all'||p.type===F.type) && (F.str==='all'||p._str===F.str) && (F.fam==='all'||p._fam===F.fam) && (F.brand==='all'||p.brand===F.brand);
+  const passes = p => p && (F.type==='all'||p.type===F.type) && (F.str==='all'||p._str===F.str) && (F.fam==='all'||p._fam===F.fam) && (F.fmt==='all'||p.format===F.fmt) && (F.style==='all'||p.style===F.style) && (F.brand==='all'||p.brand===F.brand);
 
   // ---- topplistan
   let topTab='all';
@@ -381,7 +385,11 @@
     const total=rows.reduce((a,r)=>a+r.duels,0)/2;
     const best=(pred)=>rows.filter(r=>r.duels>=MIN_DUELS&&pred(r.p)).sort((a,b)=>pct(b.wins,b.duels)-pct(a.wins,a.duels)||b.duels-a.duels)[0];
     const card=(cat,r,cls='')=>r?`<div class="wcard ${cls}">${imgHtml(r.p,'thumb')}<div><div class="cat">${esc(cat)}</div><div class="t">${esc(label(r.p))}</div><div class="s">${pct(r.wins,r.duels)}% vinster · ${r.duels} dueller</div></div></div>`:`<div class="wcard ${cls}"><div></div><div><div class="cat">${esc(cat)}</div><div class="s">Ingen produkt har ${MIN_DUELS} dueller ännu</div></div></div>`;
-    const cats=[['Bästa nikotinportion',p=>p.type==='vit'],['Bästa tobakssnus',p=>p.type==='tobak'],...STRS.map(s=>[`Bästa ${s.toLowerCase()}`,p=>p._str===s]),...FAMS.map(f=>[`Bästa ${f.toLowerCase()}`,p=>p._fam===f])];
+    const cats=[['Bästa nikotinportion',p=>p.type==='vit'],['Bästa tobakssnus',p=>p.type==='tobak'],
+      ...FORMATS.map(f=>[`Bästa ${f.toLowerCase()}`,p=>p.format===f]),
+      ...STYLES.map(s=>[`Bästa ${s.toLowerCase()}`,p=>p.style===s]),
+      ...STRS.map(s=>[`Bästa ${s.toLowerCase()}`,p=>p._str===s]),
+      ...FAMS.map(f=>[`Bästa ${f.toLowerCase()}`,p=>p._fam===f])];
     $('#monthBody').innerHTML=`<p class="note">${Math.floor(total)} dueller i ${fmtM(monthSel)}.${monthSel===nowM?' Pågår – vinnarna koras den 1:a.':''}</p>
       <div class="winners">${card('Månadens snus',best(()=>true),'total')}${cats.map(([c,f])=>card(c,best(f))).join('')}</div>`;
   }
@@ -452,7 +460,7 @@
       x.fillStyle=i===0?'#e4002b':'#101820';x.font='150px "Bebas Neue"';x.fillText(String(i+1),80,y+110);
       drawCan(x, t.p, 340, y+70, 92);
       x.fillStyle='#101820';fit(x,t.p.name.toUpperCase(),W-540,'72px "Bebas Neue"');x.fillText(t.p.name.toUpperCase(),470,y+70);
-      const meta=[t.p.format,t.p.mg.split(' · ')[0]].filter(Boolean).join(' · ');
+      const meta=[t.p.format,t.p.style,t.p.mg.split(' · ')[0]].filter(Boolean).join(' · ');
       x.fillStyle='#6b7280';fit(x,meta,W-540,'600 34px Archivo');x.fillText(meta,470,y+125);
       x.fillStyle='#e6e6e6';x.fillRect(80,y+200,W-160,3);});
     x.fillStyle='#101820';x.font='70px "Bebas Neue"';x.textAlign='center';x.fillText('VILKEN SNUS ÄR BÄST? RÖSTA PÅ',W/2,H-200);x.fillStyle='#e4002b';x.font='90px "Bebas Neue"';x.fillText('SNUSKAMPEN.SE',W/2,H-100);x.textAlign='left';
