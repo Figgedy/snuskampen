@@ -253,25 +253,15 @@
   const pct = (w,d) => d ? Math.round(100*w/d) : 0;
 
   // ---- taxonomi
-  const FAM = [
-    ['Mint', /mint|mentol|spearmint|pepparmint|eukalyptus|wintergreen/],
-    ['Lakrits', /lakrits|salmiak/],
-    ['Kaffe & sött', /kaffe|kakao|choklad|kola|vanilj|karamell|toffee/],
-    ['Kryddigt', /chili|jalapeño|ingefära|kryddor|habanero/],
-    ['Bär', /bär|hallon|blåbär|jordgubb|vinbär|körsbär|lingon|hjortron|tranbär|mullbär/],
-    ['Frukt', /äpple|päron|mango|persika|melon|banan|ananas|tropisk|frukt|druv|passion|kokos|plommon|kiwi|papaya|litchi|granatäpple/],
-    ['Citrus', /citrus|citron|lime|apelsin|grapefrukt|bergamott|mandarin/],
-    ['Dryck', /cola|läsk|brus|iste|\bte\b|prosecco|whisk|rom\b|bourbon/],
-  ];
-  function fam(p){ const f=(p.flavor||'').toLowerCase(); if (/tobak/.test(f) && !/mint|lakrits/.test(f)) return 'Tobak'; for (const [n,r] of FAM) if (r.test(f)) return n; return /tobak/.test(f)?'Tobak':'Övrigt'; }
   const STR = d => d<=2?'Mild':d===3?'Normal':d===4?'Stark':'Extra stark';
-  const FAMS = ['Mint','Frukt','Bär','Citrus','Lakrits','Kaffe & sött','Kryddigt','Dryck','Tobak','Övrigt'];
+  const FCOUNT = P.reduce((a,p)=>(a[p.flavor]=(a[p.flavor]||0)+1,a),{});
+  const FAMS = Object.keys(FCOUNT).sort((a,b)=>FCOUNT[b]-FCOUNT[a]||a.localeCompare(b,'sv'));
   const STRS = ['Mild','Normal','Stark','Extra stark'];
   const BRANDS = [...new Set(P.map(p=>p.brand))].sort((a,b)=>a.localeCompare(b,'sv'));
   const MAKERS = [...new Set(P.map(p=>p.maker))].sort((a,b)=>a.localeCompare(b,'sv'));
   const FORMATS = ['Mini','Slim','Superslim','Large'].filter(f=>P.some(p=>p.format===f));
   const STYLES = ['White','White Dry','Original'].filter(s=>P.some(p=>p.style===s));
-  ALL.forEach(p=>{ p._fam=fam(p); p._str=STR(p.dots); });
+  ALL.forEach(p=>{ p._fam=p.flavor; p._str=STR(p.dots); });
 
   // ---- render helpers
   const hue={}; const hueOf = b => { if(!(b in hue)){let h=0;for(const c of b)h=(h*31+c.charCodeAt(0))%360;hue[b]=h;} return hue[b]; };
@@ -343,12 +333,13 @@
     $('#filters').innerHTML=`
       <div class="frow"><span class="lbl">Kategori</span>${chips('type',[['all','Alla'],['vit','Nikotinportioner'],['tobak','Tobakssnus']])}</div>
       <div class="frow"><span class="lbl">Styrka</span>${chips('str',[['all','Alla'],...STRS.map(s=>[s,s])])}</div>
-      <div class="frow"><span class="lbl">Smak</span>${chips('fam',[['all','Alla'],...FAMS.map(s=>[s,s])])}</div>
+      <div class="frow"><span class="lbl">Smak</span><select id="famSel"><option value="all">Alla smaker</option>${FAMS.map(s=>`<option ${F.fam===s?'selected':''}>${esc(s)} (${FCOUNT[s]})</option>`).join('')}</select></div>
       <div class="frow"><span class="lbl">Format</span>${chips('fmt',[['all','Alla'],...FORMATS.map(s=>[s,s])])}</div>
       <div class="frow"><span class="lbl">Typ</span>${chips('style',[['all','Alla'],...STYLES.map(s=>[s,s])])}</div>
       <div class="frow"><span class="lbl">Märke</span><select id="brandSel"><option value="all">Alla märken</option>${BRANDS.map(b=>`<option ${F.brand===b?'selected':''}>${esc(b)}</option>`).join('')}</select></div>`;
     $('#filters').querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{F[b.dataset.f]=b.dataset.v;renderFilters();renderTop();}));
     $('#brandSel').addEventListener('change',e=>{F.brand=e.target.value;renderTop();});
+    $('#famSel').addEventListener('change',e=>{F.fam=e.target.value==='all'?'all':e.target.value.replace(/ \(\d+\)$/,'');renderTop();});
   }
   const passes = p => p && (F.type==='all'||p.type===F.type) && (F.str==='all'||p._str===F.str) && (F.fam==='all'||p._fam===F.fam) && (F.fmt==='all'||p.format===F.fmt) && (F.style==='all'||p.style===F.style) && (F.brand==='all'||p.brand===F.brand);
 
@@ -394,7 +385,7 @@
       ...FORMATS.map(f=>[`Bästa ${f.toLowerCase()}`,p=>p.format===f]),
       ...STYLES.map(s=>[`Bästa ${s.toLowerCase()}`,p=>p.style===s]),
       ...STRS.map(s=>[`Bästa ${s.toLowerCase()}`,p=>p._str===s]),
-      ...FAMS.map(f=>[`Bästa ${f.toLowerCase()}`,p=>p._fam===f])];
+      ...FAMS.filter(f=>FCOUNT[f]>=8&&f!=='Övrigt').map(f=>[`Bästa ${f.toLowerCase()}`,p=>p._fam===f])];
     const mAgg={}; rows.forEach(r=>{const k=r.p.maker;mAgg[k]=mAgg[k]||{w:0,d:0};mAgg[k].w+=r.wins;mAgg[k].d+=r.duels;});
     const mBest=Object.entries(mAgg).filter(([,v])=>v.d>=MIN_DUELS*3).map(([k,v])=>({k,...v})).sort((a,b)=>pct(b.w,b.d)-pct(a.w,a.d)||b.d-a.d)[0];
     const makerCard=mBest?`<div class="wcard"><div></div><div><div class="cat">Månadens tillverkare</div><div class="t">${esc(mBest.k)}</div><div class="s">${pct(mBest.w,mBest.d)}% vinster · ${mBest.d} dueller</div></div></div>`:'';
