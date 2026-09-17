@@ -335,12 +335,12 @@
 
   // ---- duel
   let champ, chall, streak=0; const recent=[];
-  function pick(ex,avoidBrand){ 
+  const CROSS_BRAND = 0;   // andel dueller som föredrar ett annat varumärke
+  function pick(ex,otherBrand){
     let pool=P.filter(p=>!ex.includes(p.id)&&!recent.includes(p.id));
-    if(avoidBrand){ const q=pool.filter(p=>p.brand!==avoidBrand); if(q.length) pool=q; }
-    let from=pool.length?pool:P.filter(p=>!ex.includes(p.id));
-    if(avoidBrand&&!pool.length){ const q=from.filter(p=>p.brand!==avoidBrand); if(q.length) from=q; }
-    const p=from[Math.floor(Math.random()*from.length)]; recent.push(p.id); if(recent.length>12)recent.shift(); return p; }
+    if(!pool.length) pool=P.filter(p=>!ex.includes(p.id));
+    if(otherBrand && Math.random()<CROSS_BRAND){ const q=pool.filter(p=>p.brand!==otherBrand); if(q.length) pool=q; }
+    const p=pool[Math.floor(Math.random()*pool.length)]; recent.push(p.id); if(recent.length>12)recent.shift(); return p; }
   function renderCorner(el,p,isChamp){ el.dataset.id=p.id; el.innerHTML=`${imgHtml(p,'can')}<span class="brand">${esc(p.brand)}</span><h2 class="name" style="margin:0">${esc(p.name)}</h2><p class="meta">${esc([p.format,p.style,tf(p.flavor)].filter(Boolean).join(' · '))}</p><p class="meta">${dots(p.dots)}${esc(p.mg)}</p>${isChamp&&streak>0?`<span class="streak">${streak>1?streak+' raka vinster':'1 vinst'}</span>`:''}`; }
   function draw(){ renderCorner($('#cornerL'),champ,true); renderCorner($('#cornerR'),chall,false); }
   function startDuel(a,b){ champ=a||pick([]); chall=b||pick([champ.id],champ.brand); streak=0; draw(); }
