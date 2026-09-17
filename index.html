@@ -269,8 +269,18 @@
   const $ = s => document.querySelector(s);
   const store = { get(k,d){ try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v);}catch{return d;} }, set(k,v){ try{localStorage.setItem(k,JSON.stringify(v));}catch{} } };
   const session = store.get('sk_session') || (()=>{const s=Math.random().toString(36).slice(2)+Date.now().toString(36);store.set('sk_session',s);return s;})();
-  const COUNTRIES=[['SE','🇸🇪 Sverige'],['NO','🇳🇴 Norge'],['DK','🇩🇰 Danmark'],['FI','🇫🇮 Finland'],['DE','🇩🇪 Deutschland'],['GB','🇬🇧 UK'],['US','🇺🇸 USA'],['XX','🌍 Annat']];
-  const guessCountry=()=>{ const l=(navigator.language||'').toUpperCase(); const m=l.match(/-([A-Z]{2})/); if(m&&COUNTRIES.some(c=>c[0]===m[1])) return m[1]; if(l.startsWith('SV'))return 'SE'; if(l.startsWith('NB')||l.startsWith('NO'))return 'NO'; if(l.startsWith('DA'))return 'DK'; if(l.startsWith('FI'))return 'FI'; if(l.startsWith('DE'))return 'DE'; return 'SE'; };
+  const COUNTRIES=[['SE','🇸🇪 Sverige'],['NO','🇳🇴 Norge'],['DK','🇩🇰 Danmark'],['FI','🇫🇮 Suomi'],['IS','🇮🇸 Ísland'],
+    ['DE','🇩🇪 Deutschland'],['AT','🇦🇹 Österreich'],['CH','🇨🇭 Schweiz'],['NL','🇳🇱 Nederland'],['BE','🇧🇪 België'],
+    ['GB','🇬🇧 United Kingdom'],['IE','🇮🇪 Ireland'],['US','🇺🇸 United States'],['CA','🇨🇦 Canada'],
+    ['PL','🇵🇱 Polska'],['CZ','🇨🇿 Česko'],['SK','🇸🇰 Slovensko'],['SI','🇸🇮 Slovenija'],['HR','🇭🇷 Hrvatska'],
+    ['EE','🇪🇪 Eesti'],['LV','🇱🇻 Latvija'],['LT','🇱🇹 Lietuva'],
+    ['IT','🇮🇹 Italia'],['ES','🇪🇸 España'],['PT','🇵🇹 Portugal'],['FR','🇫🇷 France'],
+    ['KR','🇰🇷 대한민국'],['JP','🇯🇵 日本'],['AU','🇦🇺 Australia'],['NZ','🇳🇿 New Zealand'],
+    ['ZA','🇿🇦 South Africa'],['AE','🇦🇪 United Arab Emirates'],['XX','🌍 —']];
+  const LANG2C={sv:'SE',no:'NO',da:'DK',fi:'FI',is:'IS',de:'DE',en:'GB',pl:'PL',sk:'SK',sl:'SI',hr:'HR',et:'EE',lv:'LV',it:'IT',es:'ES',fr:'FR',ko:'KR'};
+  const guessCountry=()=>{ const l=(navigator.language||'').toUpperCase(); const m=l.match(/-([A-Z]{2})/);
+    if(m&&COUNTRIES.some(c=>c[0]===m[1])) return m[1];
+    const base=(navigator.language||'sv').toLowerCase().slice(0,2); return LANG2C[base]||'XX'; };
   LANG = LANG || store.get('sk_lang') || guessLang();
   const t = (k,v) => { let s = (I18N.T[LANG]?.ui?.[k]) ?? (I18N.T.sv.ui[k]) ?? k; if(v) for(const x in v) s=s.split('{'+x+'}').join(v[x]); return s; };
   const tf = f => (I18N.T[LANG]?.flavor?.[f]) ?? f;
@@ -548,11 +558,13 @@
     if(route==='vs'){const m=location.pathname.match(/^\/vs\/([^/]+)\/([^/]+)/); if(m)renderVs(decodeURIComponent(m[1]),decodeURIComponent(m[2]));}
   }
   $('#lang').innerHTML=I18N.LANGS.map(l=>`<option value="${l.code}" ${l.code===LANG?'selected':''}>${esc(l.label)}</option>`).join('');
-  $('#lang').addEventListener('change',e=>{LANG=e.target.value;store.set('sk_lang',LANG);applyLang();});
+  $('#lang').addEventListener('change',e=>{LANG=e.target.value;store.set('sk_lang',LANG);
+    if(!store.get('sk_country_set',false) && LANG2C[LANG]){ country=LANG2C[LANG]; $('#country').value=country; store.set('sk_country',country); }
+    applyLang();});
 
   // ---- land
   $('#country').innerHTML=COUNTRIES.map(([c,l])=>`<option value="${c}" ${c===country?'selected':''}>${l}</option>`).join('');
-  $('#country').addEventListener('change',e=>{country=e.target.value;store.set('sk_country',country);});
+  $('#country').addEventListener('change',e=>{country=e.target.value;store.set('sk_country',country);store.set('sk_country_set',true);});
 
   // ---- age gate + start
   const gate=$('#gate'); if(!store.get('sk_18',false)) gate.hidden=false;
