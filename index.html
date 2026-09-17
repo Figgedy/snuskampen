@@ -246,10 +246,11 @@
   const sb = (cfg.SUPABASE_URL && cfg.SUPABASE_ANON_KEY && window.supabase) ? window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY) : null;
   const HOST=(location.hostname||'').replace(/^www\./,'').toLowerCase();
   const SITE = /snuskampen\.se$/.test(HOST)
-    ? {a:'SNUS',b:'KAMPEN',name:'Snuskampen',domain:'snuskampen.se',lang:'sv'}
-    : {a:'SNUS',b:'BATTLE',name:'Snusbattle',domain:'snusbattle.com',lang:'en'};
+    ? {a:'SNUS',b:'KAMPEN',name:'Snuskampen',domain:'snuskampen.se',lang:'sv',country:'SE',fixed:true}
+    : {a:'SNUS',b:'BATTLE',name:'Snusbattle',domain:'snusbattle.com',lang:'en',country:null,fixed:false};
   const I18N = window.I18N || {LANGS:[{code:'sv',label:'Svenska'}],T:{sv:{ui:{},flavor:{}}}};
-  const guessLang = () => { const l=(navigator.language||'').toLowerCase().slice(0,2); return I18N.T[l] ? l : SITE.lang; };
+  // nationell domän → dess språk vinner över webbläsaren; .com → webbläsarens språk om det finns
+  const guessLang = () => { if(SITE.fixed) return SITE.lang; const l=(navigator.language||'').toLowerCase().slice(0,2); return I18N.T[l] ? l : SITE.lang; };
   let LANG = (new URLSearchParams(location.search).get('lang')||'').toLowerCase();
   if(!I18N.T[LANG]) LANG = null;
   const MIN_DUELS = 5;          // för att få vara med i månads-/kategorilistor
@@ -270,8 +271,9 @@
   const C2LANG={SE:'sv',NO:'no',DK:'da',FI:'fi',IS:'is',DE:'de',AT:'de',CH:'de',NL:'en',BE:'fr',GB:'en',IE:'en',US:'en',CA:'en',
     PL:'pl',CZ:'sk',SK:'sk',SI:'sl',HR:'hr',EE:'et',LV:'lv',LT:'lv',IT:'it',ES:'es',PT:'es',FR:'fr',KR:'ko',JP:'en',AU:'en',NZ:'en',ZA:'en',AE:'en',XX:'en'};
   const guessCountry=()=>{ const l=(navigator.language||'').toUpperCase(); const m=l.match(/-([A-Z]{2})/);
+    if(SITE.country) return SITE.country;
     if(m&&COUNTRIES.some(c=>c[0]===m[1])) return m[1];
-    const base=(navigator.language||'sv').toLowerCase().slice(0,2); return LANG2C[base]||'XX'; };
+    const base=(navigator.language||'').toLowerCase().slice(0,2); return LANG2C[base]||'XX'; };
   LANG = LANG || store.get('sk_lang') || guessLang();
   const t = (k,v) => { let s = (I18N.T[LANG]?.ui?.[k]) ?? (I18N.T.sv.ui[k]) ?? k; if(v) for(const x in v) s=s.split('{'+x+'}').join(v[x]); return s; };
   const tf = f => (I18N.T[LANG]?.flavor?.[f]) ?? f;
@@ -333,15 +335,20 @@
 
   // ---- duel
   let champ, chall, streak=0; const recent=[];
-  function pick(ex){ const pool=P.filter(p=>!ex.includes(p.id)&&!recent.includes(p.id)); const from=pool.length?pool:P.filter(p=>!ex.includes(p.id)); const p=from[Math.floor(Math.random()*from.length)]; recent.push(p.id); if(recent.length>12)recent.shift(); return p; }
+  function pick(ex,avoidBrand){ 
+    let pool=P.filter(p=>!ex.includes(p.id)&&!recent.includes(p.id));
+    if(avoidBrand){ const q=pool.filter(p=>p.brand!==avoidBrand); if(q.length) pool=q; }
+    let from=pool.length?pool:P.filter(p=>!ex.includes(p.id));
+    if(avoidBrand&&!pool.length){ const q=from.filter(p=>p.brand!==avoidBrand); if(q.length) from=q; }
+    const p=from[Math.floor(Math.random()*from.length)]; recent.push(p.id); if(recent.length>12)recent.shift(); return p; }
   function renderCorner(el,p,isChamp){ el.dataset.id=p.id; el.innerHTML=`${imgHtml(p,'can')}<span class="brand">${esc(p.brand)}</span><h2 class="name" style="margin:0">${esc(p.name)}</h2><p class="meta">${esc([p.format,p.style,tf(p.flavor)].filter(Boolean).join(' · '))}</p><p class="meta">${dots(p.dots)}${esc(p.mg)}</p>${isChamp&&streak>0?`<span class="streak">${streak>1?streak+' raka vinster':'1 vinst'}</span>`:''}`; }
   function draw(){ renderCorner($('#cornerL'),champ,true); renderCorner($('#cornerR'),chall,false); }
-  function startDuel(a,b){ champ=a||pick([]); chall=b||pick([champ.id]); streak=0; draw(); }
+  function startDuel(a,b){ champ=a||pick([]); chall=b||pick([champ.id],champ.brand); streak=0; draw(); }
   function vote(side){ const winner=side==='L'?champ:chall, loser=side==='L'?chall:champ, el=side==='L'?$('#cornerL'):$('#cornerR');
     el.classList.remove('won'); void el.offsetWidth; el.classList.add('won');
-    streak = winner===champ ? streak+1 : 1; champ=winner; chall=pick([champ.id,loser.id]); draw(); recordVote(winner.id,loser.id); }
+    streak = winner===champ ? streak+1 : 1; champ=winner; chall=pick([champ.id,loser.id],champ.brand); draw(); recordVote(winner.id,loser.id); }
   $('#cornerL').addEventListener('click',()=>vote('L')); $('#cornerR').addEventListener('click',()=>vote('R'));
-  $('#skip').addEventListener('click',()=>{chall=pick([champ.id,chall.id]);draw();});
+  $('#skip').addEventListener('click',()=>{chall=pick([champ.id,chall.id],champ.brand);draw();});
   $('#share-duel').addEventListener('click',()=>shareLink(location.origin+vsUrl(champ.id,chall.id)+(LANG!==SITE.lang?'?lang='+LANG:''),`${label(champ)} vs ${label(chall)}`));
   document.addEventListener('keydown',e=>{ if(route!=='duel'||!$('#gate').hidden)return; if(e.key==='ArrowLeft')vote('L'); else if(e.key==='ArrowRight')vote('R'); else if(e.key.toLowerCase()==='s')$('#skip').click(); });
   async function shareLink(url,title){ if(navigator.share){ try{await navigator.share({title,url});return;}catch{} } try{await navigator.clipboard.writeText(url);toast(t('copied'));}catch{toast(url);} }
