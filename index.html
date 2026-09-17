@@ -45,8 +45,14 @@
   /* duel */
   .arena{flex:1;position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:0}
   .corner{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px 24px 32px;border:0;cursor:pointer;background:var(--paper);text-align:center;min-height:0;overflow:hidden;transition:background .15s}
-  .corner.left:hover,.corner.left:focus-visible{background:var(--red-tint);outline:none}
-  .corner.right:hover,.corner.right:focus-visible{background:var(--blue-tint);outline:none}
+  .corner.left:focus-visible{background:var(--red-tint);outline:none}
+  .corner.right:focus-visible{background:var(--blue-tint);outline:none}
+  @media (hover:hover) and (pointer:fine){
+    .corner.left:hover{background:var(--red-tint)}
+    .corner.right:hover{background:var(--blue-tint)}
+  }
+  .corner:active{background:var(--red-tint)}
+  .corner.right:active{background:var(--blue-tint)}
   .corner.won{animation:pop .35s ease}
   @keyframes pop{40%{transform:scale(1.04)}}
   @media (prefers-reduced-motion:reduce){.corner.won{animation:none}}
