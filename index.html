@@ -162,7 +162,7 @@
     <a href="/" data-route="duel">Duell</a>
     <a href="/topplistan" data-route="top">Topplistan</a>
     <a href="/manadens-mastare" data-route="month">Månadens mästare</a>
-    <a href="/varumarken" data-route="brands">Varumärken</a>
+    <a href="/varumarken" data-route="brands">Märken &amp; tillverkare</a>
     <select id="country" aria-label="Land" title="Land"></select>
   </nav>
 </header>
@@ -202,11 +202,15 @@
   </div></div></section>
 
   <section id="v-brands" class="view"><div class="scroll"><div class="wrap">
-    <h1>Varumärkeskampen</h1>
-    <p class="sub">Andel vunna dueller mot andra varumärken. Dueller inom samma märke räknas inte.</p>
+    <h1 id="bTitle">Varumärkeskampen</h1>
+    <p class="sub" id="bSub">Andel vunna dueller mot andra varumärken. Dueller inom samma märke räknas inte.</p>
+    <div class="tabs" id="bMode">
+      <button class="chip" data-mode="brand" aria-pressed="true">Varumärken</button>
+      <button class="chip" data-mode="maker" aria-pressed="false">Tillverkare</button>
+    </div>
     <div class="bvb"><select id="bA"></select><span class="vs" style="position:static;transform:rotate(-8deg);width:56px;height:56px;font-size:28px;box-shadow:none"></span><select id="bB"></select></div>
     <div id="bvbResult"></div>
-    <h2>Alla varumärken</h2>
+    <h2 id="bListTitle">Alla varumärken</h2>
     <div id="brandList"></div>
   </div></div></section>
 
@@ -264,6 +268,7 @@
   const FAMS = ['Mint','Frukt','Bär','Citrus','Lakrits','Kaffe & sött','Kryddigt','Dryck','Tobak','Övrigt'];
   const STRS = ['Mild','Normal','Stark','Extra stark'];
   const BRANDS = [...new Set(P.map(p=>p.brand))].sort((a,b)=>a.localeCompare(b,'sv'));
+  const MAKERS = [...new Set(P.map(p=>p.maker))].sort((a,b)=>a.localeCompare(b,'sv'));
   const FORMATS = ['Mini','Slim','Superslim','Large'].filter(f=>P.some(p=>p.format===f));
   const STYLES = ['White','White Dry','Original'].filter(s=>P.some(p=>p.style===s));
   ALL.forEach(p=>{ p._fam=fam(p); p._str=STR(p.dots); });
@@ -390,21 +395,41 @@
       ...STYLES.map(s=>[`Bästa ${s.toLowerCase()}`,p=>p.style===s]),
       ...STRS.map(s=>[`Bästa ${s.toLowerCase()}`,p=>p._str===s]),
       ...FAMS.map(f=>[`Bästa ${f.toLowerCase()}`,p=>p._fam===f])];
+    const mAgg={}; rows.forEach(r=>{const k=r.p.maker;mAgg[k]=mAgg[k]||{w:0,d:0};mAgg[k].w+=r.wins;mAgg[k].d+=r.duels;});
+    const mBest=Object.entries(mAgg).filter(([,v])=>v.d>=MIN_DUELS*3).map(([k,v])=>({k,...v})).sort((a,b)=>pct(b.w,b.d)-pct(a.w,a.d)||b.d-a.d)[0];
+    const makerCard=mBest?`<div class="wcard"><div></div><div><div class="cat">Månadens tillverkare</div><div class="t">${esc(mBest.k)}</div><div class="s">${pct(mBest.w,mBest.d)}% vinster · ${mBest.d} dueller</div></div></div>`:'';
     $('#monthBody').innerHTML=`<p class="note">${Math.floor(total)} dueller i ${fmtM(monthSel)}.${monthSel===nowM?' Pågår – vinnarna koras den 1:a.':''}</p>
-      <div class="winners">${card('Månadens snus',best(()=>true),'total')}${cats.map(([c,f])=>card(c,best(f))).join('')}</div>`;
+      <div class="winners">${card('Månadens snus',best(()=>true),'total')}${makerCard}${cats.map(([c,f])=>card(c,best(f))).join('')}</div>`;
   }
 
   // ---- varumärken
+  let bMode='brand';
+  const bKey = p => bMode==='brand' ? p.brand : p.maker;
+  document.querySelectorAll('#bMode .chip').forEach(b=>b.addEventListener('click',()=>{
+    bMode=b.dataset.mode; document.querySelectorAll('#bMode .chip').forEach(x=>x.setAttribute('aria-pressed',x===b));
+    $('#bA').innerHTML=''; renderBrands();
+  }));
   async function renderBrands(){
+    const isBrand = bMode==='brand';
+    $('#bTitle').textContent = isBrand ? 'Varumärkeskampen' : 'Tillverkarkampen';
+    $('#bSub').textContent = isBrand ? 'Andel vunna dueller mot andra varumärken. Dueller inom samma märke räknas inte.'
+                                     : 'Andel vunna dueller mot produkter från andra tillverkare.';
+    $('#bListTitle').textContent = isBrand ? 'Alla varumärken' : 'Alla tillverkare';
+    const list = isBrand ? BRANDS : MAKERS;
     const h=(await getH2H())||[];
     const agg={}; const pair={};
-    for(const r of h){ const A=byId[r.a],B=byId[r.b]; if(!A||!B||A.brand===B.brand) continue;
-      const add=(x,w,l)=>{agg[x]=agg[x]||{w:0,l:0};agg[x].w+=w;agg[x].l+=l;}; add(A.brand,r.a_wins,r.b_wins); add(B.brand,r.b_wins,r.a_wins);
-      const k=[A.brand,B.brand].sort().join('|'); pair[k]=pair[k]||{}; pair[k][A.brand]=(pair[k][A.brand]||0)+r.a_wins; pair[k][B.brand]=(pair[k][B.brand]||0)+r.b_wins; }
+    for(const r of h){ const A=byId[r.a],B=byId[r.b]; if(!A||!B) continue;
+      const ka=bKey(A), kb=bKey(B); if(ka===kb) continue;
+      const add=(x,w,l)=>{agg[x]=agg[x]||{w:0,l:0};agg[x].w+=w;agg[x].l+=l;};
+      add(ka,r.a_wins,r.b_wins); add(kb,r.b_wins,r.a_wins);
+      const k=[ka,kb].sort().join('|'); pair[k]=pair[k]||{}; pair[k][ka]=(pair[k][ka]||0)+r.a_wins; pair[k][kb]=(pair[k][kb]||0)+r.b_wins; }
     const rows=Object.entries(agg).map(([b,v])=>({b,w:v.w,l:v.l,d:v.w+v.l})).filter(r=>r.d>=MIN_DUELS).sort((a,b)=>pct(b.w,b.d)-pct(a.w,a.d)||b.d-a.d);
-    $('#brandList').innerHTML=rows.length?rows.map((r,i)=>`<div class="brandrow"><span class="rank" style="font-family:var(--display);font-size:30px">${i+1}</span><div><div class="t">${esc(r.b)}</div><div class="bar"><i style="width:${pct(r.w,r.d)}%"></i></div></div><div class="score" style="text-align:right"><b style="font-family:var(--display);font-size:24px;display:block">${pct(r.w,r.d)}%</b><span style="font-size:11px;color:var(--muted)">${r.d} dueller</span></div></div>`).join(''):'<p class="empty">För få dueller mellan olika märken ännu.</p>';
-    const opts=BRANDS.map(b=>`<option>${esc(b)}</option>`).join('');
-    if(!$('#bA').options.length){ $('#bA').innerHTML=opts; $('#bB').innerHTML=opts; $('#bA').value=BRANDS.find(b=>/zyn/i.test(b))||BRANDS[0]; $('#bB').value=BRANDS.find(b=>/velo/i.test(b))||BRANDS[1]; $('#bA').onchange=$('#bB').onchange=show; }
+    $('#brandList').innerHTML=rows.length?rows.map((r,i)=>`<div class="brandrow"><span class="rank" style="font-family:var(--display);font-size:30px">${i+1}</span><div><div class="t">${esc(r.b)}</div><div class="bar"><i style="width:${pct(r.w,r.d)}%"></i></div></div><div class="score" style="text-align:right"><b style="font-family:var(--display);font-size:24px;display:block">${pct(r.w,r.d)}%</b><span style="font-size:11px;color:var(--muted)">${r.d} dueller</span></div></div>`).join(''):`<p class="empty">För få dueller mellan olika ${isBrand?'märken':'tillverkare'} ännu.</p>`;
+    const opts=list.map(b=>`<option>${esc(b)}</option>`).join('');
+    if(!$('#bA').options.length){ $('#bA').innerHTML=opts; $('#bB').innerHTML=opts;
+      $('#bA').value=list.find(b=>/zyn|swedish match/i.test(b))||list[0];
+      $('#bB').value=list.find(b=>/velo|bat/i.test(b))||list[1]||list[0];
+      $('#bA').onchange=$('#bB').onchange=show; }
     function show(){ const a=$('#bA').value,b=$('#bB').value; const k=[a,b].sort().join('|'); const v=pair[k]||{}; const aw=v[a]||0,bw=v[b]||0,d=aw+bw;
       $('#bvbResult').innerHTML=d?`<div class="h2h"><div class="side a"><div class="pct">${pct(aw,d)}%</div><div class="brand">${esc(a)}</div></div><div></div><div class="side b"><div class="pct">${pct(bw,d)}%</div><div class="brand">${esc(b)}</div></div></div><div class="bar"><i style="width:${pct(aw,d)}%"></i></div><p class="note" style="text-align:center">${d} dueller mellan ${esc(a)} och ${esc(b)}</p>`:`<p class="empty" style="text-align:center">Inga dueller mellan ${esc(a)} och ${esc(b)} ännu.</p>`; }
     show();
