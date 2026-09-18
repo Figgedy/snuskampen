@@ -617,7 +617,7 @@ window.PRODUCTS = [
   // Vont
   {"id": "vont-fresh-mint", "brand": "Vont", "maker": "Vont", "name": "Fresh Mint", "format": "Slim", "style": "White", "flavor": "Mint", "mg": "9 mg/prilla · 12,9 mg/g", "dots": 4, "type": "White"},
   {"id": "vont-fresh-mint-mild", "brand": "Vont", "maker": "Vont", "name": "Fresh Mint Mild", "format": "Slim", "style": "White", "flavor": "Mint", "mg": "4 mg/prilla · 5,7 mg/g", "dots": 1, "type": "White"},
-  {"id": "vont-juicy-berry-normalstark", "brand": "Vont", "maker": "Vont", "name": "Juicy Berry Stark", "format": "Slim", "style": "White", "flavor": "Bär", "mg": "6 mg/prilla · 8,6 mg/g", "dots": 2, "type": "White"},
+  {"id": "vont-juicy-berry-normalstark", "brand": "Vont", "maker": "Vont", "name": "Juicy Berry", "format": "Slim", "style": "White", "flavor": "Bär", "mg": "6 mg/prilla · 8,6 mg/g", "dots": 2, "type": "White"},
   {"id": "vont-juicy-berry-stark", "brand": "Vont", "maker": "Vont", "name": "Juicy Berry Strong", "format": "Slim", "style": "White", "flavor": "Bär", "mg": "12 mg/prilla · 17,1 mg/g", "dots": 5, "type": "White"},
   {"id": "vont-sweet-melon", "brand": "Vont", "maker": "Vont", "name": "Sweet Melon", "format": "Slim", "style": "White", "flavor": "Melon", "mg": "6 mg/prilla · 8,6 mg/g", "dots": 2, "type": "White"},
   {"id": "vont-sweet-melon-stark", "brand": "Vont", "maker": "Vont", "name": "Sweet Melon Strong", "format": "Slim", "style": "White", "flavor": "Melon", "mg": "12 mg/prilla · 17,1 mg/g", "dots": 5, "type": "White"},
