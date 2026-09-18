@@ -25,7 +25,7 @@ export async function GET(req) {
   const title = `${label(A)} vs ${label(B)} – ${site}`;
   const desc = en ? 'Which one wins? Cast your vote.' : 'Vilket snus vinner? Rösta nu.';
   const url = `${origin.replace('://www.', '://')}/vs/${encodeURIComponent(a)}/${encodeURIComponent(b)}`;
-  const img = `${origin}/api/og?a=${encodeURIComponent(a)}&b=${encodeURIComponent(b)}&v=2`;
+  const img = `${origin}/api/og?a=${encodeURIComponent(a)}&b=${encodeURIComponent(b)}&v=3`;
 
   const out = page
     .replace(/<title>[^<]*<\/title>/, () => `<title>${esc(title)}</title>`)

@@ -7,11 +7,13 @@ const el = (type, style, children) => ({ type, props: { style: { display: 'flex'
 
 function side(p, imgUrl) {
   return el('div', { flexDirection: 'column', alignItems: 'center', width: 440 }, [
-    imgUrl
-      ? { type: 'img', props: { src: imgUrl, width: 300, height: 300, style: { objectFit: 'contain' } } }
-      : el('div', { width: 300, height: 300, borderRadius: 150, background: '#e9e4d8' }, []),
-    el('div', { fontSize: 26, color: '#6b6b6b', marginTop: 14 }, p.brand),
-    el('div', { fontFamily: 'Bebas', fontSize: 58, color: '#111820', textAlign: 'center', lineHeight: 1, marginTop: 6, maxWidth: 440, justifyContent: 'center' }, p.name.toUpperCase()),
+    el('div', { width: 300, height: 300, borderRadius: 28, background: '#ffffff', alignItems: 'center', justifyContent: 'center', boxShadow: '0 10px 30px rgba(0,0,0,.45)' }, [
+      imgUrl
+        ? { type: 'img', props: { src: imgUrl, width: 260, height: 260, style: { objectFit: 'contain' } } }
+        : el('div', { width: 220, height: 220, borderRadius: 110, background: '#e9e4d8' }, []),
+    ]),
+    el('div', { fontSize: 26, color: '#9a9a9a', marginTop: 18 }, p.brand.toUpperCase()),
+    el('div', { fontSize: 54, color: '#ffffff', textAlign: 'center', lineHeight: 1, marginTop: 4, maxWidth: 440, justifyContent: 'center' }, p.name.toUpperCase()),
   ]);
 }
 
@@ -27,11 +29,11 @@ export async function GET(req) {
 
   const src = p => (images[p.id] ? `${origin}/img/${images[p.id]}` : null);
 
-  const tree = el('div', { width: 1200, height: 630, background: '#ffffff', flexDirection: 'column', alignItems: 'center', padding: '28px 40px' }, [
-    { type: 'img', props: { src: origin + '/logo.png', width: 420, height: 100, style: { objectFit: 'contain' } } },
-    el('div', { flex: 1, width: '100%', alignItems: 'center', justifyContent: 'space-between', marginTop: 18 }, [
+  const tree = el('div', { width: 1200, height: 630, background: 'linear-gradient(180deg, #2a2a2c 0%, #151516 100%)', flexDirection: 'column', alignItems: 'center', padding: '28px 40px' }, [
+    { type: 'img', props: { src: origin + '/logo-dark.png', width: 440, height: 110, style: { objectFit: 'contain' } } },
+    el('div', { flex: 1, width: '100%', alignItems: 'center', justifyContent: 'space-between', marginTop: 10 }, [
       side(A, src(A)),
-      el('div', { width: 120, height: 120, borderRadius: 60, background: '#111820', color: '#fff', fontFamily: 'Bebas', fontSize: 64, paddingTop: 6, alignItems: 'center', justifyContent: 'center', transform: 'rotate(-8deg)' }, 'VS'),
+      el('div', { width: 120, height: 120, borderRadius: 60, background: '#d4a93c', color: '#151516', fontFamily: 'Bebas', fontSize: 64, paddingTop: 6, alignItems: 'center', justifyContent: 'center', transform: 'rotate(-8deg)' }, 'VS'),
       side(B, src(B)),
     ]),
   ]);
