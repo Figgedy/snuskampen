@@ -241,6 +241,11 @@
   html body #foot #footLegal,html body #foot #footNic,html body #foot #footTm{display:none}
   html body #foot #footShort{display:block;margin:0}
 </style>
+<style>/* klickbara vs-sidor */
+  .h2h .side{cursor:pointer;border-radius:18px;padding:12px 8px;transition:background .15s}
+  @media (hover:hover) and (pointer:fine){.h2h .side:hover{background:#f5f5f6}}
+  .h2h .side .btn{margin-top:12px;max-width:100%;white-space:normal}
+</style>
 </head>
 <body>
 
@@ -572,15 +577,15 @@
     const d=aw+bw;
     body.innerHTML=`<h1 style="text-align:center;font-size:clamp(28px,7vw,56px)">${esc(label(A))} <span style="color:var(--muted)">vs</span> ${esc(label(B))}</h1>
       <div class="h2h">
-        <div class="side a">${imgHtml(A,'can')}<div class="brand">${esc(A.brand)}</div><div class="name" style="font-size:clamp(24px,4vw,40px)">${esc(A.name)}</div><div class="meta">${esc(sub(A))}</div><div class="pct">${d?pct(aw,d)+'%':''}</div></div>
+        <div class="side a">${imgHtml(A,'can')}<div class="brand">${esc(A.brand)}</div><div class="name" style="font-size:clamp(24px,4vw,40px)">${esc(A.name)}</div><div class="meta">${esc(sub(A))}</div><div class="pct">${d?pct(aw,d)+'%':''}</div><button class="btn red" type="button">${esc(t('wins_btn',{x:label(A)}))}</button></div>
         <div class="vs" style="position:static;transform:rotate(-8deg);width:56px;height:56px;font-size:28px;box-shadow:none;margin-top:60px">VS</div>
-        <div class="side b">${imgHtml(B,'can')}<div class="brand">${esc(B.brand)}</div><div class="name" style="font-size:clamp(24px,4vw,40px)">${esc(B.name)}</div><div class="meta">${esc(sub(B))}</div><div class="pct">${d?pct(bw,d)+'%':''}</div></div>
+        <div class="side b">${imgHtml(B,'can')}<div class="brand">${esc(B.brand)}</div><div class="name" style="font-size:clamp(24px,4vw,40px)">${esc(B.name)}</div><div class="meta">${esc(sub(B))}</div><div class="pct">${d?pct(bw,d)+'%':''}</div><button class="btn blue" type="button">${esc(t('wins_btn',{x:label(B)}))}</button></div>
       </div>
-      <div class="btnrow"><button class="btn red" id="vsA">${esc(t('wins_btn',{x:label(A)}))}</button><button class="btn blue" id="vsB">${esc(t('wins_btn',{x:label(B)}))}</button></div>
+      
       ${d?`<div class="bar"><i style="width:${pct(aw,d)}%"></i></div><p class="note" style="text-align:center">${esc(t('h2h_count',{n:d}))}</p>`:`<p class="empty" style="text-align:center">${esc(t('vs_none'))}</p>`}
       <div class="btnrow"><button class="btn ghost" id="vsShare">${esc(t('share'))}</button><a class="btn ghost" href="/">${esc(t('random'))}</a><button class="btn ghost" id="vsCreate">${esc(ct('nav'))}</button></div>`;
-    const voteVs=(w,l)=>{ recordVote(w.id,l.id); toast(`${label(w)} +1`); delete cache.h2h; setTimeout(()=>renderVs(aId,bId),400); };
-    $('#vsA').onclick=()=>voteVs(A,B); $('#vsB').onclick=()=>voteVs(B,A);
+    let vsBusy=false; const voteVs=(w,l)=>{ if(vsBusy) return; vsBusy=true; recordVote(w.id,l.id); toast(`${label(w)} +1`); delete cache.h2h; setTimeout(()=>renderVs(aId,bId),400); };
+    body.querySelector('.side.a').onclick=()=>voteVs(A,B); body.querySelector('.side.b').onclick=()=>voteVs(B,A);
     $('#vsCreate').onclick=()=>{cSel={a:A,b:null};go('create');window.scrollTo(0,0);}; $('#vsShare').onclick=()=>shareLink(location.origin+location.pathname+(LANG!==SITE.lang?'?lang='+LANG:''),`${label(A)} vs ${label(B)}`);
   }
 
