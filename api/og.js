@@ -19,7 +19,7 @@ function side(p, imgUrl) {
 
 export async function GET(req) {
   const u = new URL(req.url);
-  const { origin } = originOf(req);
+  const { origin, host } = originOf(req);
   const [{ byId, images }] = await Promise.all([
     loadData(origin),
     font ? null : fetch(origin + '/fonts/BebasNeue-Regular.ttf').then(r => r.arrayBuffer()).then(b => { font = b; }),
@@ -30,7 +30,7 @@ export async function GET(req) {
   const src = p => (images[p.id] ? `${origin}/img/${images[p.id]}` : null);
 
   const tree = el('div', { width: 1200, height: 630, background: 'linear-gradient(180deg, #2a2a2c 0%, #151516 100%)', flexDirection: 'column', alignItems: 'center', padding: '28px 40px' }, [
-    { type: 'img', props: { src: origin + '/logo-dark.png', width: 440, height: 110, style: { objectFit: 'contain' } } },
+    { type: 'img', props: { src: origin + (host.includes('snusbattle') ? '/logo-dark-sb.png' : '/logo-dark.png'), width: 440, height: 110, style: { objectFit: 'contain' } } },
     el('div', { flex: 1, width: '100%', alignItems: 'center', justifyContent: 'space-between', marginTop: 10 }, [
       side(A, src(A)),
       el('div', { width: 120, height: 120, borderRadius: 60, background: '#d4a93c', color: '#151516', fontFamily: 'Bebas', fontSize: 64, paddingTop: 6, alignItems: 'center', justifyContent: 'center', transform: 'rotate(-8deg)' }, 'VS'),

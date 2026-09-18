@@ -5,6 +5,16 @@
       "destination": "/api/vs?a=:a&b=:b"
     },
     {
+      "source": "/((?!api/|img/|legal/|.*\\.[a-z0-9]+$).*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?snusbattle\\.com"
+        }
+      ],
+      "destination": "/api/vs"
+    },
+    {
       "source": "/integritetspolicy",
       "destination": "/legal/integritetspolicy.html"
     },

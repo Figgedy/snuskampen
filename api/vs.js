@@ -18,17 +18,27 @@ export async function GET(req) {
   const page = await fetch(origin + '/index.html').then(r => r.text());
   let A, B;
   try { const { byId } = await loadData(origin); A = byId[a]; B = byId[b]; } catch (e) { console.error(e); }
-  if (!A || !B) return html(page, 300);
+  if (!A || !B) {
+    if (!host.includes('snusbattle')) return html(page, 300);
+    const en = page
+      .replace(/<title>[^<]*<\/title>/, '<title>Which pouch wins? – Snusbattle</title>')
+      .replace(/(<meta property="og:site_name" content=")[^"]*"/, '$1Snusbattle"')
+      .replace(/(<meta property="og:title"[^>]*content=")[^"]*"/, '$1Which pouch wins? – Snusbattle"')
+      .replace(/(<meta property="og:description"[^>]*content=")[^"]*"/, '$1Two pouches. You pick. The winner stays."')
+      .replace(/(<meta property="og:image" content=")[^"]*"/, (_, p1) => `${p1}${origin}/og-en.jpg"`);
+    return html(en, 300);
+  }
 
   const en = host.includes('snusbattle');
   const site = en ? 'Snusbattle' : 'Snuskampen';
   const title = `${label(A)} vs ${label(B)} – ${site}`;
   const desc = en ? 'Which one wins? Cast your vote.' : 'Vilket snus vinner? Rösta nu.';
   const url = `${origin.replace('://www.', '://')}/vs/${encodeURIComponent(a)}/${encodeURIComponent(b)}`;
-  const img = `${origin}/api/og?a=${encodeURIComponent(a)}&b=${encodeURIComponent(b)}&v=7`;
+  const img = `${origin}/api/og?a=${encodeURIComponent(a)}&b=${encodeURIComponent(b)}&v=8`;
 
   const out = page
     .replace(/<title>[^<]*<\/title>/, () => `<title>${esc(title)}</title>`)
+    .replace(/(<meta property="og:site_name" content=")[^"]*"/, (_, p1) => `${p1}${site}"`)
     .replace(/(<meta property="og:title"[^>]*content=")[^"]*"/, (_, p1) => `${p1}${esc(title)}"`)
     .replace(/(<meta property="og:description"[^>]*content=")[^"]*"/, (_, p1) => `${p1}${esc(desc)}"`)
     .replace(/(<meta property="og:image" content=")[^"]*"/, (_, p1) => `${p1}${esc(img)}"`)

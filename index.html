@@ -222,6 +222,7 @@
   .btn[disabled]{opacity:.4;pointer-events:none}
   @media (max-width:700px){.cgrid{grid-template-columns:1fr}.cgrid>.vs{justify-self:center}}
 </style>
+<style>.logo img{height:34px;width:auto;display:block}@media (max-width:700px){.logo img{height:26px}}</style>
 </head>
 <body>
 
@@ -672,7 +673,7 @@
   // ---- språk
   function applyLang(){
     document.documentElement.lang = LANG;
-    $('#logo').innerHTML = esc(SITE.a)+'<b>'+esc(SITE.b)+'</b>';
+    $('#logo').innerHTML = '<img src="/'+(SITE.domain==='snuskampen.se'?'logo-sk.png':'logo-sb.png')+'" alt="'+esc(SITE.name)+'">';
     document.title = t('title').replace('Snuskampen',SITE.name);
     $('#ogt').content = document.title;
     const nav=document.querySelectorAll('nav a');
