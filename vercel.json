@@ -2,6 +2,12 @@
   "rewrites": [
     { "source": "/integritetspolicy", "destination": "/legal/integritetspolicy.html" },
     { "source": "/privacy", "destination": "/legal/privacy.html" },
+    { "source": "/om-snuskampen", "destination": "/legal/om-snuskampen.html" },
+    { "source": "/about", "destination": "/legal/about.html" },
+    { "source": "/sa-fungerar-rankingen", "destination": "/legal/sa-fungerar-rankingen.html" },
+    { "source": "/how-ranking-works", "destination": "/legal/how-ranking-works.html" },
+    { "source": "/kontakt", "destination": "/legal/kontakt.html" },
+    { "source": "/contact", "destination": "/legal/contact.html" },
     { "source": "/((?!img/|legal/|.*\\.[a-z0-9]+$).*)", "destination": "/index.html" }
   ]
 }

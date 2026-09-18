@@ -88,4 +88,8 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://snusbattle.com/varumarken"/>
     <changefreq>daily</changefreq>
   </url>
+  <url><loc>https://snuskampen.se/om-snuskampen</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://snuskampen.se/sa-fungerar-rankingen</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://snuskampen.se/kontakt</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://snuskampen.se/integritetspolicy</loc><changefreq>monthly</changefreq></url>
 </urlset>

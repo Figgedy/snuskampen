@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Snuskampen – vilken snus är bäst?</title>
+<title>Bästa snuset enligt användarna | Snuskampen</title>
 <meta property="og:type" content="website">
 <meta property="og:title" id="ogt" content="Snuskampen">
-<meta name="description" content="Två dosor. En vinnare. Rösta i duellen och se Sveriges topplista över snus och nikotinportioner – per smak, styrka och varumärke.">
+<meta name="description" id="metadesc" content="Två dosor. En vinnare. Rösta i duellen och se communityns ranking över snus och nikotinportioner. Baserat på användarnas röster.">
 <link rel="canonical" id="canon" href="/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -272,7 +272,7 @@
   <p id="footNic"></p>
   <p id="footTm"></p>
   <p id="footShort"></p>
-  <p><a id="footPriv" href="/integritetspolicy"></a></p>
+  <p id="footLinks"><a id="footAbout"></a> · <a id="footRank"></a> · <a id="footContact"></a> · <a id="footPriv"></a></p>
 </div></footer>
 
 <div id="gate"><div class="box"><h2>18+</h2><p id="gateText"></p>
@@ -610,7 +610,8 @@
     nav[0].textContent=t('nav_duel'); nav[1].textContent=t('nav_top'); nav[2].textContent=t('nav_month'); nav[3].textContent=t('nav_brands');
     $('#duelHint').innerHTML = esc(t('duel_hint'))+' <span class="keys"><kbd>←</kbd> <kbd>→</kbd> '+esc(t('vote'))+' · <kbd>S</kbd> '+esc(t('skip'))+'</span>';
     $('#share-duel').textContent=t('share_duel'); $('#skip').textContent=t('skip');
-    $('#topH').textContent=t('nav_top');
+    $('#topH').textContent=t('top_h1');
+    const md=$('#metadesc'); if(md) md.content=t('meta_desc');
     const tabs={all:'tab_all',recent:'tab_recent',hot:'tab_hot',mine:'tab_mine'};
     $('#topTabs').querySelectorAll('.chip').forEach(b=>b.textContent=t(tabs[b.dataset.tab]));
     $('#mineShare').textContent=t('make_card');
@@ -622,7 +623,11 @@
     $('#footTm').textContent=t('foot_tm').replace('Snuskampen',SITE.name);
     $('#footShort').textContent=t('foot_short');
     $('#footPriv').textContent=t('foot_priv');
-    $('#footPriv').href = (SITE.domain==='snuskampen.se') ? '/integritetspolicy' : '/privacy';
+    const SE_ = SITE.domain==='snuskampen.se';
+    $('#footPriv').href = SE_ ? '/integritetspolicy' : '/privacy';
+    $('#footAbout').textContent=t('foot_about'); $('#footAbout').href = SE_ ? '/om-snuskampen' : '/about';
+    $('#footRank').textContent=t('foot_rank');   $('#footRank').href  = SE_ ? '/sa-fungerar-rankingen' : '/how-ranking-works';
+    $('#footContact').textContent=t('foot_contact'); $('#footContact').href = SE_ ? '/kontakt' : '/contact';
     $('#gateText').textContent=t('gate_text').replace('Snuskampen',SITE.name); $('#gateYes').textContent=t('gate_yes'); $('#gateNo').textContent=t('gate_no');
     if(route==='top'){renderFilters();renderTop();} if(route==='month')renderMonth(); if(route==='brands'){$('#bA').innerHTML='';renderBrands();}
     if(route==='duel')draw();

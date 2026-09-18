@@ -1408,4 +1408,8 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://snusbattle.com/varumarken"/>
     <changefreq>daily</changefreq>
   </url>
+  <url><loc>https://snusbattle.com/about</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://snusbattle.com/how-ranking-works</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://snusbattle.com/contact</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://snusbattle.com/privacy</loc><changefreq>monthly</changefreq></url>
 </urlset>

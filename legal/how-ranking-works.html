@@ -1,0 +1,68 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How the ranking works | SnusBattle</title>
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://snusbattle.com/how-ranking-works">
+<style> :root{--ink:#101820;--paper:#fff;--line:#e6e6e6;--muted:#6b7280;--red:#e4002b}
+ *{box-sizing:border-box}
+ body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+ .w{max-width:720px;margin:0 auto;padding:32px 20px 80px}
+ a{color:var(--red)}
+ h1{font-size:30px;margin:0 0 4px}
+ h2{font-size:19px;margin:32px 0 8px}
+ .sub{color:var(--muted);margin:0 0 28px;font-size:14px}
+ table{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0}
+ th,td{text-align:left;border-bottom:1px solid var(--line);padding:8px 10px;vertical-align:top}
+ th{font-weight:600}
+ code{background:#f4f4f5;padding:1px 5px;border-radius:4px;font-size:13px}
+ .back{display:inline-block;margin-bottom:24px;font-size:14px;text-decoration:none}
+ .note{border-left:3px solid var(--line);padding:2px 0 2px 14px;color:var(--muted);font-size:14px;margin:16px 0}</style></head><body><div class="w">
+<a class="back" href="/">&larr; Back to SnusBattle</a>
+<h1>How the ranking works</h1>
+<p class="sub">Last updated 18 September 2026</p>
+<p class="note">SnusBattle does not make objective quality assessments of products. The ranking shows what users have chosen when two products were placed side by side. It is not a health recommendation and says nothing about how products compare in terms of risk.</p>
+
+<h2>The basic idea</h2>
+<p>You see two products. You pick one. The winner stays and faces the next randomly selected product. Each such comparison is called a battle.</p>
+
+<h2>The calculation</h2>
+<p>The ranking uses Elo, the same system used to rank chess players. Every product starts at <strong>1500</strong>.</p>
+<p>Before each battle an expected result is calculated from the difference between the two ratings:</p>
+<p><code>expected = 1 / (1 + 10^((opponent rating − own rating) / 400))</code></p>
+<p>After the battle both ratings are adjusted:</p>
+<p><code>new rating = old rating ± 32 × (1 − expected)</code></p>
+<p>The winner gains, the loser loses the same amount. The factor 32 determines how fast ratings move.</p>
+
+<h2>What this means in practice</h2>
+<table>
+<tr><th>Situation</th><th>Effect</th></tr>
+<tr><td>A favourite beats a low-rated product</td><td>Small change — the result was expected</td></tr>
+<tr><td>A low-rated product beats the favourite</td><td>Large change — the result was unexpected</td></tr>
+<tr><td>Two evenly matched products meet</td><td>Around 16 points change hands</td></tr>
+</table>
+
+<h2>Number of battles matters</h2>
+<p>A product with few battles has an uncertain rating. The 30-day rankings therefore require at least five battles before a product appears. Battle counts are shown in the lists so you can judge how much weight a figure deserves.</p>
+
+<h2>Different lists count differently</h2>
+<table>
+<tr><th>List</th><th>Based on</th></tr>
+<tr><td>All time</td><td>The Elo rating, all history since launch</td></tr>
+<tr><td>Last 30 days</td><td>Win rate during the period, minimum five battles</td></tr>
+<tr><td>Most contested</td><td>Products whose win rate sits closest to 50/50</td></tr>
+<tr><td>My list</td><td>Only your own votes, stored in your browser</td></tr>
+<tr><td>Champion of the month</td><td>Only the current month's battles, resets on the 1st</td></tr>
+<tr><td>Brand battle</td><td>Share of battles won against other brands; battles within the same brand do not count</td></tr>
+</table>
+
+<h2>The ranking changes</h2>
+<p>The more people vote, the more the lists move. A position is a snapshot, not a final result.</p>
+
+<h2>Manipulation</h2>
+<p>Each browser receives a randomly generated id that limits votes per minute. The protection is simple and can be circumvented by anyone determined to do so. We show battle counts openly so you can judge the basis yourself.</p>
+
+<h2>Product information versus votes</h2>
+<p>Nicotine content, flavour and format are product data and do not affect the ranking. The ranking is based solely on how users voted.</p>
+
+<p><a href="/about">About SnusBattle</a> &middot; <a href="/privacy">Privacy policy</a></p>
+</div></body></html>

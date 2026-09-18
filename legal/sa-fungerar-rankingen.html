@@ -1,0 +1,68 @@
+<!doctype html><html lang="sv"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Så fungerar rankingen | Snuskampen</title>
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://snuskampen.se/sa-fungerar-rankingen">
+<style> :root{--ink:#101820;--paper:#fff;--line:#e6e6e6;--muted:#6b7280;--red:#e4002b}
+ *{box-sizing:border-box}
+ body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+ .w{max-width:720px;margin:0 auto;padding:32px 20px 80px}
+ a{color:var(--red)}
+ h1{font-size:30px;margin:0 0 4px}
+ h2{font-size:19px;margin:32px 0 8px}
+ .sub{color:var(--muted);margin:0 0 28px;font-size:14px}
+ table{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0}
+ th,td{text-align:left;border-bottom:1px solid var(--line);padding:8px 10px;vertical-align:top}
+ th{font-weight:600}
+ code{background:#f4f4f5;padding:1px 5px;border-radius:4px;font-size:13px}
+ .back{display:inline-block;margin-bottom:24px;font-size:14px;text-decoration:none}
+ .note{border-left:3px solid var(--line);padding:2px 0 2px 14px;color:var(--muted);font-size:14px;margin:16px 0}</style></head><body><div class="w">
+<a class="back" href="/">&larr; Till Snuskampen</a>
+<h1>Så fungerar rankingen</h1>
+<p class="sub">Senast uppdaterad 18 september 2026</p>
+<p class="note">Snuskampen gör ingen objektiv kvalitetsbedömning av produkterna. Rankingen visar vad användare har valt när två produkter ställts mot varandra. Den är inte en hälsorekommendation och säger ingenting om hur produkter förhåller sig till varandra i fråga om risk.</p>
+
+<h2>Grundprincipen</h2>
+<p>Du får se två produkter. Du väljer en. Den vinnande produkten stannar kvar och möter nästa slumpvis valda produkt. Varje sådan jämförelse kallas en duell.</p>
+
+<h2>Beräkningen</h2>
+<p>Rankingen använder Elo, samma system som används för att rangordna schackspelare. Varje produkt har ett tal som börjar på <strong>1500</strong>.</p>
+<p>Inför varje duell räknas ett förväntat resultat ut från skillnaden mellan produkternas tal:</p>
+<p><code>förväntat = 1 / (1 + 10^((motståndarens tal − egna talet) / 400))</code></p>
+<p>Efter duellen justeras båda talen:</p>
+<p><code>nytt tal = gammalt tal ± 32 × (1 − förväntat)</code></p>
+<p>Vinnaren får plus, förloraren minus, lika mycket. Faktorn 32 avgör hur snabbt talen rör sig.</p>
+
+<h2>Vad det innebär i praktiken</h2>
+<table>
+<tr><th>Situation</th><th>Effekt</th></tr>
+<tr><td>Favoriten vinner mot en lågt rankad produkt</td><td>Liten förändring — resultatet var väntat</td></tr>
+<tr><td>Lågt rankad produkt vinner mot favoriten</td><td>Stor förändring — resultatet var oväntat</td></tr>
+<tr><td>Två jämna produkter möts</td><td>Ungefär 16 poäng byter håll</td></tr>
+</table>
+
+<h2>Antal dueller spelar roll</h2>
+<p>En produkt med få dueller har ett osäkert tal. Topplistorna för de senaste 30 dagarna kräver därför minst fem dueller innan en produkt visas. Antalet dueller visas i listorna så att du själv kan bedöma hur mycket vikt siffran förtjänar.</p>
+
+<h2>Olika listor räknar olika</h2>
+<table>
+<tr><th>Lista</th><th>Räknar på</th></tr>
+<tr><td>Alla tider</td><td>Elo-talet, all historik sedan starten</td></tr>
+<tr><td>Senaste 30 dagarna</td><td>Vinstandel under perioden, minst fem dueller</td></tr>
+<tr><td>Mest omdiskuterat</td><td>De produkter vars vinstandel ligger närmast 50/50</td></tr>
+<tr><td>Min lista</td><td>Endast dina egna röster, sparade i din webbläsare</td></tr>
+<tr><td>Månadens mästare</td><td>Enbart innevarande månads dueller, nollställs den 1:a</td></tr>
+<tr><td>Varumärkeskampen</td><td>Andel vunna dueller mot andra varumärken; dueller inom samma märke räknas inte</td></tr>
+</table>
+
+<h2>Rankingen förändras</h2>
+<p>Ju fler som röstar, desto mer rör sig listorna. En placering är en ögonblicksbild, inte ett slutgiltigt resultat.</p>
+
+<h2>Manipulation</h2>
+<p>Varje webbläsare får ett slumpgenererat id som begränsar antalet röster per minut. Skyddet är enkelt och går att kringgå av den som vill. Vi anger antalet dueller öppet så att du kan bedöma underlaget själv.</p>
+
+<h2>Produktinformation kontra röster</h2>
+<p>Uppgifter om nikotinhalt, smak och format är produktdata och påverkar inte rankingen. Rankingen bygger enbart på hur användare har röstat.</p>
+
+<p><a href="/om-snuskampen">Om Snuskampen</a> &middot; <a href="/integritetspolicy">Integritetspolicy</a></p>
+</div></body></html>

@@ -145,12 +145,17 @@ window.I18N = {
 "vs_notfound": "Hittar inte duellen",
 "vs_notfound_sub": "En av produkterna finns inte.",
 "to_duel": "Till duellen",
-"title": "Snuskampen – vilken snus är bäst?",
+"title": "Bästa snuset enligt användarna | Snuskampen",
 "foot_legal": "Snuskampen är en oberoende informations- och jämförelsetjänst. Vi säljer inte snus eller nikotinprodukter. Rankningar baseras på användarnas röster och ska inte betraktas som objektiva kvalitetsbedömningar eller rekommendationer att använda nikotinprodukter.",
 "foot_nic": "18+ · Nikotin är beroendeframkallande. Produkterna som visas är avsedda för vuxna.",
 "foot_tm": "Alla varumärken tillhör respektive rättighetsinnehavare. Snuskampen är inte anslutet till eller godkänt av de varumärken som visas.",
 "foot_priv": "Integritetspolicy",
-"foot_short": "18+ · Nikotin är beroendeframkallande. Oberoende jämförelsetjänst – vi säljer inga produkter."
+"foot_short": "18+ · Nikotin är beroendeframkallande. Oberoende jämförelsetjänst – vi säljer inga produkter.",
+"meta_desc": "Två dosor. En vinnare. Rösta i duellen och se communityns ranking över snus och nikotinportioner – per smak, styrka och varumärke. Baserat på användarnas röster.",
+"top_h1": "Topprankat enligt användarna",
+"foot_about": "Om Snuskampen",
+"foot_rank": "Så fungerar rankingen",
+"foot_contact": "Kontakt"
 },
 "flavor": {
 "Mint": "Mint",
@@ -276,12 +281,17 @@ window.I18N = {
 "vs_notfound": "Duel not found",
 "vs_notfound_sub": "One of the products doesn't exist.",
 "to_duel": "To the duel",
-"title": "Snuskampen – which snus is best?",
+"title": "Best Snus According to the Community | SnusBattle",
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
 "foot_priv": "Privacy policy",
-"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products.",
+"meta_desc": "Two cans. One winner. Vote in the battle and see the community ranking of snus and nicotine pouches – by flavour, strength and brand. Based on user votes.",
+"top_h1": "Top ranked by the community",
+"foot_about": "About",
+"foot_rank": "How the ranking works",
+"foot_contact": "Contact"
 },
 "flavor": {
 "Mint": "Mint",
@@ -407,12 +417,17 @@ window.I18N = {
 "vs_notfound": "Duell nicht gefunden",
 "vs_notfound_sub": "Eines der Produkte existiert nicht.",
 "to_duel": "Zum Duell",
-"title": "Snuskampen – welcher Snus ist der beste?",
+"title": "Best Snus According to the Community | SnusBattle",
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
 "foot_priv": "Privacy policy",
-"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products.",
+"meta_desc": "Two cans. One winner. Vote in the battle and see the community ranking of snus and nicotine pouches – by flavour, strength and brand. Based on user votes.",
+"top_h1": "Top ranked by the community",
+"foot_about": "About",
+"foot_rank": "How the ranking works",
+"foot_contact": "Contact"
 },
 "flavor": {
 "Mint": "Minze",
@@ -538,12 +553,17 @@ window.I18N = {
 "vs_notfound": "Finner ikke duellen",
 "vs_notfound_sub": "Et av produktene finnes ikke.",
 "to_duel": "Til duellen",
-"title": "Snuskampen – hvilken snus er best?",
+"title": "Best Snus According to the Community | SnusBattle",
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
 "foot_priv": "Privacy policy",
-"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products.",
+"meta_desc": "Two cans. One winner. Vote in the battle and see the community ranking of snus and nicotine pouches – by flavour, strength and brand. Based on user votes.",
+"top_h1": "Top ranked by the community",
+"foot_about": "About",
+"foot_rank": "How the ranking works",
+"foot_contact": "Contact"
 },
 "flavor": {
 "Mint": "Mint",
@@ -669,12 +689,17 @@ window.I18N = {
 "vs_notfound": "Kan ikke finde duellen",
 "vs_notfound_sub": "Et af produkterne findes ikke.",
 "to_duel": "Til duellen",
-"title": "Snuskampen – hvilken snus er bedst?",
+"title": "Best Snus According to the Community | SnusBattle",
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
 "foot_priv": "Privacy policy",
-"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products.",
+"meta_desc": "Two cans. One winner. Vote in the battle and see the community ranking of snus and nicotine pouches – by flavour, strength and brand. Based on user votes.",
+"top_h1": "Top ranked by the community",
+"foot_about": "About",
+"foot_rank": "How the ranking works",
+"foot_contact": "Contact"
 },
 "flavor": {
 "Mint": "Mint",
@@ -800,12 +825,17 @@ window.I18N = {
 "vs_notfound": "Ottelua ei löydy",
 "vs_notfound_sub": "Yhtä tuotteista ei ole.",
 "to_duel": "Otteluun",
-"title": "Snuskampen – mikä nuuska on paras?",
+"title": "Best Snus According to the Community | SnusBattle",
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
 "foot_priv": "Privacy policy",
-"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products.",
+"meta_desc": "Two cans. One winner. Vote in the battle and see the community ranking of snus and nicotine pouches – by flavour, strength and brand. Based on user votes.",
+"top_h1": "Top ranked by the community",
+"foot_about": "About",
+"foot_rank": "How the ranking works",
+"foot_contact": "Contact"
 },
 "flavor": {
 "Mint": "Minttu",
@@ -931,12 +961,17 @@ window.I18N = {
 "vs_notfound": "Nie znaleziono pojedynku",
 "vs_notfound_sub": "Jeden z produktów nie istnieje.",
 "to_duel": "Do pojedynku",
-"title": "Snuskampen – który snus jest najlepszy?",
+"title": "Best Snus According to the Community | SnusBattle",
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
 "foot_priv": "Privacy policy",
-"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products.",
+"meta_desc": "Two cans. One winner. Vote in the battle and see the community ranking of snus and nicotine pouches – by flavour, strength and brand. Based on user votes.",
+"top_h1": "Top ranked by the community",
+"foot_about": "About",
+"foot_rank": "How the ranking works",
+"foot_contact": "Contact"
 },
 "flavor": {
 "Mint": "Mięta",
@@ -1062,12 +1097,17 @@ window.I18N = {
 "vs_notfound": "Duello non trovato",
 "vs_notfound_sub": "Uno dei prodotti non esiste.",
 "to_duel": "Al duello",
-"title": "Snuskampen – qual è il miglior snus?",
+"title": "Best Snus According to the Community | SnusBattle",
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
 "foot_priv": "Privacy policy",
-"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products.",
+"meta_desc": "Two cans. One winner. Vote in the battle and see the community ranking of snus and nicotine pouches – by flavour, strength and brand. Based on user votes.",
+"top_h1": "Top ranked by the community",
+"foot_about": "About",
+"foot_rank": "How the ranking works",
+"foot_contact": "Contact"
 },
 "flavor": {
 "Mint": "Menta",
@@ -1193,12 +1233,17 @@ window.I18N = {
 "vs_notfound": "Duelo no encontrado",
 "vs_notfound_sub": "Uno de los productos no existe.",
 "to_duel": "Al duelo",
-"title": "Snuskampen – ¿cuál es el mejor snus?",
+"title": "Best Snus According to the Community | SnusBattle",
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
 "foot_priv": "Privacy policy",
-"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products.",
+"meta_desc": "Two cans. One winner. Vote in the battle and see the community ranking of snus and nicotine pouches – by flavour, strength and brand. Based on user votes.",
+"top_h1": "Top ranked by the community",
+"foot_about": "About",
+"foot_rank": "How the ranking works",
+"foot_contact": "Contact"
 },
 "flavor": {
 "Mint": "Menta",
@@ -1324,12 +1369,17 @@ window.I18N = {
 "vs_notfound": "Duel introuvable",
 "vs_notfound_sub": "L'un des produits n'existe pas.",
 "to_duel": "Vers le duel",
-"title": "Snuskampen – quel est le meilleur snus ?",
+"title": "Best Snus According to the Community | SnusBattle",
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
 "foot_priv": "Privacy policy",
-"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products.",
+"meta_desc": "Two cans. One winner. Vote in the battle and see the community ranking of snus and nicotine pouches – by flavour, strength and brand. Based on user votes.",
+"top_h1": "Top ranked by the community",
+"foot_about": "About",
+"foot_rank": "How the ranking works",
+"foot_contact": "Contact"
 },
 "flavor": {
 "Mint": "Menthe",
@@ -1455,12 +1505,17 @@ window.I18N = {
 "vs_notfound": "대결을 찾을 수 없습니다",
 "vs_notfound_sub": "제품 중 하나가 존재하지 않습니다.",
 "to_duel": "대결로",
-"title": "Snuskampen – 최고의 스누스는?",
+"title": "Best Snus According to the Community | SnusBattle",
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
 "foot_priv": "Privacy policy",
-"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products.",
+"meta_desc": "Two cans. One winner. Vote in the battle and see the community ranking of snus and nicotine pouches – by flavour, strength and brand. Based on user votes.",
+"top_h1": "Top ranked by the community",
+"foot_about": "About",
+"foot_rank": "How the ranking works",
+"foot_contact": "Contact"
 },
 "flavor": {
 "Mint": "민트",
@@ -1586,12 +1641,17 @@ window.I18N = {
 "vs_notfound": "Súboj sa nenašiel",
 "vs_notfound_sub": "Jeden z produktov neexistuje.",
 "to_duel": "Na súboj",
-"title": "Snuskampen – ktorý snus je najlepší?",
+"title": "Best Snus According to the Community | SnusBattle",
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
 "foot_priv": "Privacy policy",
-"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products.",
+"meta_desc": "Two cans. One winner. Vote in the battle and see the community ranking of snus and nicotine pouches – by flavour, strength and brand. Based on user votes.",
+"top_h1": "Top ranked by the community",
+"foot_about": "About",
+"foot_rank": "How the ranking works",
+"foot_contact": "Contact"
 },
 "flavor": {
 "Mint": "Mäta",
@@ -1717,12 +1777,17 @@ window.I18N = {
 "vs_notfound": "Dvoboja ni mogoče najti",
 "vs_notfound_sub": "Eden od izdelkov ne obstaja.",
 "to_duel": "Na dvoboj",
-"title": "Snuskampen – kateri snus je najboljši?",
+"title": "Best Snus According to the Community | SnusBattle",
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
 "foot_priv": "Privacy policy",
-"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products.",
+"meta_desc": "Two cans. One winner. Vote in the battle and see the community ranking of snus and nicotine pouches – by flavour, strength and brand. Based on user votes.",
+"top_h1": "Top ranked by the community",
+"foot_about": "About",
+"foot_rank": "How the ranking works",
+"foot_contact": "Contact"
 },
 "flavor": {
 "Mint": "Meta",
@@ -1848,12 +1913,17 @@ window.I18N = {
 "vs_notfound": "Dvoboj nije pronađen",
 "vs_notfound_sub": "Jedan od proizvoda ne postoji.",
 "to_duel": "Na dvoboj",
-"title": "Snuskampen – koji je snus najbolji?",
+"title": "Best Snus According to the Community | SnusBattle",
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
 "foot_priv": "Privacy policy",
-"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products.",
+"meta_desc": "Two cans. One winner. Vote in the battle and see the community ranking of snus and nicotine pouches – by flavour, strength and brand. Based on user votes.",
+"top_h1": "Top ranked by the community",
+"foot_about": "About",
+"foot_rank": "How the ranking works",
+"foot_contact": "Contact"
 },
 "flavor": {
 "Mint": "Metvica",
@@ -1979,12 +2049,17 @@ window.I18N = {
 "vs_notfound": "Einvígið fannst ekki",
 "vs_notfound_sub": "Ein varan er ekki til.",
 "to_duel": "Í einvígið",
-"title": "Snuskampen – hvaða snus er bestur?",
+"title": "Best Snus According to the Community | SnusBattle",
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
 "foot_priv": "Privacy policy",
-"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products.",
+"meta_desc": "Two cans. One winner. Vote in the battle and see the community ranking of snus and nicotine pouches – by flavour, strength and brand. Based on user votes.",
+"top_h1": "Top ranked by the community",
+"foot_about": "About",
+"foot_rank": "How the ranking works",
+"foot_contact": "Contact"
 },
 "flavor": {
 "Mint": "Minta",
@@ -2110,12 +2185,17 @@ window.I18N = {
 "vs_notfound": "Duelli ei leitud",
 "vs_notfound_sub": "Üht toodet pole olemas.",
 "to_duel": "Duelli juurde",
-"title": "Snuskampen – milline snus on parim?",
+"title": "Best Snus According to the Community | SnusBattle",
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
 "foot_priv": "Privacy policy",
-"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products.",
+"meta_desc": "Two cans. One winner. Vote in the battle and see the community ranking of snus and nicotine pouches – by flavour, strength and brand. Based on user votes.",
+"top_h1": "Top ranked by the community",
+"foot_about": "About",
+"foot_rank": "How the ranking works",
+"foot_contact": "Contact"
 },
 "flavor": {
 "Mint": "Piparmünt",
@@ -2241,12 +2321,17 @@ window.I18N = {
 "vs_notfound": "Duelis nav atrasts",
 "vs_notfound_sub": "Viens no produktiem neeksistē.",
 "to_duel": "Uz dueli",
-"title": "Snuskampen – kurš snuss ir labākais?",
+"title": "Best Snus According to the Community | SnusBattle",
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
 "foot_priv": "Privacy policy",
-"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products.",
+"meta_desc": "Two cans. One winner. Vote in the battle and see the community ranking of snus and nicotine pouches – by flavour, strength and brand. Based on user votes.",
+"top_h1": "Top ranked by the community",
+"foot_about": "About",
+"foot_rank": "How the ranking works",
+"foot_contact": "Contact"
 },
 "flavor": {
 "Mint": "Piparmētra",
