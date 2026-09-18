@@ -14,7 +14,6 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="description" id="metadesc" content="Två dosor. En vinnare. Rösta i duellen och se communityns ranking över snus och nikotinportioner. Baserat på användarnas röster.">
-<link rel="canonical" id="canon" href="/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;600&display=swap" rel="stylesheet">
@@ -648,7 +647,7 @@
     const urlFor = l => l==='sv' ? SE+path : (l==='en' ? COM+path : COM+path+'?lang='+l);
     I18N.LANGS.forEach(l=>add(l.code, urlFor(l.code)));
     add('x-default', COM+path);
-    $('#canon').href = urlFor(LANG); })();
+    let c=$('#canon'); if(!c){c=document.createElement('link');c.rel='canonical';c.id='canon';head.appendChild(c);} c.href=urlFor(LANG); })();
   $('#lang').innerHTML=I18N.LANGS.map(l=>`<option value="${l.code}" ${l.code===LANG?'selected':''}>${esc(l.label)}</option>`).join('');
   $('#lang').addEventListener('change',e=>{LANG=e.target.value;store.set('sk_lang',LANG);store.set('sk_lang_set',true);applyLang();});
 
