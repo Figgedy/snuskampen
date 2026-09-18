@@ -1,5 +1,6 @@
 // id -> filnamn i /img/.
 window.IMAGES = {
+"velo-crispy-peppermint": "velo-crispy-peppermint.jpg",
 "77-nicotine-pouches-77-apple-mint": "77-nicotine-pouches-77-apple-mint.jpg",
 "77-nicotine-pouches-77-black-currant": "77-nicotine-pouches-77-black-currant.jpg",
 "77-nicotine-pouches-77-bubbly-fizz": "77-nicotine-pouches-77-bubbly-fizz.jpg",
