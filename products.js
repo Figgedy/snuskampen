@@ -1,6 +1,5 @@
-// SNUSKAMPEN – produktdata, genererad från Produkt MASTER (SE).
-// name = fullständigt produktnamn. format = storlek. style = typ. maker = tillverkare. flavor = smakfamilj.
-// id = filnamn för bild (/img/<id>.png). Lägg till active:false för att dölja en produkt.
+// SNUSKAMPEN – produktdata. GENERERAD från data/snuskampen-master.xlsx av tools/build.py.
+// Redigera inte här – ändra i Excel och kör python3 tools/build.py.
 window.PRODUCTS = [
   // Catch
   {"id": "catch-apple-slim-white", "brand": "Catch", "maker": "Philip Morris International (Swedish Match)", "name": "Apple Slim White", "format": "Slim", "style": "White", "flavor": "Äpple", "mg": "6,8 mg/prilla · 8,5 mg/g", "dots": 3, "type": "tobak"},
