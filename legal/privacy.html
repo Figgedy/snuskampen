@@ -1,0 +1,66 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacy Policy | SnusBattle</title>
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://snusbattle.com/privacy">
+<style>
+ :root{--ink:#101820;--paper:#fff;--line:#e6e6e6;--muted:#6b7280;--red:#e4002b}
+ *{box-sizing:border-box}
+ body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+ .w{max-width:720px;margin:0 auto;padding:32px 20px 80px}
+ a{color:var(--red)}
+ h1{font-size:30px;margin:0 0 4px}
+ h2{font-size:19px;margin:32px 0 8px}
+ .sub{color:var(--muted);margin:0 0 28px;font-size:14px}
+ table{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0}
+ th,td{text-align:left;border-bottom:1px solid var(--line);padding:8px 10px;vertical-align:top}
+ th{font-weight:600}
+ code{background:#f4f4f5;padding:1px 5px;border-radius:4px;font-size:13px}
+ .back{display:inline-block;margin-bottom:24px;font-size:14px;text-decoration:none}
+</style></head><body><div class="w">
+<a class="back" href="/">&larr; Back to SnusBattle</a>
+<h1>Privacy Policy</h1>
+<p class="sub">Last updated 18 September 2026</p>
+
+<p>SnusBattle is an independent product information and comparison platform. We sell no products, require no registration, and collect no names, email addresses or other contact details.</p>
+
+<h2>Data controller</h2>
+<p>ParaFlos Holding AB, Stockholm, Sweden. Contact details at the bottom of this page.</p>
+
+<h2>Stored in your browser</h2>
+<p>We use no cookies. The following is stored in your browser’s localStorage so the site can function:</p>
+<table>
+<tr><th>Key</th><th>Contents</th><th>Purpose</th></tr>
+<tr><td><code>sk_session</code></td><td>Randomly generated id</td><td>Limits votes per device</td></tr>
+<tr><td><code>sk_18</code></td><td>Yes/no</td><td>Remembers that you confirmed being 18 or older</td></tr>
+<tr><td><code>sk_lang</code>, <code>sk_country</code></td><td>Language and country choice</td><td>Shows the site in the right language</td></tr>
+<tr><td><code>sk_votes</code>, <code>sk_local_ratings</code></td><td>Your voting history</td><td>Builds your personal ranking</td></tr>
+</table>
+<p>This data is stored only in your browser and is deleted when you clear site data.</p>
+
+<h2>Stored in our database</h2>
+<p>When you vote in a battle, the following is stored with Supabase:</p>
+<table>
+<tr><th>Field</th><th>Contents</th></tr>
+<tr><td>winner_id / loser_id</td><td>Which two products were compared and which was chosen</td></tr>
+<tr><td>session</td><td>The randomly generated id from your browser</td></tr>
+<tr><td>country</td><td>Country, guessed from browser language or selected by you</td></tr>
+<tr><td>created_at</td><td>Time of the vote</td></tr>
+</table>
+<p>We do not store IP addresses in our database. Our provider may log IP addresses at infrastructure level as part of normal technical operation.</p>
+
+<h2>Legal basis</h2>
+<p>Legitimate interest: showing aggregated statistics and preventing manipulation of the voting. A randomly generated session id is not linked to your name, but counts as personal data under the GDPR because it can distinguish a device.</p>
+
+<h2>Retention</h2>
+<p>Voting data is kept for as long as the service exists, since the rankings are built on that history. Session ids can be deleted on request, which anonymises the remaining vote data.</p>
+
+<h2>Recipients</h2>
+<p>Supabase (database, EU region Stockholm) and Vercel (hosting). We use no analytics software, no ad networks and no third-party tracking scripts.</p>
+
+<h2>Your rights</h2>
+<p>You have the right of access, rectification, erasure, restriction and objection under the GDPR, and the right to lodge a complaint with a supervisory authority. To have your votes deleted we need your session id, found in your browser’s localStorage under <code>sk_session</code>.</p>
+
+<h2>Contact</h2>
+<p><a href="mailto:stefan@nicotinepouches.se">stefan@nicotinepouches.se</a></p>
+</div></body></html>

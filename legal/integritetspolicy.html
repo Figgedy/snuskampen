@@ -1,0 +1,66 @@
+<!doctype html><html lang="sv"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Integritetspolicy | Snuskampen</title>
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://snuskampen.se/integritetspolicy">
+<style>
+ :root{--ink:#101820;--paper:#fff;--line:#e6e6e6;--muted:#6b7280;--red:#e4002b}
+ *{box-sizing:border-box}
+ body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+ .w{max-width:720px;margin:0 auto;padding:32px 20px 80px}
+ a{color:var(--red)}
+ h1{font-size:30px;margin:0 0 4px}
+ h2{font-size:19px;margin:32px 0 8px}
+ .sub{color:var(--muted);margin:0 0 28px;font-size:14px}
+ table{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0}
+ th,td{text-align:left;border-bottom:1px solid var(--line);padding:8px 10px;vertical-align:top}
+ th{font-weight:600}
+ code{background:#f4f4f5;padding:1px 5px;border-radius:4px;font-size:13px}
+ .back{display:inline-block;margin-bottom:24px;font-size:14px;text-decoration:none}
+</style></head><body><div class="w">
+<a class="back" href="/">&larr; Till Snuskampen</a>
+<h1>Integritetspolicy</h1>
+<p class="sub">Senast uppdaterad 18 september 2026</p>
+
+<p>Snuskampen är en oberoende informations- och jämförelsetjänst. Vi säljer inga produkter, kräver ingen registrering och samlar inte in namn, e-postadress eller andra kontaktuppgifter.</p>
+
+<h2>Personuppgiftsansvarig</h2>
+<p>ParaFlos Holding AB, Stockholm. Kontaktuppgifter finns längst ned på sidan.</p>
+
+<h2>Vad som sparas i din webbläsare</h2>
+<p>Vi använder inga cookies. Följande sparas i din webbläsares localStorage för att sajten ska fungera:</p>
+<table>
+<tr><th>Nyckel</th><th>Innehåll</th><th>Syfte</th></tr>
+<tr><td><code>sk_session</code></td><td>Slumpgenererat id</td><td>Begränsar antalet röster per enhet</td></tr>
+<tr><td><code>sk_18</code></td><td>Ja/nej</td><td>Kommer ihåg att du bekräftat att du är 18 år eller äldre</td></tr>
+<tr><td><code>sk_lang</code>, <code>sk_country</code></td><td>Språk- och landsval</td><td>Visar sajten på rätt språk</td></tr>
+<tr><td><code>sk_votes</code>, <code>sk_local_ratings</code></td><td>Din röstningshistorik</td><td>Bygger din personliga topplista</td></tr>
+</table>
+<p>Uppgifterna lagras enbart i din webbläsare och raderas när du tömmer webbplatsdata.</p>
+
+<h2>Vad som sparas i vår databas</h2>
+<p>När du röstar i en duell sparas följande hos Supabase:</p>
+<table>
+<tr><th>Fält</th><th>Innehåll</th></tr>
+<tr><td>winner_id / loser_id</td><td>Vilka två produkter duellen gällde och vilken som valdes</td></tr>
+<tr><td>session</td><td>Det slumpgenererade id:t från din webbläsare</td></tr>
+<tr><td>country</td><td>Land, gissat från webbläsarens språkinställning eller valt av dig</td></tr>
+<tr><td>created_at</td><td>Tidpunkt för rösten</td></tr>
+</table>
+<p>Vi sparar inte IP-adress i vår databas. Vår leverantör kan logga IP-adresser på infrastrukturnivå som en del av den tekniska driften.</p>
+
+<h2>Rättslig grund</h2>
+<p>Berättigat intresse: att visa aggregerad statistik och förhindra manipulation av omröstningen. Ett slumpgenererat session-id är inte kopplat till ditt namn, men räknas som personuppgift eftersom det kan urskilja en enhet.</p>
+
+<h2>Lagringstid</h2>
+<p>Röstdata sparas så länge tjänsten finns, eftersom topplistorna bygger på historiken. Session-id kan raderas på begäran, vilket gör resterande röstdata anonym.</p>
+
+<h2>Mottagare</h2>
+<p>Supabase (databas, EU-region Stockholm) och Vercel (webbhotell). Vi använder ingen analysprogramvara, inga annonsnätverk och inga tredjepartsskript för spårning.</p>
+
+<h2>Dina rättigheter</h2>
+<p>Du har rätt till tillgång, rättelse, radering, begränsning och invändning enligt GDPR, samt rätt att klaga hos Integritetsskyddsmyndigheten (IMY). Vill du att dina röster raderas behöver vi ditt session-id, som finns i webbläsarens localStorage under <code>sk_session</code>.</p>
+
+<h2>Kontakt</h2>
+<p><a href="mailto:stefan@nicotinepouches.se">stefan@nicotinepouches.se</a></p>
+</div></body></html>

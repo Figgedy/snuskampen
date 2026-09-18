@@ -175,6 +175,18 @@
     ol.list .rank{font-size:28px}ol.list .t{font-size:20px}
   }
 </style>
+<style>
+  html.gated main, html.gated header, html.gated footer{display:none !important}
+  html.gated #gate{display:flex !important}
+</style>
+<script>document.documentElement.classList.add('gated');</script>
+<style>
+  footer#foot{flex:none;border-top:1px solid var(--line);background:var(--paper)}
+  footer#foot .fw{max-width:760px;margin:0 auto;padding:12px 20px;font-size:11px;line-height:1.5;color:var(--muted);text-align:center}
+  footer#foot p{margin:0 0 3px}
+  footer#foot p:last-child{margin:0}
+  footer#foot a{color:var(--muted)}
+</style>
 </head>
 <body>
 
@@ -241,8 +253,14 @@
 
   <section id="v-vs" class="view"><div class="scroll"><div class="wrap" id="vsBody"></div></div></section>
 </main>
+<footer id="foot"><div class="fw">
+  <p id="footLegal"></p>
+  <p id="footNic"></p>
+  <p id="footTm"></p>
+  <p><a id="footPriv" href="/integritetspolicy"></a></p>
+</div></footer>
 
-<div id="gate" hidden><div class="box"><h2>18+</h2><p id="gateText"></p>
+<div id="gate"><div class="box"><h2>18+</h2><p id="gateText"></p>
   <div class="btnrow"><button class="btn" id="gateYes">Jag är 18 eller äldre</button><button class="btn ghost" id="gateNo">Nej</button></div></div></div>
 
 <div class="modal" id="cardModal" hidden><div class="box">
@@ -584,6 +602,11 @@
     $('#monthH').textContent=t('nav_month'); $('#monthSub').textContent=t('month_sub');
     $('#bMode').children[0].textContent=t('nav_brands').split('&')[0].trim(); $('#bMode').children[1].textContent=t('all_makers_h').replace(/^Alla |^All |^Alle |^Kaikki |^Wszyscy |^Tutti i |^Todos los |^Tous les |^Všetci |^Vsi |^Svi |^Allir |^Kõik |^Visi /,'');
     $('#cardH').textContent=t('card_title'); $('#cardShare').textContent=t('share'); $('#cardSave').textContent=t('save_img'); $('#cardClose').textContent=t('keep_voting');
+    $('#footLegal').textContent=t('foot_legal').replace('Snuskampen',SITE.name);
+    $('#footNic').textContent=t('foot_nic');
+    $('#footTm').textContent=t('foot_tm').replace('Snuskampen',SITE.name);
+    $('#footPriv').textContent=t('foot_priv');
+    $('#footPriv').href = (SITE.domain==='snuskampen.se') ? '/integritetspolicy' : '/privacy';
     $('#gateText').textContent=t('gate_text').replace('Snuskampen',SITE.name); $('#gateYes').textContent=t('gate_yes'); $('#gateNo').textContent=t('gate_no');
     if(route==='top'){renderFilters();renderTop();} if(route==='month')renderMonth(); if(route==='brands'){$('#bA').innerHTML='';renderBrands();}
     if(route==='duel')draw();
@@ -607,8 +630,8 @@
     if(!store.get('sk_lang_set',false)){ const nl=C2LANG[country]; if(nl && I18N.T[nl] && nl!==LANG){ LANG=nl; $('#lang').value=LANG; store.set('sk_lang',LANG); applyLang(); } } });
 
   // ---- age gate + start
-  const gate=$('#gate'); if(!store.get('sk_18',false)) gate.hidden=false;
-  $('#gateYes').onclick=()=>{store.set('sk_18',true);gate.hidden=true;}; $('#gateNo').onclick=()=>location.href='https://www.1177.se';
+  const gate=$('#gate'); if(store.get('sk_18',false)){ gate.hidden=true; document.documentElement.classList.remove('gated'); }
+  $('#gateYes').onclick=()=>{store.set('sk_18',true);gate.hidden=true;document.documentElement.classList.remove('gated');}; $('#gateNo').onclick=()=>location.href='https://www.1177.se';
   startDuel(); applyLang(); resolve();
 })();
 </script>
