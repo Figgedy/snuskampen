@@ -399,7 +399,8 @@
     : `<div class="${cls}"><div class="fallback">${canSvg(p, cls==='thumb')}</div></div>`;
   window.__snusFallback = el => { const p=byId[el.dataset.pid]; if(!p){el.remove();return;} const d=document.createElement('div'); d.className='fallback'; d.innerHTML=canSvg(p, el.dataset.small==='1'); el.replaceWith(d); };
   const label = p => `${p.brand} ${p.name}`;
-  const sub = p => [p.format, p.style, tf(p.flavor), p.mg].filter(Boolean).join(' · ');
+  const tmg = s => !s || LANG==='sv' ? s : String(s).replace(/prilla/g,'pouch').replace(/(\d),(\d)/g,'$1.$2');
+  const sub = p => [p.format, p.style, tf(p.flavor), tmg(p.mg)].filter(Boolean).join(' · ');
   const vsUrl = (a,b) => `/vs/${a}/${b}`;
 
   // ---- local ratings
@@ -423,7 +424,7 @@
     if(!pool.length) pool=P.filter(p=>!ex.includes(p.id));
     if(otherBrand && Math.random()<CROSS_BRAND){ const q=pool.filter(p=>p.brand!==otherBrand); if(q.length) pool=q; }
     const p=pool[Math.floor(Math.random()*pool.length)]; recent.push(p.id); if(recent.length>12)recent.shift(); return p; }
-  function renderCorner(el,p,isChamp){ el.dataset.id=p.id; el.innerHTML=`${imgHtml(p,'can')}<span class="brand">${esc(p.brand)}</span><h2 class="name" style="margin:0">${esc(p.name)}</h2><p class="meta">${esc([p.format,p.style,tf(p.flavor)].filter(Boolean).join(' · '))}</p><p class="meta">${dots(p.dots)}${esc(p.mg)}</p>${isChamp&&streak>0?`<span class="streak">${streak>1?streak+' raka vinster':'1 vinst'}</span>`:''}`; }
+  function renderCorner(el,p,isChamp){ el.dataset.id=p.id; el.innerHTML=`${imgHtml(p,'can')}<span class="brand">${esc(p.brand)}</span><h2 class="name" style="margin:0">${esc(p.name)}</h2><p class="meta">${esc([p.format,p.style,tf(p.flavor)].filter(Boolean).join(' · '))}</p><p class="meta">${dots(p.dots)}${esc(tmg(p.mg))}</p>${isChamp&&streak>0?`<span class="streak">${streak>1?streak+(LANG==='sv'?' raka vinster':' wins in a row'):(LANG==='sv'?'1 vinst':'1 win')}</span>`:''}`; }
   function draw(){ renderCorner($('#cornerL'),champ,true); renderCorner($('#cornerR'),chall,false); }
   function startDuel(a,b){ champ=a||pick([]); chall=b||pick([champ.id],champ.brand); streak=0; draw(); }
   function vote(side){ const winner=side==='L'?champ:chall, loser=side==='L'?chall:champ, el=side==='L'?$('#cornerL'):$('#cornerR');
@@ -600,7 +601,7 @@
       x.fillStyle=i===0?'#e4002b':'#101820';x.font='150px "Bebas Neue"';x.fillText(String(i+1),80,y+110);
       if(pics[i]) drawPhoto(x, pics[i], 340, y+70, 92); else drawCan(x, t.p, 340, y+70, 92);
       x.fillStyle='#101820';fit(x,t.p.name.toUpperCase(),W-540,'72px "Bebas Neue"');x.fillText(t.p.name.toUpperCase(),470,y+70);
-      const meta=[t.p.format,t.p.style,t.p.mg.split(' · ')[0]].filter(Boolean).join(' · ');
+      const meta=[t.p.format,t.p.style,tmg(t.p.mg||'').split(' · ')[0]].filter(Boolean).join(' · ');
       x.fillStyle='#6b7280';fit(x,meta,W-540,'600 34px Archivo');x.fillText(meta,470,y+125);
       x.fillStyle='#e6e6e6';x.fillRect(80,y+200,W-160,3);});
     x.fillStyle='#101820';x.font='70px "Bebas Neue"';x.textAlign='center';const cta=t('card_cta').toUpperCase();fit(x,cta,W-120,'70px "Bebas Neue"');x.fillText(cta,W/2,H-200);x.fillStyle='#e4002b';x.font='90px "Bebas Neue"';x.fillText(SITE.domain.toUpperCase(),W/2,H-100);x.textAlign='left';
