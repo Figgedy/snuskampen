@@ -251,7 +251,7 @@
   .h2h .side{display:flex;flex-direction:column;align-items:center}
   .h2h .side .pct{margin-bottom:12px}
   .h2h .side .btn{margin-top:auto}
-  .vs{background:#d4a93c;color:#151516}
+  .vs{background:#151516;color:#d4a93c}
   .chip[aria-pressed="true"]{background:#d4a93c;color:#151516;border-color:#d4a93c}
   #cGo{background:#d4a93c;border-color:#d4a93c;color:#151516}
   .btn[disabled]{opacity:1;background:#e8e8ea;border-color:#e8e8ea;color:#9a9aa0}
@@ -315,7 +315,7 @@
       <button class="chip" data-mode="brand" aria-pressed="true">Varumärken</button>
       <button class="chip" data-mode="maker" aria-pressed="false">Tillverkare</button>
     </div>
-    <div class="bvb"><select id="bA"></select><span class="vs" style="position:static;transform:rotate(-8deg);width:56px;height:56px;font-size:28px;box-shadow:none"></span><select id="bB"></select></div>
+    <div class="bvb"><select id="bA"></select><span class="vs" style="position:static;transform:rotate(-8deg);width:56px;height:56px;font-size:28px;box-shadow:none">VS</span><select id="bB"></select></div>
     <div id="bvbResult"></div>
     <h2 id="bListTitle">Alla varumärken</h2>
     <div id="brandList"></div>
@@ -720,7 +720,7 @@
     $('#topTabs').querySelectorAll('.chip').forEach(b=>b.textContent=t(tabs[b.dataset.tab]));
     $('#mineShare').textContent=t('make_card');
     $('#monthH').textContent=t('nav_month'); $('#monthSub').textContent=t('month_sub');
-    $('#bMode').children[0].textContent=t('nav_brands').split('&')[0].trim(); $('#bMode').children[1].textContent=t('all_makers_h').replace(/^Alla |^All |^Alle |^Kaikki |^Wszyscy |^Tutti i |^Todos los |^Tous les |^Všetci |^Vsi |^Svi |^Allir |^Kõik |^Visi /,'');
+    $('#bMode').children[0].textContent=t('nav_brands').split('&')[0].trim(); $('#bMode').children[1].textContent=(s=>s.charAt(0).toUpperCase()+s.slice(1))(t('all_makers_h').replace(/^Alla |^All |^Alle |^Kaikki |^Wszyscy |^Tutti i |^Todos los |^Tous les |^Všetci |^Vsi |^Svi |^Allir |^Kõik |^Visi /,''));
     $('#cardH').textContent=t('card_title'); $('#cardShare').textContent=t('share'); $('#cardSave').textContent=t('save_img'); $('#cardClose').textContent=t('keep_voting');
     $('#footLegal').textContent=t('foot_legal').replace('Snuskampen',SITE.name);
     $('#footNic').textContent=t('foot_nic');
