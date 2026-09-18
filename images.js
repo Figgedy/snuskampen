@@ -1,5 +1,11 @@
 // id -> filnamn i /img/.
 window.IMAGES = {
+"xqs-tropical": "xqs-tropical.jpg",
+"xqs-black-cherry": "xqs-black-cherry.jpg",
+"loop-jalapeno-lime-stark": "loop-jalapeno-lime-stark.jpg",
+"goteborgs-rape-mini-white-portion": "goteborgs-rape-mini-white-portion.jpg",
+"general-original-portion": "general-original-portion.jpg",
+"general-mini-white": "general-mini-white.jpg",
 "velo-crispy-peppermint": "velo-crispy-peppermint.jpg",
 "77-nicotine-pouches-77-apple-mint": "77-nicotine-pouches-77-apple-mint.jpg",
 "77-nicotine-pouches-77-black-currant": "77-nicotine-pouches-77-black-currant.jpg",
