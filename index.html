@@ -223,6 +223,18 @@
   @media (max-width:700px){.cgrid{grid-template-columns:1fr}.cgrid>.vs{justify-self:center}}
 </style>
 <style>.logo img{height:34px;width:auto;display:block}@media (max-width:700px){.logo img{height:26px}}</style>
+<style>/* mörk ram */
+  header{background:#1a1a1c;border-bottom-color:#2c2c2f}
+  nav a{color:#e8e8ea;border-color:#3a3a3e}
+  nav a:hover{border-color:#77777d}
+  nav a[aria-current="page"]{background:#d4a93c;color:#151516;border-color:#d4a93c}
+  header select,header .sel select{background:#26262a;color:#e8e8ea;border-color:#3a3a3e}
+  .hint{background:#1a1a1c;color:#a1a1a8;border-top-color:#2c2c2f}
+  .hint kbd{background:#26262a;color:#e8e8ea;border-color:#3a3a3e}
+  .hint button{color:#e8e8ea}
+  footer{background:#151516;color:#a1a1a8;border-top-color:#2c2c2f}
+  footer a{color:#d0d0d4}
+</style>
 </head>
 <body>
 
@@ -674,7 +686,7 @@
   // ---- språk
   function applyLang(){
     document.documentElement.lang = LANG;
-    $('#logo').innerHTML = '<img src="/'+(SITE.domain==='snuskampen.se'?'logo-sk.png':'logo-sb.png')+'" alt="'+esc(SITE.name)+'">';
+    $('#logo').innerHTML = '<img src="/'+(SITE.domain==='snuskampen.se'?'logo-dark.png':'logo-dark-sb.png')+'" alt="'+esc(SITE.name)+'">';
     document.title = t('title').replace('Snuskampen',SITE.name);
     $('#ogt').content = document.title;
     const nav=document.querySelectorAll('nav a');
