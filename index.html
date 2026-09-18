@@ -207,6 +207,21 @@
     .vs{width:52px;height:52px;font-size:26px}
   }
 </style>
+<style>
+  .cgrid{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:start;margin:24px 0}
+  .cslot{display:flex;flex-direction:column;gap:8px;min-width:0}
+  .clabel{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  .csearch{width:100%;box-sizing:border-box;padding:12px 14px;font-size:16px;border:1px solid #d6d6d6;border-radius:12px;background:#fff;color:#111}
+  .cres{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;max-height:380px;overflow:auto}
+  .cres button{display:flex;gap:10px;align-items:center;width:100%;text-align:left;padding:6px 8px;border:0;border-radius:10px;background:transparent;cursor:pointer;font:inherit;color:inherit}
+  .cres button:hover,.cres button:focus{background:rgba(0,0,0,.06)}
+  .cres img,.cres .cthumb{width:44px;height:44px;flex:0 0 44px;object-fit:contain;border-radius:8px;background:#f2f2f2}
+  .cres small{display:block;color:var(--muted);font-size:12px}
+  .cnone{color:var(--muted);padding:8px}
+  .cpick{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
+  .btn[disabled]{opacity:.4;pointer-events:none}
+  @media (max-width:700px){.cgrid{grid-template-columns:1fr}.cgrid>.vs{justify-self:center}}
+</style>
 </head>
 <body>
 
@@ -217,6 +232,7 @@
     <a href="/topplistan" data-route="top">Topplistan</a>
     <a href="/manadens-mastare" data-route="month">Månadens mästare</a>
     <a href="/varumarken" data-route="brands">Märken &amp; tillverkare</a>
+    <a href="/skapa" data-route="create">Skapa duell</a>
   </nav>
   <div class="sel">
     <select id="lang" aria-label="Language"></select>
@@ -271,6 +287,7 @@
     <div id="brandList"></div>
   </div></div></section>
 
+  <section id="v-create" class="view"><div class="scroll"><div class="wrap" id="createBody"></div></div></section>
   <section id="v-vs" class="view"><div class="scroll"><div class="wrap" id="vsBody"></div></div></section>
 </main>
 <footer id="foot"><div class="fw">
@@ -541,10 +558,10 @@
       </div>
       <div class="btnrow"><button class="btn red" id="vsA">${esc(t('wins_btn',{x:label(A)}))}</button><button class="btn blue" id="vsB">${esc(t('wins_btn',{x:label(B)}))}</button></div>
       ${d?`<div class="bar"><i style="width:${pct(aw,d)}%"></i></div><p class="note" style="text-align:center">${esc(t('h2h_count',{n:d}))}</p>`:`<p class="empty" style="text-align:center">${esc(t('vs_none'))}</p>`}
-      <div class="btnrow"><button class="btn ghost" id="vsShare">${esc(t('share'))}</button><a class="btn ghost" href="/">${esc(t('random'))}</a></div>`;
+      <div class="btnrow"><button class="btn ghost" id="vsShare">${esc(t('share'))}</button><a class="btn ghost" href="/">${esc(t('random'))}</a><button class="btn ghost" id="vsCreate">${esc(ct('nav'))}</button></div>`;
     const voteVs=(w,l)=>{ recordVote(w.id,l.id); toast(`${label(w)} +1`); delete cache.h2h; setTimeout(()=>renderVs(aId,bId),400); };
     $('#vsA').onclick=()=>voteVs(A,B); $('#vsB').onclick=()=>voteVs(B,A);
-    $('#vsShare').onclick=()=>shareLink(location.origin+location.pathname+(LANG!==SITE.lang?'?lang='+LANG:''),`${label(A)} vs ${label(B)}`);
+    $('#vsCreate').onclick=()=>{cSel={a:A,b:null};go('create');window.scrollTo(0,0);}; $('#vsShare').onclick=()=>shareLink(location.origin+location.pathname+(LANG!==SITE.lang?'?lang='+LANG:''),`${label(A)} vs ${label(B)}`);
   }
 
   // ---- resultatkort
@@ -593,13 +610,59 @@
   $('#cardShare').onclick=async()=>{ $('#card').toBlob(async b=>{ const f=new File([b],'snuskampen-topp5.png',{type:'image/png'});
     if(navigator.canShare&&navigator.canShare({files:[f]})){ try{await navigator.share({files:[f],title:'Min topp 5 på Snuskampen',url:location.origin});}catch{} } else $('#cardSave').click(); }); };
 
+  // ---- skapa duell
+  const CT = {
+    sv:{nav:'Skapa duell',h:'Skapa din egen duell',sub:'Välj två snus och få en länk att dela.',ph:'Sök märke, smak eller produkt…',a:'Snus 1',b:'Snus 2',go:'Skapa duell',copy:'Kopiera länk',copied:'Länk kopierad',none:'Inga träffar',same:'Välj två olika produkter',change:'Byt'},
+    en:{nav:'Create battle',h:'Create your own battle',sub:'Pick two pouches and get a link to share.',ph:'Search brand, flavour or product…',a:'Pouch 1',b:'Pouch 2',go:'Create battle',copy:'Copy link',copied:'Link copied',none:'No matches',same:'Pick two different products',change:'Change'}
+  };
+  function ct(k){ return (CT[LANG]||CT.en)[k]; }
+  let cSel={a:null,b:null};
+  const cnorm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  function searchProducts(q){
+    const w=cnorm(q).split(/\s+/).filter(Boolean); if(!w.length) return [];
+    return (window.PRODUCTS||[]).filter(p=>p.active!==false).map(p=>{
+      const hay=cnorm(`${p.brand} ${p.name} ${p.flavor||''} ${p.format||''} ${p.maker||''}`);
+      if(!w.every(x=>hay.includes(x))) return null;
+      return {p, s:(cnorm(p.brand).startsWith(w[0])?0:1)+cnorm(p.name).length/100};
+    }).filter(Boolean).sort((x,y)=>x.s-y.s).slice(0,8).map(x=>x.p);
+  }
+  function cThumb(p){ const f=window.IMAGES&&window.IMAGES[p.id]; return f?`<img src="/img/${esc(f)}" alt="" loading="lazy">`:'<span class="cthumb"></span>'; }
+  function renderCreate(){
+    const body=$('#createBody'); if(!body) return;
+    const slot=k=>{ const p=cSel[k]; return `<div class="cslot">
+      <div class="clabel">${esc(ct(k))}</div>
+      ${p?`<div class="cpick">${imgHtml(p,'can')}<div class="brand">${esc(p.brand)}</div><div class="name">${esc(p.name)}</div><div class="meta">${esc(sub(p))}</div><button class="btn ghost cchange" data-k="${k}">${esc(ct('change'))}</button></div>`
+         :`<input class="csearch" data-k="${k}" type="search" autocomplete="off" placeholder="${esc(ct('ph'))}"><ul class="cres" data-k="${k}"></ul>`}
+    </div>`; };
+    const ok=!!(cSel.a&&cSel.b&&cSel.a.id!==cSel.b.id);
+    body.innerHTML=`<h1>${esc(ct('h'))}</h1><p class="sub">${esc(ct('sub'))}</p>
+      <div class="cgrid">${slot('a')}<div class="vs" style="position:static;transform:rotate(-8deg);width:56px;height:56px;font-size:28px;box-shadow:none;align-self:center">VS</div>${slot('b')}</div>
+      ${cSel.a&&cSel.b&&!ok?`<p class="empty" style="text-align:center">${esc(ct('same'))}</p>`:''}
+      <div class="btnrow"><button class="btn red" id="cGo"${ok?'':' disabled'}>${esc(ct('go'))}</button><button class="btn ghost" id="cCopy"${ok?'':' disabled'}>${esc(ct('copy'))}</button></div>`;
+    body.querySelectorAll('.csearch').forEach(inp=>{
+      const k=inp.dataset.k, ul=body.querySelector(`.cres[data-k="${k}"]`);
+      inp.addEventListener('input',()=>{
+        const q=inp.value.trim(); if(q.length<2){ ul.innerHTML=''; return; }
+        const r=searchProducts(q);
+        ul.innerHTML=r.length?r.map(p=>`<li><button type="button" data-id="${esc(p.id)}">${cThumb(p)}<span><b>${esc(p.brand)}</b> ${esc(p.name)}<small>${esc(sub(p))}</small></span></button></li>`).join(''):`<li class="cnone">${esc(ct('none'))}</li>`;
+      });
+      ul.addEventListener('click',e=>{ const b=e.target.closest('button[data-id]'); if(!b) return; cSel[k]=byId[b.dataset.id]; renderCreate(); const nx=body.querySelector('.csearch'); if(nx) nx.focus(); });
+    });
+    body.querySelectorAll('.cchange').forEach(b=>b.onclick=()=>{ cSel[b.dataset.k]=null; renderCreate(); const i=body.querySelector(`.csearch[data-k="${b.dataset.k}"]`); if(i) i.focus(); });
+    if(ok){
+      const url=`/vs/${encodeURIComponent(cSel.a.id)}/${encodeURIComponent(cSel.b.id)}`;
+      $('#cGo').onclick=()=>{ history.pushState(null,'',url); resolve(); window.scrollTo(0,0); };
+      $('#cCopy').onclick=async()=>{ try{ await navigator.clipboard.writeText(location.origin+url); toast(ct('copied')); }catch(e){ prompt('',location.origin+url); } };
+    }
+  }
+
   // ---- routing
   let route='duel';
-  const ROUTES={duel:'/',top:'/topplistan',month:'/manadens-mastare',brands:'/varumarken'};
+  const ROUTES={duel:'/',top:'/topplistan',month:'/manadens-mastare',brands:'/varumarken',create:'/skapa'};
   function go(r,push=true){ route=r; document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+r));
     document.querySelectorAll('nav a').forEach(a=>a.dataset.route===r?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
     if(push&&ROUTES[r]&&location.pathname!==ROUTES[r]) history.pushState(null,'',ROUTES[r]);
-    if(r==='top'){renderFilters();renderTop();} if(r==='month')renderMonth(); if(r==='brands')renderBrands(); if(r!=='vs'){document.title=t('title').replace('Snuskampen',SITE.name); $('#ogt').content=document.title;} }
+    if(r==='top'){renderFilters();renderTop();} if(r==='month')renderMonth(); if(r==='brands')renderBrands(); if(r==='create')renderCreate(); if(r!=='vs'){document.title=t('title').replace('Snuskampen',SITE.name); $('#ogt').content=document.title;} }
   function resolve(){ const m=location.pathname.match(/^\/vs\/([^/]+)\/([^/]+)/); if(m){route='vs';document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='v-vs'));document.querySelectorAll('nav a').forEach(a=>a.removeAttribute('aria-current'));renderVs(decodeURIComponent(m[1]),decodeURIComponent(m[2]));return;}
     const r=Object.entries(ROUTES).find(([,p])=>p===location.pathname)?.[0]||(location.hash==='#top'?'top':'duel'); go(r,false); }
   document.querySelectorAll('[data-route]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();go(a.dataset.route);}));
@@ -636,7 +699,7 @@
     $('#footContact').textContent=t('foot_contact'); $('#footContact').href = SE_ ? '/kontakt' : '/contact';
     $('#gateText').textContent=t('gate_text').replace('Snuskampen',SITE.name); $('#gateYes').textContent=t('gate_yes'); $('#gateNo').textContent=t('gate_no');
     if(route==='top'){renderFilters();renderTop();} if(route==='month')renderMonth(); if(route==='brands'){$('#bA').innerHTML='';renderBrands();}
-    if(route==='duel')draw();
+    if(route==='duel')draw(); if(route==='create')renderCreate(); if(nav[4])nav[4].textContent=ct('nav');
     if(route==='vs'){const m=location.pathname.match(/^\/vs\/([^/]+)\/([^/]+)/); if(m)renderVs(decodeURIComponent(m[1]),decodeURIComponent(m[2]));}
   }
   // hreflang + canonical per domän
