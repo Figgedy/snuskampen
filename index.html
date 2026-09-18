@@ -246,6 +246,16 @@
   @media (hover:hover) and (pointer:fine){.h2h .side:hover{background:#f5f5f6}}
   .h2h .side .btn{margin-top:12px;max-width:100%;white-space:normal}
 </style>
+<style>/* knappar i linje + guld/grå för allt utom lagfärger */
+  .h2h{align-items:stretch}
+  .h2h .side{display:flex;flex-direction:column;align-items:center}
+  .h2h .side .pct{margin-bottom:12px}
+  .h2h .side .btn{margin-top:auto}
+  .vs{background:#d4a93c;color:#151516}
+  .chip[aria-pressed="true"]{background:#d4a93c;color:#151516;border-color:#d4a93c}
+  #cGo{background:#d4a93c;border-color:#d4a93c;color:#151516}
+  .btn[disabled]{opacity:1;background:#e8e8ea;border-color:#e8e8ea;color:#9a9aa0}
+</style>
 </head>
 <body>
 
