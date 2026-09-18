@@ -761,5 +761,5 @@ window.PRODUCTS = [
   {"id": "zyn-spearmint-slim-3", "brand": "Zyn", "maker": "Philip Morris International (Swedish Match)", "name": "Spearmint Slim 3", "format": "Slim", "style": "White", "flavor": "Mentol", "mg": "9 mg/prilla · 13,2 mg/g", "dots": 4, "type": "vit"},
   {"id": "zyn-violet-licorice-slim-2", "brand": "Zyn", "maker": "Philip Morris International (Swedish Match)", "name": "Violet Licorice Slim 2", "format": "Slim", "style": "White", "flavor": "Lakrits", "mg": "6 mg/prilla · 8,8 mg/g", "dots": 2, "type": "vit"},
   {"id": "zyn-violet-licorice-slim-3", "brand": "Zyn", "maker": "Philip Morris International (Swedish Match)", "name": "Violet Licorice Slim 3", "format": "Slim", "style": "White", "flavor": "Lakrits", "mg": "9 mg/prilla · 13,2 mg/g", "dots": 4, "type": "vit"},
-  {"id": "zyn-watermelon-mint-s2", "brand": "Zyn", "maker": "Philip Morris International (Swedish Match)", "name": "WATERMELON MINT S2", "format": "Slim", "style": "White", "flavor": "Vattenmelon", "mg": "6 mg/prilla · 10 mg/g", "dots": 2, "type": "vit"},
+  {"id": "zyn-watermelon-mint-s2", "brand": "Zyn", "maker": "Philip Morris International (Swedish Match)", "name": "Watermelon Mint S2", "format": "Slim", "style": "White", "flavor": "Vattenmelon", "mg": "6 mg/prilla · 10 mg/g", "dots": 2, "type": "vit"},
 ];
