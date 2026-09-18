@@ -265,6 +265,10 @@
   html body .filters select{padding:5px 10px;font-size:12px}
   @media (max-width:700px){html body .filters{gap:8px 16px}}
 </style>
+<style>
+  #rankNote a{color:inherit}
+  #v-top:has(#topTabs [data-tab="all"][aria-pressed="false"]) #rankNote{display:none}
+</style>
 </head>
 <body>
 
@@ -306,6 +310,7 @@
       <button class="chip" data-tab="mine" aria-pressed="false">Min lista</button>
     </div>
     <div class="filters" id="filters"></div>
+    <p class="note" id="rankNote" style="margin:-8px 0 14px"></p>
     <ol class="list" id="topList"></ol>
     <div id="mineActions" class="btnrow" hidden><button class="btn" id="mineShare">Skapa mitt resultatkort</button></div>
   </div></div></section>
@@ -723,7 +728,7 @@
     nav[0].textContent=t('nav_duel'); nav[1].textContent=t('nav_top'); nav[2].textContent=t('nav_month'); nav[3].textContent=t('nav_brands');
     $('#duelHint').innerHTML = esc(t('duel_hint'))+' <span class="keys"><kbd>←</kbd> <kbd>→</kbd> '+esc(t('vote'))+' · <kbd>S</kbd> '+esc(t('skip'))+'</span>';
     $('#share-duel').textContent=t('share_duel'); $('#skip').textContent=t('skip');
-    $('#topH').textContent=t('top_h1');
+    $('#topH').textContent=t('top_h1'); $('#rankNote').innerHTML = LANG==='sv' ? 'Ordningen tar hänsyn till motståndet: att slå ett topprankat snus väger tyngre än att slå ett lågt rankat. <a href="/sa-fungerar-rankingen">Så fungerar rankingen →</a>' : 'The order accounts for the opposition: beating a top-ranked pouch counts for more than beating a low-ranked one. <a href="/how-ranking-works">How the ranking works →</a>';
     const md=$('#metadesc'); if(md) md.content=t('meta_desc');
     const tabs={all:'tab_all',recent:'tab_recent',hot:'tab_hot',mine:'tab_mine'};
     $('#topTabs').querySelectorAll('.chip').forEach(b=>b.textContent=t(tabs[b.dataset.tab]));
