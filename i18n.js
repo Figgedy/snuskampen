@@ -149,7 +149,8 @@ window.I18N = {
 "foot_legal": "Snuskampen är en oberoende informations- och jämförelsetjänst. Vi säljer inte snus eller nikotinprodukter. Rankningar baseras på användarnas röster och ska inte betraktas som objektiva kvalitetsbedömningar eller rekommendationer att använda nikotinprodukter.",
 "foot_nic": "18+ · Nikotin är beroendeframkallande. Produkterna som visas är avsedda för vuxna.",
 "foot_tm": "Alla varumärken tillhör respektive rättighetsinnehavare. Snuskampen är inte anslutet till eller godkänt av de varumärken som visas.",
-"foot_priv": "Integritetspolicy"
+"foot_priv": "Integritetspolicy",
+"foot_short": "18+ · Nikotin är beroendeframkallande. Oberoende jämförelsetjänst – vi säljer inga produkter."
 },
 "flavor": {
 "Mint": "Mint",
@@ -279,7 +280,8 @@ window.I18N = {
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
-"foot_priv": "Privacy policy"
+"foot_priv": "Privacy policy",
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
 },
 "flavor": {
 "Mint": "Mint",
@@ -409,7 +411,8 @@ window.I18N = {
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
-"foot_priv": "Privacy policy"
+"foot_priv": "Privacy policy",
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
 },
 "flavor": {
 "Mint": "Minze",
@@ -539,7 +542,8 @@ window.I18N = {
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
-"foot_priv": "Privacy policy"
+"foot_priv": "Privacy policy",
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
 },
 "flavor": {
 "Mint": "Mint",
@@ -669,7 +673,8 @@ window.I18N = {
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
-"foot_priv": "Privacy policy"
+"foot_priv": "Privacy policy",
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
 },
 "flavor": {
 "Mint": "Mint",
@@ -799,7 +804,8 @@ window.I18N = {
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
-"foot_priv": "Privacy policy"
+"foot_priv": "Privacy policy",
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
 },
 "flavor": {
 "Mint": "Minttu",
@@ -929,7 +935,8 @@ window.I18N = {
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
-"foot_priv": "Privacy policy"
+"foot_priv": "Privacy policy",
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
 },
 "flavor": {
 "Mint": "Mięta",
@@ -1059,7 +1066,8 @@ window.I18N = {
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
-"foot_priv": "Privacy policy"
+"foot_priv": "Privacy policy",
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
 },
 "flavor": {
 "Mint": "Menta",
@@ -1189,7 +1197,8 @@ window.I18N = {
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
-"foot_priv": "Privacy policy"
+"foot_priv": "Privacy policy",
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
 },
 "flavor": {
 "Mint": "Menta",
@@ -1319,7 +1328,8 @@ window.I18N = {
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
-"foot_priv": "Privacy policy"
+"foot_priv": "Privacy policy",
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
 },
 "flavor": {
 "Mint": "Menthe",
@@ -1449,7 +1459,8 @@ window.I18N = {
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
-"foot_priv": "Privacy policy"
+"foot_priv": "Privacy policy",
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
 },
 "flavor": {
 "Mint": "민트",
@@ -1579,7 +1590,8 @@ window.I18N = {
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
-"foot_priv": "Privacy policy"
+"foot_priv": "Privacy policy",
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
 },
 "flavor": {
 "Mint": "Mäta",
@@ -1709,7 +1721,8 @@ window.I18N = {
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
-"foot_priv": "Privacy policy"
+"foot_priv": "Privacy policy",
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
 },
 "flavor": {
 "Mint": "Meta",
@@ -1839,7 +1852,8 @@ window.I18N = {
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
-"foot_priv": "Privacy policy"
+"foot_priv": "Privacy policy",
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
 },
 "flavor": {
 "Mint": "Metvica",
@@ -1969,7 +1983,8 @@ window.I18N = {
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
-"foot_priv": "Privacy policy"
+"foot_priv": "Privacy policy",
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
 },
 "flavor": {
 "Mint": "Minta",
@@ -2099,7 +2114,8 @@ window.I18N = {
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
-"foot_priv": "Privacy policy"
+"foot_priv": "Privacy policy",
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
 },
 "flavor": {
 "Mint": "Piparmünt",
@@ -2229,7 +2245,8 @@ window.I18N = {
 "foot_legal": "SnusBattle is an independent product information and comparison platform. We do not sell tobacco or nicotine products. Rankings reflect user voting and should not be interpreted as objective quality assessments, health claims, or recommendations to use nicotine products.",
 "foot_nic": "18+ · Nicotine is addictive. The products shown are intended for adults.",
 "foot_tm": "All trademarks belong to their respective owners. SnusBattle is not affiliated with or endorsed by the brands displayed.",
-"foot_priv": "Privacy policy"
+"foot_priv": "Privacy policy",
+"foot_short": "18+ · Nicotine is addictive. Independent comparison service – we sell no products."
 },
 "flavor": {
 "Mint": "Piparmētra",

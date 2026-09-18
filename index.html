@@ -186,6 +186,12 @@
   footer#foot p{margin:0 0 3px}
   footer#foot p:last-child{margin:0}
   footer#foot a{color:var(--muted)}
+  footer#foot #footShort{display:none}
+  @media (max-width:640px){
+    footer#foot .fw{padding:7px 14px;font-size:10px}
+    footer#foot #footLegal,footer#foot #footNic,footer#foot #footTm{display:none}
+    footer#foot #footShort{display:block}
+  }
 </style>
 </head>
 <body>
@@ -257,6 +263,7 @@
   <p id="footLegal"></p>
   <p id="footNic"></p>
   <p id="footTm"></p>
+  <p id="footShort"></p>
   <p><a id="footPriv" href="/integritetspolicy"></a></p>
 </div></footer>
 
@@ -605,6 +612,7 @@
     $('#footLegal').textContent=t('foot_legal').replace('Snuskampen',SITE.name);
     $('#footNic').textContent=t('foot_nic');
     $('#footTm').textContent=t('foot_tm').replace('Snuskampen',SITE.name);
+    $('#footShort').textContent=t('foot_short');
     $('#footPriv').textContent=t('foot_priv');
     $('#footPriv').href = (SITE.domain==='snuskampen.se') ? '/integritetspolicy' : '/privacy';
     $('#gateText').textContent=t('gate_text').replace('Snuskampen',SITE.name); $('#gateYes').textContent=t('gate_yes'); $('#gateNo').textContent=t('gate_no');
