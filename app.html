@@ -482,7 +482,7 @@
     : `<div class="${cls}"><div class="fallback">${canSvg(p, cls==='thumb')}</div></div>`;
   window.__snusFallback = el => { const p=byId[el.dataset.pid]; if(!p){el.remove();return;} const d=document.createElement('div'); d.className='fallback'; d.innerHTML=canSvg(p, el.dataset.small==='1'); el.replaceWith(d); };
   const label = p => `${p.brand} ${p.name}`;
-  const tmg = s => !s || LANG==='sv' ? s : String(s).replace(/prilla/g,'pouch').replace(/(\d),(\d)/g,'$1.$2');
+  const tmg = s => !s ? s : String(s).replace(/prilla/g, t('unit')).replace(/(\d),(\d)/g, (LANG==='en'||LANG==='ko') ? '$1.$2' : '$1,$2');
   const sub = p => [p.format, p.style, tf(p.flavor), tmg(p.mg)].filter(Boolean).join(' · ');
   const vsUrl = (a,b) => `/vs/${a}/${b}`;
 
@@ -507,7 +507,7 @@
     if(!pool.length) pool=P.filter(p=>!ex.includes(p.id));
     if(otherBrand && Math.random()<CROSS_BRAND){ const q=pool.filter(p=>p.brand!==otherBrand); if(q.length) pool=q; }
     const p=pool[Math.floor(Math.random()*pool.length)]; recent.push(p.id); if(recent.length>12)recent.shift(); return p; }
-  function renderCorner(el,p,isChamp){ el.dataset.id=p.id; el.innerHTML=`${imgHtml(p,'can')}<span class="brand">${esc(p.brand)}</span><h2 class="name" style="margin:0">${esc(p.name)}</h2><p class="meta">${esc([p.format,p.style,tf(p.flavor)].filter(Boolean).join(' · '))}</p><p class="meta">${dots(p.dots)}${esc(tmg(p.mg))}</p>${isChamp&&streak>0?`<span class="streak">${streak>1?streak+(LANG==='sv'?' raka vinster':' wins in a row'):(LANG==='sv'?'1 vinst':'1 win')}</span>`:''}`; }
+  function renderCorner(el,p,isChamp){ el.dataset.id=p.id; el.innerHTML=`${imgHtml(p,'can')}<span class="brand">${esc(p.brand)}</span><h2 class="name" style="margin:0">${esc(p.name)}</h2><p class="meta">${esc([p.format,p.style,tf(p.flavor)].filter(Boolean).join(' · '))}</p><p class="meta">${dots(p.dots)}${esc(tmg(p.mg))}</p>${isChamp&&streak>0?`<span class="streak">${esc(streak>1?t('streak_n',{n:streak}):t('streak_1'))}</span>`:''}`; }
   function draw(){ renderCorner($('#cornerL'),champ,true); renderCorner($('#cornerR'),chall,false); }
   function startDuel(a,b){ champ=a||pick([]); chall=b||pick([champ.id],champ.brand); streak=0; draw(); }
   function vote(side){ const winner=side==='L'?champ:chall, loser=side==='L'?chall:champ, el=side==='L'?$('#cornerL'):$('#cornerR');
@@ -700,7 +700,7 @@
     sv:{nav:'Skapa duell',h:'Skapa din egen duell',sub:'Välj två snus och få en länk att dela.',ph:'Sök märke, smak eller produkt…',a:'Snus 1',b:'Snus 2',go:'Skapa duell',copy:'Kopiera länk',copied:'Länk kopierad',none:'Inga träffar',same:'Välj två olika produkter',change:'Byt'},
     en:{nav:'Create battle',h:'Create your own battle',sub:'Pick two pouches and get a link to share.',ph:'Search brand, flavour or product…',a:'Pouch 1',b:'Pouch 2',go:'Create battle',copy:'Copy link',copied:'Link copied',none:'No matches',same:'Pick two different products',change:'Change'}
   };
-  function ct(k){ return (CT[LANG]||CT.en)[k]; }
+  function ct(k){ return t('create_'+k); }
   let cSel={a:null,b:null};
   const cnorm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
   function searchProducts(q){
@@ -764,7 +764,7 @@
     nav[0].textContent=t('nav_duel'); nav[1].textContent=t('nav_top'); nav[2].textContent=t('nav_month'); nav[3].textContent=t('nav_brands');
     $('#duelHint').innerHTML = esc(t('duel_hint'))+' <span class="keys"><kbd>←</kbd> <kbd>→</kbd> '+esc(t('vote'))+' · <kbd>S</kbd> '+esc(t('skip'))+'</span>';
     $('#share-duel').textContent=t('share_duel'); $('#skip').textContent=t('skip');
-    $('#topH').textContent=t('top_h1'); $('#rankNote').innerHTML = LANG==='sv' ? 'Ordningen tar hänsyn till motståndet: att slå ett topprankat snus väger tyngre än att slå ett lågt rankat. <a href="/sa-fungerar-rankingen">Så fungerar rankingen →</a>' : 'The order accounts for the opposition: beating a top-ranked pouch counts for more than beating a low-ranked one. <a href="/how-ranking-works">How the ranking works →</a>';
+    $('#topH').textContent=t('top_h1'); $('#rankNote').innerHTML = esc(t('rank_note'))+' <a href="'+(SITE.domain==='snuskampen.se'?'/sa-fungerar-rankingen':'/how-ranking-works')+'">'+esc(t('rank_link'))+' →</a>';
     const md=$('#metadesc'); if(md) md.content=t('meta_desc');
     const tabs={all:'tab_all',recent:'tab_recent',hot:'tab_hot',mine:'tab_mine'};
     $('#topTabs').querySelectorAll('.chip').forEach(b=>b.textContent=t(tabs[b.dataset.tab]));
