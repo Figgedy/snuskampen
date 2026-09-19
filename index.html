@@ -284,6 +284,19 @@
   html body .bvb .vs{width:44px!important;height:44px!important;font-size:22px!important}
 }
 </style>
+<style>/* mobilfix-2: kompakt botten i duellen */
+@media (max-width:700px){
+  body:has(#v-duel.on) #foot{padding:6px 12px}
+  body:has(#v-duel.on) #foot .fw{display:flex;align-items:center;gap:10px}
+  body:has(#v-duel.on) #foot #footShort{flex:1;min-width:0;margin:0;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  body:has(#v-duel.on) #foot #footLinks{flex:none;margin:0;font-size:0}
+  body:has(#v-duel.on) #foot #footLinks a{display:none}
+  body:has(#v-duel.on) #foot #footLinks #footAbout{display:inline;font-size:11px}
+  body:has(#v-duel.on) .hint{padding:6px 12px;font-size:11px;gap:10px;line-height:1.3}
+  body:has(#v-duel.on) .hint .acts{flex:none;gap:12px}
+  body:has(#v-duel.on) .hint button{font-size:12px;white-space:nowrap}
+}
+</style>
 </head>
 <body>
 
