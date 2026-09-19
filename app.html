@@ -424,14 +424,14 @@
   const COUNTRIES=[['SE','🇸🇪 Sverige'],['NO','🇳🇴 Norge'],['DK','🇩🇰 Danmark'],['FI','🇫🇮 Suomi'],['IS','🇮🇸 Ísland'],
     ['DE','🇩🇪 Deutschland'],['AT','🇦🇹 Österreich'],['CH','🇨🇭 Schweiz'],['NL','🇳🇱 Nederland'],['BE','🇧🇪 België'],
     ['GB','🇬🇧 UK'],['IE','🇮🇪 Ireland'],['US','🇺🇸 USA'],['CA','🇨🇦 Canada'],
-    ['PL','🇵🇱 Polska'],['CZ','🇨🇿 Česko'],['SK','🇸🇰 Slovensko'],['SI','🇸🇮 Slovenija'],['HR','🇭🇷 Hrvatska'],
+    ['PL','🇵🇱 Polska'],['CZ','🇨🇿 Česko'],['SK','🇸🇰 Slovensko'],['HU','🇭🇺 Magyarország'],['SI','🇸🇮 Slovenija'],['HR','🇭🇷 Hrvatska'],
     ['EE','🇪🇪 Eesti'],['LV','🇱🇻 Latvija'],['LT','🇱🇹 Lietuva'],
     ['IT','🇮🇹 Italia'],['ES','🇪🇸 España'],['PT','🇵🇹 Portugal'],['FR','🇫🇷 France'],
     ['KR','🇰🇷 대한민국'],['JP','🇯🇵 日本'],['AU','🇦🇺 Australia'],['NZ','🇳🇿 New Zealand'],
-    ['ZA','🇿🇦 South Africa'],['AE','🇦🇪 United Arab Emirates'],['XX','🌍 —']];
+    ['ZA','🇿🇦 South Africa'],['AE','🇦🇪 UAE'],['XX','🌍 —']];
   const LANG2C={sv:'SE',no:'NO',da:'DK',fi:'FI',is:'IS',de:'DE',en:'GB',pl:'PL',sk:'SK',sl:'SI',hr:'HR',et:'EE',lv:'LV',it:'IT',es:'ES',fr:'FR',ko:'KR'};
-  const C2LANG={SE:'sv',NO:'no',DK:'da',FI:'fi',IS:'is',DE:'de',AT:'de',CH:'de',NL:'en',BE:'fr',GB:'en',IE:'en',US:'en',CA:'en',
-    PL:'pl',CZ:'sk',SK:'sk',SI:'sl',HR:'hr',EE:'et',LV:'lv',LT:'lv',IT:'it',ES:'es',PT:'es',FR:'fr',KR:'ko',JP:'en',AU:'en',NZ:'en',ZA:'en',AE:'en',XX:'en'};
+  const C2LANG={HU:'hu',SE:'sv',NO:'no',DK:'da',FI:'fi',IS:'is',DE:'de',AT:'de',CH:'de',NL:'en',BE:'fr',GB:'en',IE:'en',US:'en',CA:'en',
+    PL:'pl',CZ:'cs',SK:'sk',SI:'sl',HR:'hr',EE:'et',LV:'lv',LT:'lt',IT:'it',ES:'es',PT:'pt',FR:'fr',KR:'ko',JP:'en',AU:'en',NZ:'en',ZA:'en',AE:'en',XX:'en'};
   const guessCountry=()=>{ const l=(navigator.language||'').toUpperCase(); const m=l.match(/-([A-Z]{2})/);
     if(SITE.country) return SITE.country;
     if(m&&COUNTRIES.some(c=>c[0]===m[1])) return m[1];
