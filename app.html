@@ -802,7 +802,7 @@
   // ---- land
   $('#country').innerHTML=COUNTRIES.map(([c,l])=>`<option value="${c}" ${c===country?'selected':''}>${l}</option>`).join('');
   $('#country').addEventListener('change',e=>{ country=e.target.value; store.set('sk_country',country); store.set('sk_country_set',true);
-    if(!store.get('sk_lang_set',false)){ const nl=C2LANG[country]; if(nl && I18N.T[nl] && nl!==LANG){ LANG=nl; $('#lang').value=LANG; store.set('sk_lang',LANG); applyLang(); } } });
+    const SEd=SITE.domain==='snuskampen.se', isSE=String(country).toUpperCase()==='SE'; if(isSE && !SEd){ location.href='https://snuskampen.se'+location.pathname; return; } if(!isSE && SEd){ location.href='https://snusbattle.com'+location.pathname+'?lang='+(C2LANG[country]||'en'); return; } { const nl=C2LANG[country]; if(nl && I18N.T[nl] && nl!==LANG){ LANG=nl; $('#lang').value=LANG; store.set('sk_lang',LANG); applyLang(); } } });
 
   // ---- age gate + start
   const gate=$('#gate'); if(store.get('sk_18',false)){ gate.hidden=true; document.documentElement.classList.remove('gated'); }
