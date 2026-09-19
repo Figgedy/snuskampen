@@ -269,6 +269,21 @@
   #rankNote a{color:inherit}
   #v-top:has(#topTabs [data-tab="all"][aria-pressed="false"]) #rankNote{display:none}
 </style>
+<style>/* mobilfix-1 */
+@media (max-width:700px){
+  html body nav{flex-wrap:wrap;overflow-x:visible}
+  html body .h2h{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:8px}
+  html body .h2h .side{min-width:0;padding:8px 4px}
+  html body .h2h .side img{max-width:100%;height:auto}
+  html body .h2h .side .name{font-size:clamp(20px,6.5vw,32px)!important;overflow-wrap:anywhere}
+  html body .h2h .side .meta{font-size:13px}
+  html body .h2h .side .btn{font-size:13px;padding:9px 12px}
+  html body .h2h>.vs{width:44px!important;height:44px!important;font-size:22px!important;margin-top:40px!important}
+  html body .bvb{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:8px;align-items:center}
+  html body .bvb select{width:100%;min-width:0;max-width:100%;text-overflow:ellipsis}
+  html body .bvb .vs{width:44px!important;height:44px!important;font-size:22px!important}
+}
+</style>
 </head>
 <body>
 
