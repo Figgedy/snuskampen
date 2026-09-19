@@ -15,7 +15,7 @@ export async function GET(req) {
   const { host, origin } = originOf(req);
   const a = u.searchParams.get('a') || '', b = u.searchParams.get('b') || '';
 
-  const page = await fetch(origin + '/index.html').then(r => r.text());
+  const page = await fetch(origin + '/app.html').then(r => r.text());
   let A, B;
   try { const { byId } = await loadData(origin); A = byId[a]; B = byId[b]; } catch (e) { console.error(e); }
   if (!A || !B) {

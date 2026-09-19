@@ -48,7 +48,7 @@
     },
     {
       "source": "/((?!api/|img/|legal/|.*\\.[a-z0-9]+$).*)",
-      "destination": "/index.html"
+      "destination": "/app.html"
     }
   ]
 }
