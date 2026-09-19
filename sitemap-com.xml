@@ -1668,4 +1668,420 @@
   <url><loc>https://snusbattle.com/how-ranking-works</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://snusbattle.com/contact</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://snusbattle.com/privacy</loc><changefreq>monthly</changefreq></url>
+  <url>
+    <loc>https://snusbattle.com/?lang=cs</loc>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://snuskampen.se/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://snusbattle.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://snusbattle.com/?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://snusbattle.com/?lang=cs"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://snusbattle.com/?lang=lt"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://snusbattle.com/?lang=hu"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://snusbattle.com/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://snusbattle.com/?lang=no"/>
+    <xhtml:link rel="alternate" hreflang="da" href="https://snusbattle.com/?lang=da"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://snusbattle.com/?lang=fi"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://snusbattle.com/?lang=pl"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://snusbattle.com/?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://snusbattle.com/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://snusbattle.com/?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://snusbattle.com/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://snusbattle.com/?lang=sk"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://snusbattle.com/?lang=sl"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://snusbattle.com/?lang=hr"/>
+    <xhtml:link rel="alternate" hreflang="is" href="https://snusbattle.com/?lang=is"/>
+    <xhtml:link rel="alternate" hreflang="et" href="https://snusbattle.com/?lang=et"/>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://snusbattle.com/?lang=lv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://snusbattle.com/"/>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://snusbattle.com/?lang=lt</loc>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://snuskampen.se/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://snusbattle.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://snusbattle.com/?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://snusbattle.com/?lang=cs"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://snusbattle.com/?lang=lt"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://snusbattle.com/?lang=hu"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://snusbattle.com/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://snusbattle.com/?lang=no"/>
+    <xhtml:link rel="alternate" hreflang="da" href="https://snusbattle.com/?lang=da"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://snusbattle.com/?lang=fi"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://snusbattle.com/?lang=pl"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://snusbattle.com/?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://snusbattle.com/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://snusbattle.com/?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://snusbattle.com/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://snusbattle.com/?lang=sk"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://snusbattle.com/?lang=sl"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://snusbattle.com/?lang=hr"/>
+    <xhtml:link rel="alternate" hreflang="is" href="https://snusbattle.com/?lang=is"/>
+    <xhtml:link rel="alternate" hreflang="et" href="https://snusbattle.com/?lang=et"/>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://snusbattle.com/?lang=lv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://snusbattle.com/"/>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://snusbattle.com/?lang=hu</loc>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://snuskampen.se/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://snusbattle.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://snusbattle.com/?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://snusbattle.com/?lang=cs"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://snusbattle.com/?lang=lt"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://snusbattle.com/?lang=hu"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://snusbattle.com/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://snusbattle.com/?lang=no"/>
+    <xhtml:link rel="alternate" hreflang="da" href="https://snusbattle.com/?lang=da"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://snusbattle.com/?lang=fi"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://snusbattle.com/?lang=pl"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://snusbattle.com/?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://snusbattle.com/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://snusbattle.com/?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://snusbattle.com/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://snusbattle.com/?lang=sk"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://snusbattle.com/?lang=sl"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://snusbattle.com/?lang=hr"/>
+    <xhtml:link rel="alternate" hreflang="is" href="https://snusbattle.com/?lang=is"/>
+    <xhtml:link rel="alternate" hreflang="et" href="https://snusbattle.com/?lang=et"/>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://snusbattle.com/?lang=lv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://snusbattle.com/"/>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://snusbattle.com/?lang=pt</loc>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://snuskampen.se/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://snusbattle.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://snusbattle.com/?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://snusbattle.com/?lang=cs"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://snusbattle.com/?lang=lt"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://snusbattle.com/?lang=hu"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://snusbattle.com/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://snusbattle.com/?lang=no"/>
+    <xhtml:link rel="alternate" hreflang="da" href="https://snusbattle.com/?lang=da"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://snusbattle.com/?lang=fi"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://snusbattle.com/?lang=pl"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://snusbattle.com/?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://snusbattle.com/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://snusbattle.com/?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://snusbattle.com/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://snusbattle.com/?lang=sk"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://snusbattle.com/?lang=sl"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://snusbattle.com/?lang=hr"/>
+    <xhtml:link rel="alternate" hreflang="is" href="https://snusbattle.com/?lang=is"/>
+    <xhtml:link rel="alternate" hreflang="et" href="https://snusbattle.com/?lang=et"/>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://snusbattle.com/?lang=lv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://snusbattle.com/"/>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://snusbattle.com/topplistan?lang=cs</loc>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://snuskampen.se/topplistan"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://snusbattle.com/topplistan"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://snusbattle.com/topplistan?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://snusbattle.com/topplistan?lang=cs"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://snusbattle.com/topplistan?lang=lt"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://snusbattle.com/topplistan?lang=hu"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://snusbattle.com/topplistan?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://snusbattle.com/topplistan?lang=no"/>
+    <xhtml:link rel="alternate" hreflang="da" href="https://snusbattle.com/topplistan?lang=da"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://snusbattle.com/topplistan?lang=fi"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://snusbattle.com/topplistan?lang=pl"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://snusbattle.com/topplistan?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://snusbattle.com/topplistan?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://snusbattle.com/topplistan?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://snusbattle.com/topplistan?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://snusbattle.com/topplistan?lang=sk"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://snusbattle.com/topplistan?lang=sl"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://snusbattle.com/topplistan?lang=hr"/>
+    <xhtml:link rel="alternate" hreflang="is" href="https://snusbattle.com/topplistan?lang=is"/>
+    <xhtml:link rel="alternate" hreflang="et" href="https://snusbattle.com/topplistan?lang=et"/>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://snusbattle.com/topplistan?lang=lv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://snusbattle.com/topplistan"/>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://snusbattle.com/topplistan?lang=lt</loc>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://snuskampen.se/topplistan"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://snusbattle.com/topplistan"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://snusbattle.com/topplistan?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://snusbattle.com/topplistan?lang=cs"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://snusbattle.com/topplistan?lang=lt"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://snusbattle.com/topplistan?lang=hu"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://snusbattle.com/topplistan?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://snusbattle.com/topplistan?lang=no"/>
+    <xhtml:link rel="alternate" hreflang="da" href="https://snusbattle.com/topplistan?lang=da"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://snusbattle.com/topplistan?lang=fi"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://snusbattle.com/topplistan?lang=pl"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://snusbattle.com/topplistan?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://snusbattle.com/topplistan?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://snusbattle.com/topplistan?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://snusbattle.com/topplistan?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://snusbattle.com/topplistan?lang=sk"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://snusbattle.com/topplistan?lang=sl"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://snusbattle.com/topplistan?lang=hr"/>
+    <xhtml:link rel="alternate" hreflang="is" href="https://snusbattle.com/topplistan?lang=is"/>
+    <xhtml:link rel="alternate" hreflang="et" href="https://snusbattle.com/topplistan?lang=et"/>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://snusbattle.com/topplistan?lang=lv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://snusbattle.com/topplistan"/>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://snusbattle.com/topplistan?lang=hu</loc>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://snuskampen.se/topplistan"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://snusbattle.com/topplistan"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://snusbattle.com/topplistan?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://snusbattle.com/topplistan?lang=cs"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://snusbattle.com/topplistan?lang=lt"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://snusbattle.com/topplistan?lang=hu"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://snusbattle.com/topplistan?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://snusbattle.com/topplistan?lang=no"/>
+    <xhtml:link rel="alternate" hreflang="da" href="https://snusbattle.com/topplistan?lang=da"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://snusbattle.com/topplistan?lang=fi"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://snusbattle.com/topplistan?lang=pl"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://snusbattle.com/topplistan?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://snusbattle.com/topplistan?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://snusbattle.com/topplistan?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://snusbattle.com/topplistan?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://snusbattle.com/topplistan?lang=sk"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://snusbattle.com/topplistan?lang=sl"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://snusbattle.com/topplistan?lang=hr"/>
+    <xhtml:link rel="alternate" hreflang="is" href="https://snusbattle.com/topplistan?lang=is"/>
+    <xhtml:link rel="alternate" hreflang="et" href="https://snusbattle.com/topplistan?lang=et"/>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://snusbattle.com/topplistan?lang=lv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://snusbattle.com/topplistan"/>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://snusbattle.com/topplistan?lang=pt</loc>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://snuskampen.se/topplistan"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://snusbattle.com/topplistan"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://snusbattle.com/topplistan?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://snusbattle.com/topplistan?lang=cs"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://snusbattle.com/topplistan?lang=lt"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://snusbattle.com/topplistan?lang=hu"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://snusbattle.com/topplistan?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://snusbattle.com/topplistan?lang=no"/>
+    <xhtml:link rel="alternate" hreflang="da" href="https://snusbattle.com/topplistan?lang=da"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://snusbattle.com/topplistan?lang=fi"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://snusbattle.com/topplistan?lang=pl"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://snusbattle.com/topplistan?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://snusbattle.com/topplistan?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://snusbattle.com/topplistan?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://snusbattle.com/topplistan?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://snusbattle.com/topplistan?lang=sk"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://snusbattle.com/topplistan?lang=sl"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://snusbattle.com/topplistan?lang=hr"/>
+    <xhtml:link rel="alternate" hreflang="is" href="https://snusbattle.com/topplistan?lang=is"/>
+    <xhtml:link rel="alternate" hreflang="et" href="https://snusbattle.com/topplistan?lang=et"/>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://snusbattle.com/topplistan?lang=lv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://snusbattle.com/topplistan"/>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://snusbattle.com/manadens-mastare?lang=cs</loc>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://snuskampen.se/manadens-mastare"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://snusbattle.com/manadens-mastare"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://snusbattle.com/manadens-mastare?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://snusbattle.com/manadens-mastare?lang=cs"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://snusbattle.com/manadens-mastare?lang=lt"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://snusbattle.com/manadens-mastare?lang=hu"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://snusbattle.com/manadens-mastare?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://snusbattle.com/manadens-mastare?lang=no"/>
+    <xhtml:link rel="alternate" hreflang="da" href="https://snusbattle.com/manadens-mastare?lang=da"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://snusbattle.com/manadens-mastare?lang=fi"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://snusbattle.com/manadens-mastare?lang=pl"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://snusbattle.com/manadens-mastare?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://snusbattle.com/manadens-mastare?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://snusbattle.com/manadens-mastare?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://snusbattle.com/manadens-mastare?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://snusbattle.com/manadens-mastare?lang=sk"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://snusbattle.com/manadens-mastare?lang=sl"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://snusbattle.com/manadens-mastare?lang=hr"/>
+    <xhtml:link rel="alternate" hreflang="is" href="https://snusbattle.com/manadens-mastare?lang=is"/>
+    <xhtml:link rel="alternate" hreflang="et" href="https://snusbattle.com/manadens-mastare?lang=et"/>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://snusbattle.com/manadens-mastare?lang=lv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://snusbattle.com/manadens-mastare"/>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://snusbattle.com/manadens-mastare?lang=lt</loc>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://snuskampen.se/manadens-mastare"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://snusbattle.com/manadens-mastare"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://snusbattle.com/manadens-mastare?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://snusbattle.com/manadens-mastare?lang=cs"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://snusbattle.com/manadens-mastare?lang=lt"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://snusbattle.com/manadens-mastare?lang=hu"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://snusbattle.com/manadens-mastare?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://snusbattle.com/manadens-mastare?lang=no"/>
+    <xhtml:link rel="alternate" hreflang="da" href="https://snusbattle.com/manadens-mastare?lang=da"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://snusbattle.com/manadens-mastare?lang=fi"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://snusbattle.com/manadens-mastare?lang=pl"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://snusbattle.com/manadens-mastare?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://snusbattle.com/manadens-mastare?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://snusbattle.com/manadens-mastare?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://snusbattle.com/manadens-mastare?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://snusbattle.com/manadens-mastare?lang=sk"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://snusbattle.com/manadens-mastare?lang=sl"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://snusbattle.com/manadens-mastare?lang=hr"/>
+    <xhtml:link rel="alternate" hreflang="is" href="https://snusbattle.com/manadens-mastare?lang=is"/>
+    <xhtml:link rel="alternate" hreflang="et" href="https://snusbattle.com/manadens-mastare?lang=et"/>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://snusbattle.com/manadens-mastare?lang=lv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://snusbattle.com/manadens-mastare"/>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://snusbattle.com/manadens-mastare?lang=hu</loc>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://snuskampen.se/manadens-mastare"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://snusbattle.com/manadens-mastare"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://snusbattle.com/manadens-mastare?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://snusbattle.com/manadens-mastare?lang=cs"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://snusbattle.com/manadens-mastare?lang=lt"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://snusbattle.com/manadens-mastare?lang=hu"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://snusbattle.com/manadens-mastare?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://snusbattle.com/manadens-mastare?lang=no"/>
+    <xhtml:link rel="alternate" hreflang="da" href="https://snusbattle.com/manadens-mastare?lang=da"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://snusbattle.com/manadens-mastare?lang=fi"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://snusbattle.com/manadens-mastare?lang=pl"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://snusbattle.com/manadens-mastare?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://snusbattle.com/manadens-mastare?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://snusbattle.com/manadens-mastare?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://snusbattle.com/manadens-mastare?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://snusbattle.com/manadens-mastare?lang=sk"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://snusbattle.com/manadens-mastare?lang=sl"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://snusbattle.com/manadens-mastare?lang=hr"/>
+    <xhtml:link rel="alternate" hreflang="is" href="https://snusbattle.com/manadens-mastare?lang=is"/>
+    <xhtml:link rel="alternate" hreflang="et" href="https://snusbattle.com/manadens-mastare?lang=et"/>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://snusbattle.com/manadens-mastare?lang=lv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://snusbattle.com/manadens-mastare"/>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://snusbattle.com/manadens-mastare?lang=pt</loc>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://snuskampen.se/manadens-mastare"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://snusbattle.com/manadens-mastare"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://snusbattle.com/manadens-mastare?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://snusbattle.com/manadens-mastare?lang=cs"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://snusbattle.com/manadens-mastare?lang=lt"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://snusbattle.com/manadens-mastare?lang=hu"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://snusbattle.com/manadens-mastare?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://snusbattle.com/manadens-mastare?lang=no"/>
+    <xhtml:link rel="alternate" hreflang="da" href="https://snusbattle.com/manadens-mastare?lang=da"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://snusbattle.com/manadens-mastare?lang=fi"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://snusbattle.com/manadens-mastare?lang=pl"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://snusbattle.com/manadens-mastare?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://snusbattle.com/manadens-mastare?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://snusbattle.com/manadens-mastare?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://snusbattle.com/manadens-mastare?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://snusbattle.com/manadens-mastare?lang=sk"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://snusbattle.com/manadens-mastare?lang=sl"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://snusbattle.com/manadens-mastare?lang=hr"/>
+    <xhtml:link rel="alternate" hreflang="is" href="https://snusbattle.com/manadens-mastare?lang=is"/>
+    <xhtml:link rel="alternate" hreflang="et" href="https://snusbattle.com/manadens-mastare?lang=et"/>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://snusbattle.com/manadens-mastare?lang=lv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://snusbattle.com/manadens-mastare"/>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://snusbattle.com/varumarken?lang=cs</loc>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://snuskampen.se/varumarken"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://snusbattle.com/varumarken"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://snusbattle.com/varumarken?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://snusbattle.com/varumarken?lang=cs"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://snusbattle.com/varumarken?lang=lt"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://snusbattle.com/varumarken?lang=hu"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://snusbattle.com/varumarken?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://snusbattle.com/varumarken?lang=no"/>
+    <xhtml:link rel="alternate" hreflang="da" href="https://snusbattle.com/varumarken?lang=da"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://snusbattle.com/varumarken?lang=fi"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://snusbattle.com/varumarken?lang=pl"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://snusbattle.com/varumarken?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://snusbattle.com/varumarken?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://snusbattle.com/varumarken?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://snusbattle.com/varumarken?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://snusbattle.com/varumarken?lang=sk"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://snusbattle.com/varumarken?lang=sl"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://snusbattle.com/varumarken?lang=hr"/>
+    <xhtml:link rel="alternate" hreflang="is" href="https://snusbattle.com/varumarken?lang=is"/>
+    <xhtml:link rel="alternate" hreflang="et" href="https://snusbattle.com/varumarken?lang=et"/>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://snusbattle.com/varumarken?lang=lv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://snusbattle.com/varumarken"/>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://snusbattle.com/varumarken?lang=lt</loc>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://snuskampen.se/varumarken"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://snusbattle.com/varumarken"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://snusbattle.com/varumarken?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://snusbattle.com/varumarken?lang=cs"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://snusbattle.com/varumarken?lang=lt"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://snusbattle.com/varumarken?lang=hu"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://snusbattle.com/varumarken?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://snusbattle.com/varumarken?lang=no"/>
+    <xhtml:link rel="alternate" hreflang="da" href="https://snusbattle.com/varumarken?lang=da"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://snusbattle.com/varumarken?lang=fi"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://snusbattle.com/varumarken?lang=pl"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://snusbattle.com/varumarken?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://snusbattle.com/varumarken?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://snusbattle.com/varumarken?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://snusbattle.com/varumarken?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://snusbattle.com/varumarken?lang=sk"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://snusbattle.com/varumarken?lang=sl"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://snusbattle.com/varumarken?lang=hr"/>
+    <xhtml:link rel="alternate" hreflang="is" href="https://snusbattle.com/varumarken?lang=is"/>
+    <xhtml:link rel="alternate" hreflang="et" href="https://snusbattle.com/varumarken?lang=et"/>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://snusbattle.com/varumarken?lang=lv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://snusbattle.com/varumarken"/>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://snusbattle.com/varumarken?lang=hu</loc>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://snuskampen.se/varumarken"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://snusbattle.com/varumarken"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://snusbattle.com/varumarken?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://snusbattle.com/varumarken?lang=cs"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://snusbattle.com/varumarken?lang=lt"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://snusbattle.com/varumarken?lang=hu"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://snusbattle.com/varumarken?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://snusbattle.com/varumarken?lang=no"/>
+    <xhtml:link rel="alternate" hreflang="da" href="https://snusbattle.com/varumarken?lang=da"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://snusbattle.com/varumarken?lang=fi"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://snusbattle.com/varumarken?lang=pl"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://snusbattle.com/varumarken?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://snusbattle.com/varumarken?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://snusbattle.com/varumarken?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://snusbattle.com/varumarken?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://snusbattle.com/varumarken?lang=sk"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://snusbattle.com/varumarken?lang=sl"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://snusbattle.com/varumarken?lang=hr"/>
+    <xhtml:link rel="alternate" hreflang="is" href="https://snusbattle.com/varumarken?lang=is"/>
+    <xhtml:link rel="alternate" hreflang="et" href="https://snusbattle.com/varumarken?lang=et"/>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://snusbattle.com/varumarken?lang=lv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://snusbattle.com/varumarken"/>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://snusbattle.com/varumarken?lang=pt</loc>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://snuskampen.se/varumarken"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://snusbattle.com/varumarken"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://snusbattle.com/varumarken?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://snusbattle.com/varumarken?lang=cs"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://snusbattle.com/varumarken?lang=lt"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://snusbattle.com/varumarken?lang=hu"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://snusbattle.com/varumarken?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://snusbattle.com/varumarken?lang=no"/>
+    <xhtml:link rel="alternate" hreflang="da" href="https://snusbattle.com/varumarken?lang=da"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://snusbattle.com/varumarken?lang=fi"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://snusbattle.com/varumarken?lang=pl"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://snusbattle.com/varumarken?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://snusbattle.com/varumarken?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://snusbattle.com/varumarken?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://snusbattle.com/varumarken?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://snusbattle.com/varumarken?lang=sk"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://snusbattle.com/varumarken?lang=sl"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://snusbattle.com/varumarken?lang=hr"/>
+    <xhtml:link rel="alternate" hreflang="is" href="https://snusbattle.com/varumarken?lang=is"/>
+    <xhtml:link rel="alternate" hreflang="et" href="https://snusbattle.com/varumarken?lang=et"/>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://snusbattle.com/varumarken?lang=lv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://snusbattle.com/varumarken"/>
+    <changefreq>daily</changefreq>
+  </url>
 </urlset>
